@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Blank Page</title>
+  <title>Dashboard Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -139,7 +139,6 @@
           <i class="far fa-user-circle"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          
           <a href="#" class="dropdown-item">
             <i class="fas fa-clipboard-list"></i> Profile
             <span class="float-right text-muted text-sm"></span>
@@ -149,6 +148,7 @@
             <i class="fas fa-sign-out-alt"></i> Logout
             <span class="float-right text-muted text-sm"></span>
           </a>
+        </div>
       </li>
     </ul>
   </nav>
@@ -184,7 +184,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
-            <a href="/admin" class="nav-link">
+            <a href="/adm" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -192,7 +192,7 @@
               </p>
             </a>   
           </li>
-
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-basket"></i>
@@ -261,9 +261,7 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>   
-          </li>
-          
-          
+          </li>     
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -294,6 +292,8 @@
     <section class="content">
 
       <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
       @yield('container')
 
     </section>
