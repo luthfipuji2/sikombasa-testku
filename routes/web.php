@@ -41,3 +41,8 @@ Route::middleware(['auth'])->group(function () {
     });
  
 });
+
+//Route Admin
+Route::get('/adm', function () {
+    return view('layouts.admin.dashboard');
+});
