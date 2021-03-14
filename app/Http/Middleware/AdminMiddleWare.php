@@ -15,7 +15,7 @@ class AdminMiddleWare
      * @param  \Closure  $next
      * @return mixed
      */
-    protected $redirectTo = '/user';
+    protected $redirectTo = '/klien';
 
     public function handle(Request $request, Closure $next)
     {
@@ -25,7 +25,7 @@ class AdminMiddleWare
             apa yang ingin kamu lakukan jika rolenya tidak sesuai
             */
             
-            return redirect()->to('/user');
+            return redirect()->to('/klien');
         }
         return $next($request);
     }

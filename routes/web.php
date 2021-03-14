@@ -30,10 +30,15 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin');
     });
- 
-    Route::middleware(['user'])->group(function () {
-        Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('user');
+
+    Route::middleware(['translator'])->group(function () {
+        Route::get('/translator', [App\Http\Controllers\Admin\TranslatorController::class, 'index'])->name('translator');
     });
+ 
+    Route::middleware(['klien'])->group(function () {
+        Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('klien');
+    });
+    
  
     Route::get('/logout', function() {
         Auth::logout();

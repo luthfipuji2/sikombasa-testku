@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class KlienController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        return view('pages.user.home', compact('user'));
+        return view('pages.klien.home', compact('user'));
     }
 }
