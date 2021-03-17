@@ -13,15 +13,6 @@ Route::get('/', function () {
  
 
 Auth::routes();
-// Route::namespace('Admin')
-//     ->prefix('admin')
-//     ->name('admin.')
-//     //->middleware('can:manage-users')
-//     ->group(function () {
-//         //Route::resource('/users', 'UserController', ['except' => ['store', 'show', 'create']]);
-//         Route::res('/admin', 'AdminController@index');
-//         Route::get('/admin', 'AdminController@index')->name('admin_home');
-//     });
 
 Route::middleware(['auth'])->group(function () {
  
@@ -47,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
  
 });
 
-//Route Admin
-Route::get('/adm', function () {
-    return view('layouts.admin.dashboard');
-});
+// //Route Admin
+// Route::get('/adm', function () {
+//     return view('layouts.admin.dashboard');
+// });
