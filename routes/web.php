@@ -13,15 +13,6 @@ Route::get('/', function () {
  
 
 Auth::routes();
-// Route::namespace('Admin')
-//     ->prefix('admin')
-//     ->name('admin.')
-//     //->middleware('can:manage-users')
-//     ->group(function () {
-//         //Route::resource('/users', 'UserController', ['except' => ['store', 'show', 'create']]);
-//         Route::res('/admin', 'AdminController@index');
-//         Route::get('/admin', 'AdminController@index')->name('admin_home');
-//     });
 
 Route::middleware(['auth'])->group(function () {
  
@@ -41,13 +32,18 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
+
     // Route::middleware(['admin'])->group(function () {
     //     Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('admin');
     // });
- 
-    Route::middleware(['user'])->group(function () {
-        Route::get('/user', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('user');
+    Route::middleware(['translator'])->group(function () {
+        Route::get('/translator', [App\Http\Controllers\Admin\TranslatorController::class, 'index'])->name('translator');
     });
+ 
+    Route::middleware(['klien'])->group(function () {
+        Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('klien');
+    });
+    
  
     Route::get('/logout', function() {
         Auth::logout();
@@ -56,4 +52,10 @@ Route::middleware(['auth'])->group(function () {
  
 });
 
+
 //Route Admin
+//Route Admin
+// Route::get('/adm', function () {
+//     return view('layouts.admin.dashboard');
+// });
+

@@ -24,11 +24,21 @@ class UserSeeder extends Seeder
             'created_at' => \Carbon\Carbon::now(),
             'email_verified_at' => \Carbon\Carbon::now()
         ]);
+
         DB::table('users')->insert([
-            'name' => 'User',
-            'email' => 'user@gmail.com',
-            'password' => Hash::make('user12345'),
-            'role' => 'user',
+            'name' => 'Klien',
+            'email' => 'klien@gmail.com',
+            'password' => Hash::make('klien12345'),
+            'role' => 'klien',
+            'created_at' => \Carbon\Carbon::now(),
+            'email_verified_at' => \Carbon\Carbon::now()
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Translator',
+            'email' => 'translator@gmail.com',
+            'password' => Hash::make('translator12345'),
+            'role' => 'translator',
             'created_at' => \Carbon\Carbon::now(),
             'email_verified_at' => \Carbon\Carbon::now()
         ]);

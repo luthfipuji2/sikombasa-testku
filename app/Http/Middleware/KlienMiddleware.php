@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleWare
+class KlienMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,17 +15,15 @@ class AdminMiddleWare
      * @param  \Closure  $next
      * @return mixed
      */
-    protected $redirectTo = '/klien';
-
+    protected $redirectTo = '/admin';
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role != "admin"){
+        if(Auth::user()->role != "klien"){
             /* 
             silahkan modifikasi pada bagian ini
             apa yang ingin kamu lakukan jika rolenya tidak sesuai
             */
-            
-            return redirect()->to('/klien');
+            return redirect()->to('/admin');
         }
         return $next($request);
     }

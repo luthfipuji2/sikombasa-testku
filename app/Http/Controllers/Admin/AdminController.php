@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-//use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;

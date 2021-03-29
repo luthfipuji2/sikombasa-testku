@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserMiddleware
+class TranslatorMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,16 +15,12 @@ class UserMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    protected $redirectTo = '/admin';
+
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role != "user"){
-            /* 
-            silahkan modifikasi pada bagian ini
-            apa yang ingin kamu lakukan jika rolenya tidak sesuai
-            */
-            return redirect()->to('/admin');
+        if(Auth::check() && Auth::user()->role == 'translator'){
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->to('/login');
     }
 }
