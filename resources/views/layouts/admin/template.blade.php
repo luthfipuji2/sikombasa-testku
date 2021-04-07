@@ -93,10 +93,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
 
               <li class="nav-item">
-                <router-link to="/admin-bank" class="nav-link">
+                <a href="/daftar-bank" class="nav-link">
                   <i class="fas fa-university nav-icon"></i>
                   <p>Daftar Bank</p>
-                </router-link>
+                </a>
               </li>
 
               <li class="nav-item">
@@ -187,5 +187,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <script src="js/app.js"></script>
+<script>
+    $(document).ready(function () {
+      var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+    } );
+ 
+    table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );      
+    });
+</script>
 </body>
 </html>
