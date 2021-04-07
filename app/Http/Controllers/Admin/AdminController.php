@@ -9,11 +9,17 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function dashboard()
     {
         $user = Auth::user();
         return view('pages.admin.home', compact('user'));
     }
+
+    /*public function index()
+    {
+        $user = Auth::user();
+        return view('pages.admin.home', compact('user'));
+    }*/
 
     public function indexUsers()
     {
