@@ -20,7 +20,8 @@ Route::middleware(['auth'])->group(function () {
  
     //Route Admin
     Route::middleware(['admin'])->group(function () {
-        Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin');
+        
+        Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin');
         
         //Route Users & Permissions
         Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
