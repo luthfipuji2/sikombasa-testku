@@ -15,17 +15,14 @@ class AdminMiddleWare
      * @param  \Closure  $next
      * @return mixed
      */
-    protected $redirectTo = '/klien';
+   // protected $redirectTo = '/klien';
 
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role != "admin"){
-            /* 
-            silahkan modifikasi pada bagian ini
-            apa yang ingin kamu lakukan jika rolenya tidak sesuai
-            */
-            
+        if(Auth::user()->role != "admin" && Auth::user()->role != 'translator'){
             return redirect()->to('/klien');
+        }elseif(Auth::user()->role != "admin" && Auth::user()->role != 'klien'){
+            return redirect()->to('/translator');
         }
         return $next($request);
     }

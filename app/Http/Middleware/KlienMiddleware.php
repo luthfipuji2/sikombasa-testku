@@ -15,15 +15,13 @@ class KlienMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    protected $redirectTo = '/admin';
+    //protected $redirectTo = '/admin';
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role != "klien"){
-            /* 
-            silahkan modifikasi pada bagian ini
-            apa yang ingin kamu lakukan jika rolenya tidak sesuai
-            */
+        if(Auth::user()->role != "klien" && Auth::user()->role != 'translator'){
             return redirect()->to('/admin');
+        }elseif(Auth::user()->role != 'klien' && Auth::user()->role != 'admin'){
+            return redirect()->to('/translator');
         }
         return $next($request);
     }
