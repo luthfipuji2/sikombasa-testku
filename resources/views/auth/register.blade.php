@@ -59,22 +59,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Masuk Sebagai') }}</label>
-                            <div class="col-md-6">
-                                <!-- <label for="tipe">Pilih Role</label> -->
-                                <select class="custom-select form-control fstdropdown-select" name="tipe"
-                                    id="tipe" value="{{old('tipe')}}" required>
-                                    <option value="" disabled selected>--Pilih Role--</option>
-                                    <option value="translator" {{old("tipe") ==  "translator" ? "selected":"" }}>Translator</option>
-                                    <option value="klien" {{old("tipe") ==  "klien" ? "selected":"" }}>Klien</option>
-                                @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                        
                         </select>
                     </div>
             </div>
