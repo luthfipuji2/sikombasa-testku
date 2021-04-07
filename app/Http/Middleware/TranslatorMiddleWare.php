@@ -18,9 +18,11 @@ class TranslatorMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role == 'translator'){
-            return $next($request);
+        if(Auth::user()->role != "klien" && Auth::user()->role != 'translator'){
+            return redirect()->to('/admin');
+        }elseif(Auth::user()->role != 'translator' && Auth::user()->role != 'admin'){
+            return redirect()->to('/klien');
         }
-        return redirect()->to('/login');
+        return $next($request);
     }
 }

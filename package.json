@@ -26,6 +26,7 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
+<<<<<<< HEAD
         "tailwindcss": "^2.0.1",
         "vue": "^2.5.17",
         "vue-loader": "^15.9.5",
@@ -33,5 +34,12 @@
     },
     "dependencies": {
         "admin-lte": "^3.0.5"
+=======
+        "tailwindcss": "^2.0.1"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.3",
+        "admin-lte": "^3.1.0"
+>>>>>>> d886bb0f960433fef990856be42f8efe09bd6138
     }
 }

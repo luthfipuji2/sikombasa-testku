@@ -5,7 +5,9 @@
  */
 
 require('./bootstrap');
+require("admin-lte");
 
+<<<<<<< HEAD
 window.Vue = require('vue').default;
 
 /**
@@ -31,3 +33,8 @@ Vue.component('backend', require('./components/backend.vue').default);
 const app = new Vue({
     el: '#app',
 });
+=======
+require('alpinejs');
+
+
+>>>>>>> d886bb0f960433fef990856be42f8efe09bd6138
