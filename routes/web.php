@@ -25,11 +25,17 @@ Route::middleware(['auth'])->group(function () {
         
         //Route Users & Permissions
         Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
-        Route::get('/users/create', [App\Http\Controllers\Admin\AdminController::class, 'createUsers'])->name('users');
-        Route::post('/users', [App\Http\Controllers\Admin\AdminController::class, 'storeUsers'])->name('users');
-        Route::delete('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'destroyUsers'])->name('users');
-        Route::get('/users/{user}/edit', [App\Http\Controllers\Admin\AdminController::class, 'editUsers'])->name('users');
-        Route::patch('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'updateUsers'])->name('users');
+        //Route::get('/bank', [App\Http\Controllers\Admin\BankController::class, 'index'])->name('bank');
+        //Route::get('/bank/{bank}/edit', [App\Http\Controllers\Admin\BankController::class, 'edit'])->name('/bank/{bank}/edit');
+        Route::resource('bank', 'App\Http\Controllers\Admin\BankController');
+        //Route::get('/bank-create', [App\Http\Controllers\Admin\BankController::class, 'create'])->name('bank');
+        //Route::delete('/bank-{$id_bank}', [App\Http\Controllers\Admin\BankController::class, 'destroyUsers'])->name('bank');
+
+
+        // Route::post('/users', [App\Http\Controllers\Admin\AdminController::class, 'storeUsers'])->name('users');
+        // Route::delete('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'destroyUsers'])->name('users');
+        // Route::get('/users/{user}/edit', [App\Http\Controllers\Admin\AdminController::class, 'editUsers'])->name('users');
+        // Route::patch('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'updateUsers'])->name('users');
 
     });
 
