@@ -93,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
 
               <li class="nav-item">
-                <a href="/daftar-bank" class="nav-link">
+                <a href="{{ url ('/bank') }}" class="nav-link">
                   <i class="fas fa-university nav-icon"></i>
                   <p>Daftar Bank</p>
                 </a>
@@ -196,7 +196,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
  
     table.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );      
-    });
+    });  
 </script>
+
 </body>
 </html>
