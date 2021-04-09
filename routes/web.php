@@ -48,7 +48,10 @@ Route::middleware(['auth'])->group(function () {
     });
  
     Route::middleware(['klien'])->group(function () {
-        Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('klien');
+        Route::resource('menu-order', 'App\Http\Controllers\Admin\KlienController');
+        //Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'dashboard'])->name('klien');
+        //Route::get('/menu-order', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('menu-order');
+        //Route::post('/order-teks', [App\Http\Controllers\Admin\KlienController::class, 'orderTeks'])->name('order-teks');
     });
     
  
