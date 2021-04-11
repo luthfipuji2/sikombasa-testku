@@ -25,9 +25,10 @@ class KlienController extends Controller
     
     public function store(Request $request){
         Order::create([
+            //'id_klien'=>Auth::user()->id,
             'jenis_layanan'=>$request->jenis_layanan, 
             'text'=>$request->text
         ]);
-        return redirect('/menu-order')->with('success', 'Data berhasil ditambahkan');
+        return redirect(route('klien.index'))->with('success', 'Data berhasil ditambahkan');
     }
 }

@@ -33,19 +33,15 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-
-    // Route::middleware(['admin'])->group(function () {
-    //     Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('admin');
-    // });
     Route::middleware(['translator'])->group(function () {
         Route::get('/translator', [App\Http\Controllers\Admin\TranslatorController::class, 'index'])->name('translator');
     });
  
     Route::middleware(['klien'])->group(function () {
-        Route::resource('menu-order', 'App\Http\Controllers\Admin\KlienController');
-        //Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'dashboard'])->name('klien');
-        //Route::get('/menu-order', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('menu-order');
-        //Route::post('/order-teks', [App\Http\Controllers\Admin\KlienController::class, 'orderTeks'])->name('order-teks');
+        Route::resource('klien', 'App\Http\Controllers\Admin\KlienController');
+        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'dashboard'])->name('klien');
+        // Route::get('/menu-order', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('menu-order');
+        // Route::post('/order-teks', [App\Http\Controllers\Admin\KlienController::class, 'orderTeks'])->name('order-teks');
     });
     
  
@@ -55,11 +51,3 @@ Route::middleware(['auth'])->group(function () {
     });
  
 });
-
-
-//Route Admin
-//Route Admin
-// Route::get('/adm', function () {
-//     return view('layouts.admin.dashboard');
-// });
-
