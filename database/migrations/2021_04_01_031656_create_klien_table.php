@@ -15,7 +15,7 @@ class CreateKlienTable extends Migration
     {
         Schema::create('klien', function (Blueprint $table) {
             $table->bigIncrements('id_klien');
-            $table->unsignedBigInteger('id');
+            $table->unsignedBigInteger('id')->nullable();
             $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nik')->nullable();
             $table->string('alamat')->nullable();

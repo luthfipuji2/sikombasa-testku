@@ -38,7 +38,15 @@ Route::middleware(['auth'])->group(function () {
     });
  
     Route::middleware(['klien'])->group(function () {
-        Route::resource('klien', 'App\Http\Controllers\Admin\KlienController');
+        Route::resource('/biodata', 'App\Http\Controllers\Admin\BiodataKlienController');
+        //biodata klien
+        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('klien');
+        // Route::get('/klien/create', [App\Http\Controllers\Admin\KlienController::class, 'create'])->name('klien');
+        // Route::get('/klien/{klien}', [App\Http\Controllers\Admin\KlienController::class, 'show']);
+        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'store']);
+        Route::resource('menu-order', 'App\Http\Controllers\Admin\OrderMenuController');
+
+
         // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'dashboard'])->name('klien');
         // Route::get('/menu-order', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('menu-order');
         // Route::post('/order-teks', [App\Http\Controllers\Admin\KlienController::class, 'orderTeks'])->name('order-teks');

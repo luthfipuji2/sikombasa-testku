@@ -30,4 +30,8 @@ class Klien extends Model
     public function order(){
         return $this->hasMany('App\Order');
     }
+
+    public function user(){
+        return $this->hasMany('App\User');
+    }
 }

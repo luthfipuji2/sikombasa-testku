@@ -174,7 +174,7 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                        <form action="{{route('klien.store')}}" method="POST">
+                        <form action="{{route('menu-order.store')}}" method="POST">
                         @csrf
                         <!-- <form action="{{ url('order-teks') }}" method="POST"> -->
                             <div class="form-group">
