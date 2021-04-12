@@ -32,7 +32,7 @@ class CreateOrderTable extends Migration
             $table->integer('jumlah_karakter')->nullable();
             $table->string('durasi_video')->nullable();
             $table->integer('jumlah_dubber')->nullable();
-            $table->string('durasi_pertemuan')->nullable();
+            $table->string('durasi_pertemuan')->nullable();   
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('lokasi')->nullable();
