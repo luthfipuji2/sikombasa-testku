@@ -2,6 +2,7 @@
  
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\TranslatorController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -40,7 +41,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['translator'])->group(function () {
-        Route::get('/translator', [App\Http\Controllers\Admin\TranslatorController::class, 'index'])->name('translator');
+        Route::get('/translator', [App\Http\Controllers\Admin\TranslatorController::class, 'index']);
+        Route::get('/profile', [App\Http\Controllers\Admin\TranslatorController::class, 'profile']);
+        Route::get('/find-a-job', [App\Http\Controllers\Admin\TranslatorController::class, 'find']);
+        Route::get('/to-do-list', [App\Http\Controllers\Admin\TranslatorController::class, 'todo']);
+        Route::get('/review', [App\Http\Controllers\Admin\TranslatorController::class, 'review']);
     });
  
     Route::middleware(['klien'])->group(function () {
