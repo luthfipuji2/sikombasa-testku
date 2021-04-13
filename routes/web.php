@@ -22,15 +22,12 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         
         Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin');
-        
-        //Route Users & Permissions
-        Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('users');
-        //Route::get('/bank', [App\Http\Controllers\Admin\BankController::class, 'index'])->name('bank');
-        //Route::get('/bank/{bank}/edit', [App\Http\Controllers\Admin\BankController::class, 'edit'])->name('/bank/{bank}/edit');
         Route::resource('bank', 'App\Http\Controllers\Admin\BankController');
-        //Route::get('/bank-create', [App\Http\Controllers\Admin\BankController::class, 'create'])->name('bank');
-        //Route::delete('/bank-{$id_bank}', [App\Http\Controllers\Admin\BankController::class, 'destroyUsers'])->name('bank');
-
+        Route::get('/bank/{bank}/delete', 'App\Http\Controllers\Admin\BankController@destroy');
+        Route::resource('users', 'App\Http\Controllers\Admin\UsersController');
+        Route::resource('profile', 'App\Http\Controllers\Admin\ProfileController');
+        Route::resource('daftar-admin', 'App\Http\Controllers\Admin\AdminController');
+        
 
         // Route::post('/users', [App\Http\Controllers\Admin\AdminController::class, 'storeUsers'])->name('users');
         // Route::delete('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'destroyUsers'])->name('users');

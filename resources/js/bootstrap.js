@@ -23,6 +23,8 @@ try {
     window.pdfMake = require('pdfmake/build/pdfmake');
     window.pdfFonts = require('pdfmake/build/vfs_fonts');
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+    window.toastr = require('toastr');
 } catch (e) {}
 
 /**

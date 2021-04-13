@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\BankExport;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Bank;
 use Illuminate\Http\Request;
+
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf;
 
 class BankController extends Controller
 {
@@ -16,7 +21,7 @@ class BankController extends Controller
     public function index()
     {
         $bank = Bank::all();
-        return view('pages.admin.banks', ['bank' => $bank]);
+        return view('pages.admin.DaftarBank', ['bank' => $bank]);
     }
 
     /**
@@ -37,13 +42,19 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'nama_bank' => 'required',
+            'nama_rekening' => 'required',
+            'no_rekening' => 'required',
+        ]);
+
         Bank::create([
             'nama_bank' => $request->nama_bank,
             'nama_rekening' => $request->nama_rekening,
             'no_rekening' => $request->no_rekening,
         ]);
 
-        return redirect('/bank')->with('status', 'Data Mahasiswa berhasil ditambahkan');
+        return redirect('/bank')->with('success', 'Data Bank berhasil ditambahkan');
     }
 
     /**
@@ -75,15 +86,23 @@ class BankController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bank $bank)
+    public function update(Request $request, $id_bank)
     {
+        $this->validate($request,[
+            'nama_bank' => 'required',
+            'nama_rekening' => 'required',
+            'no_rekening' => 'required',
+        ]);
+
+        $bank = Bank::find($id_bank);
+        
         Bank::where('id_bank', $bank->id_bank)
                     ->update([
                         'nama_bank'    => $request->nama_bank,
                         'nama_rekening'     => $request->nama_rekening,
                         'no_rekening'   => $request->no_rekening,
                     ]);
-        return redirect('/bank')->with('status', 'Data Mahasiswa berhasil diubah');
+        return redirect('/bank')->with('success', 'Data Bank berhasil diubah');
     }
 
     /**
@@ -95,6 +114,12 @@ class BankController extends Controller
     public function destroy(Bank $bank)
     {
         Bank::destroy($bank->id_bank);
-        return redirect('/bank');
+        return redirect('/bank')->with('success', 'Data Bank berhasil dihapus');
     }
+
+    // public function exportExcel() 
+    // {
+    //     return Excel::download(new BankExport, 'DaftarBank.xlsx');
+    // }
+
 }
