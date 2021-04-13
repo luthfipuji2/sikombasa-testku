@@ -18,7 +18,7 @@ class CreateParameterOrderTable extends Migration
             $table->string('durasi_video')->nullable();
             $table->integer('jumlah_dubber')->nullable();
             $table->string('durasi_pertemuan')->nullable();
-            $table->integer('jumlah_karakter')->nullable();
+            $table->string('jumlah_karakter')->nullable();
             $table->string('jumlah_halaman')->nullable();
             $table->string('jenis_layanan')->nullable();
             $table->integer('harga');

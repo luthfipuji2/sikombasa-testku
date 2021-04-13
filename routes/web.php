@@ -26,8 +26,17 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('bank', 'App\Http\Controllers\Admin\BankController');
         Route::get('/bank/{bank}/delete', 'App\Http\Controllers\Admin\BankController@destroy');
         Route::resource('users', 'App\Http\Controllers\Admin\UsersController');
-        Route::resource('profile', 'App\Http\Controllers\Admin\ProfileController');
-        Route::resource('daftar-admin', 'App\Http\Controllers\Admin\AdminController');
+        Route::get('/users/{user}/delete', 'App\Http\Controllers\Admin\UsersController@destroy');
+
+        //Route Daftar Harga
+        Route::resource('daftar-harga-teks', 'App\Http\Controllers\Admin\HargaTeksController');
+        Route::get('/daftar-harga-teks/{harga}/delete', 'App\Http\Controllers\Admin\HargaTeksController@destroy');
+        Route::resource('daftar-harga-dokumen', 'App\Http\Controllers\Admin\HargaDokumenController');
+        Route::get('/daftar-harga-dokumen/{harga}/delete', 'App\Http\Controllers\Admin\HargaDokumenController@destroy');
+        
+
+        // Route::resource('profile', 'App\Http\Controllers\Admin\ProfileController');
+        // Route::resource('daftar-admin', 'App\Http\Controllers\Admin\AdminController');
         
 
         // Route::post('/users', [App\Http\Controllers\Admin\AdminController::class, 'storeUsers'])->name('users');
