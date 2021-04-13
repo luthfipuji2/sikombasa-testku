@@ -10,9 +10,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Admin</title>
-  
+ 
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="css/app.css">
+  <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
@@ -107,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
 
               <li class="nav-item">
-                <a href="/admin-daftar" class="nav-link">
+                <a href="/daftar-admin" class="nav-link">
                   <i class="fas fa-user-secret nav-icon"></i>
                   <p>Daftar Admin</p>
                 </a>
@@ -119,20 +121,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
 
           <li class="nav-item has-treeview">
-            <router-link to="/admin-profile" class="nav-link">
+            <a href="/profile" class="nav-link">
               <i class="nav-icon fas fa-user orange"></i>
               <p>
                 Profile
               </p>
-            </router-link>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link to="/admin-edit-data" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
-                  <p>Edit Data</p>
-                </router-link>
-              </li>
-            </ul>
+            <a>
           </li>
 
           <li class="nav-item">
@@ -186,18 +180,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 
+
 <script src="js/app.js"></script>
+
+
 <script>
-    $(document).ready(function () {
-      var table = $('#example').DataTable( {
-        lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
-    } );
- 
-    table.buttons().container()
-        .appendTo( '#example_wrapper .col-md-6:eq(0)' );      
-    });  
+  @if(\Session::has('success'))
+      toastr.success('{{Session::get('success')}}', 'Berhasil')
+  @endif
 </script>
+
+@stack('addon-script')
 
 </body>
 </html>

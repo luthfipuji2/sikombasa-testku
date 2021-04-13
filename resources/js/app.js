@@ -9,3 +9,6 @@ require('@fortawesome/fontawesome-free/js/all.js');
 require('admin-lte');
 
 require('alpinejs');
+
+import swal from 'sweetalert2';
+window.Swal = swal;
