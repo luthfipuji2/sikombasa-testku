@@ -18,7 +18,6 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "laravolt/indonesia": "^0.29.0",
-        "maatwebsite/excel": "^3.1",
         "livewire/livewire": "^2.0"
     },
     "require-dev": {
