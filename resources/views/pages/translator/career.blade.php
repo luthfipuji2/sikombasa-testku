@@ -9,6 +9,7 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab">Profile</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#document" data-toggle="tab">Required Documents</a></li>
                   <li class="nav-item"><a class="nav-link" href="#certificate" data-toggle="tab">Skills Certificate</a></li>
                   <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Progress</a></li>
                 </ul>
@@ -110,25 +111,13 @@
                         <div class="col-sm-10">
                         <select name="city" id="city" class="form-control">
                             <option value="">Kota / Kabupaten</option>
-                            $(function () {
-                            $('#province').on('change', function () {
-                                axios.post('{{ route('career.storeCities') }}', {id: $(this).val()})
-                                    .then(function (response) {
-                                        $('#city').empty();
-
-                                        $.each(response.data, function (id, name) {
-                                            $('#city').append(new Option(name, id))
-                                        })
-                                    });
-                            });
-                        });
                         </select>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kecamatan</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Kecamatan">
+                        <input type="text" class="form-control" id="inputName2" placeholder="Kecamatan">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -187,51 +176,156 @@
                       </div>
 
                       <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-success">Update</button>
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                       </div>
                     </form>
                   </div>
 
-                  <div class="tab-pane" id="certificate">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" placeholder="Nama Sertifikat">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
-                          <div class="col-sm-10">
-                            <input type="file" name="photo" class="form-input">
+                  <div class="tab-pane" id="document">
+                    <div class="form-group row">
+                        <label for="inputName2" class="col-sm-3 col-form-label">Curriculum Vitae</label>
+                          <div class="col-sm-5">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" name="cv" for="exampleInputFile">Choose file</label>
                           </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName2" class="col-sm-3 col-form-label">Ijazah Terakhir</label>
+                          <div class="col-sm-5">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" name="ijazah" for="exampleInputFile">Choose file</label>
+                          </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName2" class="col-sm-3 col-form-label">Portofolio</label>
+                          <div class="col-sm-5">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" name="portofolio" for="exampleInputFile">Choose file</label>
+                          </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName2" class="col-sm-3 col-form-label">Surat Keterangan Sehat</label>
+                          <div class="col-sm-5">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" name="sk" for="exampleInputFile">Choose file</label>
+                          </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputName2" class="col-sm-3 col-form-label">Surat Keterangan Berkelakuan Baik</label>
+                          <div class="col-sm-5">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" name="skck" for="exampleInputFile">Choose file</label>
+                          </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class=" col-sm-10">
+                          <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
+
+                  </div>
+
+                  <div class="tab-pane" id="certificate">
+                    <div class="control-group after-add-more">
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputName" placeholder="Nama Sertifikat">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="photo" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button class="btn btn-success add-more" type="button">
+                                        <i class="nav-icon fas fa-plus"></i> Add
+                                    </button> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="copy-invisible">
+                        <div class="control-group">
+                        <form class="form-horizontal">
+                            <div class="form-group row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputName" placeholder="Nama Sertifikat">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
+                                <div class="col-sm-10">
+                                    <input type="file" name="photo" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
+                                <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <button class="btn btn-success add-more" type="button">
+                                        <i class="nav-icon fas fa-plus"></i> Add
+                                    </button> 
+                                    <button class="btn btn-danger remove" type="button">
+                                        <i class="nav-icon fas fa-times"></i> Remove
+                                    </button> 
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
                         </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-success">Update</button>
-                        </div>
-                      </div>
-                    </form>
+                    </div>
                   </div>
                   <!-- /.tab-pane -->
                 </div>
@@ -245,3 +339,30 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
 @endsection
+
+@push('scripts')
+<script>
+$(function () {
+    $('#province').on('change', function () {
+        axios.post('{{ route('career.storeCities') }}', {id: $(this).val()})
+            .then(function (response) {
+                $('#city').empty();
+                $.each(response.data, function (id, name) {
+                    $('#city').append(new Option(name, id))
+                })
+            });
+    });
+});
+$(document).ready(function() {
+  $(".add-more").click(function(){ 
+      var html = $(".copy").html();
+      $(".after-add-more").after(html);
+  });
+
+  // saat tombol remove dklik control group akan dihapus 
+  $("body").on("click",".remove",function(){ 
+      $(this).parents(".control-group").remove();
+  });
+});
+</script>
+@endpush
