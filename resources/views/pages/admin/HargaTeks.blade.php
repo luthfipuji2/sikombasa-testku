@@ -123,7 +123,7 @@
                   <thead>   
                   <tr>
                     <th>No</th>
-                    <th>ID Harga</th>
+                    <th hidden>ID Harga</th>
                     <th>Jenis Layanan</th>
                     <th>Jumlah Karakter</th>
                     <th>Harga</th>
@@ -134,7 +134,7 @@
                   @foreach($harga as $harga)
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                    <td scope="row" class="text-center">{{$harga->id_parameter_order}}</td>
+                    <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
                     <td>{{$harga->jenis_layanan}}</td>
                     <td>{{$harga->jumlah_karakter}}</td>
                     <td>{{$harga->harga}}</td>
@@ -233,7 +233,7 @@ $(document).ready(function () {
     $('#jumlah_karakter').val(data[3]);
     $('#harga').val(data[4]); 
 
-    $('#editForm').attr('action', '/daftar-harga-teks/'+data[0]);
+    $('#editForm').attr('action', '/daftar-harga-teks/'+data[1]);
     $('#editModal').modal('show');
     
   });

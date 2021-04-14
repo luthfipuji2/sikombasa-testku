@@ -11,7 +11,7 @@ class Harga extends Model
     protected $table = 'parameter_order';
     protected $primaryKey = 'id_parameter_order';
     protected $fillable = [
-        'durasi_video',
+        'durasi_file',
         'jumlah_dubber',
         'durasi_pertemuan',
         'jumlah_karakter',
