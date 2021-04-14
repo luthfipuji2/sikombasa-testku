@@ -15,8 +15,8 @@ class CreateParameterOrderTable extends Migration
     {
         Schema::create('parameter_order', function (Blueprint $table) {
             $table->bigIncrements('id_parameter_order');
-            $table->string('durasi_video')->nullable();
-            $table->integer('jumlah_dubber')->nullable();
+            $table->string('durasi_file')->nullable();
+            $table->string('jumlah_dubber')->nullable();
             $table->string('durasi_pertemuan')->nullable();
             $table->string('jumlah_karakter')->nullable();
             $table->string('jumlah_halaman')->nullable();

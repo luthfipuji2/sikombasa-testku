@@ -120,6 +120,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <p>Dokumen</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-subtitle" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Subtitle</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-dubbing" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Dubbing</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-transkrip" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Transkrip</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-interpreter" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Interpreter</p>
+                    </a>
+                  </li>
                </ul>
               </li>
 
@@ -129,7 +153,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Daftar Admin</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="/daftar-klien" class="nav-link">
+                  <i class="fas fa-male nav-icon"></i>
+                  <p>Daftar Klien</p>
+                </a>
+              </li>
               
+              <li class="nav-item">
+                <a href="/daftar-translator" class="nav-link">
+                  <i class="fas fa-user-tie nav-icon"></i>
+                  <p>Daftar Translator</p>
+                </a>
+              </li>
+
             </ul>
           </li>
 

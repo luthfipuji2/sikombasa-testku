@@ -1,6 +1,6 @@
 @extends('layouts/admin/template')
 
-@section('title', 'Daftar Admin')
+@section('title', 'Daftar Klien')
 
 @section('container')
 
@@ -29,7 +29,7 @@
           <!-- left column -->
           <div class="col-md-6">
           <div class="form-group">
-                <label>Nama Admin</label>
+                <label>Nama Klien</label>
                 <input type="text" name="name" id="name" class="form-control" readonly>
             </div>
             <div class="form-group">
@@ -57,9 +57,17 @@
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">
-          <div class="form-group">
+            <div class="form-group">
+                <label>NIK</label>
+                <input type="text" name="nik" id="nik" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label>KTP</label>
+                <input type="text" name="foto_ktp" id="foto_ktp" class="form-control" readonly>
+            </div>
+            <div class="form-group">
                 <label>Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="form-control" readonly>
+                <textarea name="alamat" id="alamat" class="form-control" readonly></textarea>
             </div>
             <div class="form-group">
                 <label>Kecamatan</label>
@@ -116,12 +124,14 @@
                   <thead>   
                   <tr>
                     <th>No</th>
-                    <th hidden>ID Admin</th>
-                    <th>Nama Admin</th>
+                    <th hidden>ID Klien</th>
+                    <th>Nama Klien</th>
                     <th hidden>Email</th>
                     <th hidden>Role</th>
                     <th hidden>Jenis Kelamin</th>
                     <th hidden>Tanggal Lahir</th>
+                    <th hidden>NIK</th>
+                    <th hidden>Foto KTP</th>
                     <th hidden>Nomor Telepon</th>
                     <th hidden>Alamat</th>
                     <th hidden>Kecamatan</th>
@@ -132,21 +142,23 @@
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($admin as $admin)
+                  @foreach($klien as $klien)
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                    <td scope="row" class="text-center" hidden>{{$admin->id_admin}}</td>
-                    <td>{{$admin->name}}</td>
-                    <td hidden>{{$admin->email}}</td>
-                    <td hidden>{{$admin->role}}</td>
-                    <td hidden>{{$admin->jenis_kelamin}}</td>
-                    <td hidden>{{$admin->tgl_lahir}}</td>
-                    <td hidden>{{$admin->no_telp}}</td>
-                    <td hidden>{{$admin->alamat}}</td>
-                    <td hidden>{{$admin->kecamatan}}</td>
-                    <td hidden>{{$admin->kabupaten}}</td>
-                    <td hidden>{{$admin->provinsi}}</td>
-                    <td hidden>{{$admin->kode_pos}}</td> 
+                    <td scope="row" class="text-center" hidden>{{$klien->id_klien}}</td>
+                    <td>{{$klien->name}}</td>
+                    <td hidden>{{$klien->email}}</td>
+                    <td hidden>{{$klien->role}}</td>
+                    <td hidden>{{$klien->jenis_kelamin}}</td>
+                    <td hidden>{{$klien->tgl_lahir}}</td>
+                    <td hidden>{{$klien->nik}}</td>
+                    <td hidden>{{$klien->foto_ktp}}</td>
+                    <td hidden>{{$klien->no_telp}}</td>
+                    <td hidden>{{$klien->alamat}}</td>
+                    <td hidden>{{$klien->kecamatan}}</td>
+                    <td hidden>{{$klien->kabupaten}}</td>
+                    <td hidden>{{$klien->provinsi}}</td>
+                    <td hidden>{{$klien->kode_pos}}</td> 
                     <td>
                       <button type="button" class="btn btn-primary detail" data-toggle="modal" data-target="#detailModal">Detail</i></button>
                     </td>
@@ -198,7 +210,7 @@ $(document).ready(function () {
                 text:      '<i class="far fa-file-pdf"></i>',
                 titleAttr: 'PDF',
                 orientation: 'landscape',
-                pageSize: 'LEGAL',
+                pageSize: 'LEGAL'
             }
     ]
   })
@@ -218,14 +230,16 @@ $(document).ready(function () {
     $('#role').val(data[4]); 
     $('#jenis_kelamin').val(data[5]); 
     $('#tgl_lahir').val(data[6]); 
-    $('#no_telp').val(data[7]); 
-    $('#alamat').val(data[8]); 
-    $('#kecamatan').val(data[9]); 
-    $('#kabupaten').val(data[10]); 
-    $('#provinsi').val(data[11]); 
-    $('#kode_pos').val(data[12]); 
+    $('#nik').val(data[7]);
+    $('#foto_ktp').val(data[8]);
+    $('#no_telp').val(data[9]); 
+    $('#alamat').val(data[10]); 
+    $('#kecamatan').val(data[11]); 
+    $('#kabupaten').val(data[12]); 
+    $('#provinsi').val(data[13]); 
+    $('#kode_pos').val(data[14]); 
 
-    $('#detailForm').attr('action', '/daftar-admin/'+data[1]);
+    $('#detailForm').attr('action', '/daftar-klien/'+data[1]);
     $('#detailModal').modal('show');
     
   });

@@ -1,6 +1,6 @@
 @extends('layouts/admin/template')
 
-@section('title', 'Daftar Bank')
+@section('title', 'Daftar Harga Menu Subtitle')
 
 @section('container')
 
@@ -15,24 +15,31 @@
         </button>
       </div>
 
-      <form action="{{route('bank.store')}}" method="POST">
+      <form action="{{route('daftar-harga-subtitle.store')}}" method="POST">
 
       {{ csrf_field() }}
         <div class="modal-body">
             <div class="form-group">
-                <label>Nama Bank</label>
-                <input type="text" name="nama_bank" class="form-control" placeholder="Masukkan Nama Bank">
+                <label for="jenis_layanan">Jenis Layanan</label>
+                    <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
+                    id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
+                        <option value="Basic">Basic</option>
+                        <option value="Premium">Premium</option>
+                    </select>
+                    @error ('jenis_layanan')
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
             </div>
             <div class="form-group">
-                <label>Nama Rekening</label>
-                <input type="text" name="nama_rekening" class="form-control" placeholder="Masukkan Nama Rekening">
+                <label>Durasi File</label>
+                <input type="text" name="durasi_file" class="form-control" placeholder="Masukkan range durasi dalam menit ex. 0-10">
             </div>
             <div class="form-group">
-                <label>Nomor Rekening</label>
-                <input type="text" name="no_rekening" class="form-control" placeholder="Masukkan Nomor Rekening">
+                <label>Harga</label>
+                <input type="text" name="harga" class="form-control" placeholder="Masukkan harga ex. 100000">
             </div>
-            
-            
         </div>
       
 
@@ -56,28 +63,34 @@
         </button>
       </div>
 
-      <form action="/bank" method="POST" id="editForm">
+      <form action="/daftar-harga-subtitle" method="POST" id="editForm">
 
       {{ csrf_field() }}
       {{ method_field('PUT') }}
 
         <div class="modal-body">
-            <div class="form-group">
-                <label>Nama Bank</label>
-                <input type="text" name="nama_bank" id="nama_bank" class="form-control" placeholder="Masukkan Nama Bank">
+          <div class="form-group">
+                <label for="jenis_layanan">Jenis Layanan</label>
+                    <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
+                    id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
+                        <option value="Basic">Basic</option>
+                        <option value="Premium">Premium</option>
+                    </select>
+                    @error ('jenis_layanan')
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
             </div>
             <div class="form-group">
-                <label>Nama Rekening</label>
-                <input type="text" name="nama_rekening" id="nama_rekening" class="form-control" placeholder="Masukkan Nama Rekening">
+                <label>Durasi File</label>
+                <input type="text" name="durasi_file" id="durasi_file" class="form-control" placeholder="Masukkan Range Jumlah Karakter ex. 0-200">
             </div>
             <div class="form-group">
-                <label>Nomor Rekening</label>
-                <input type="text" name="no_rekening" id="no_rekening" class="form-control" placeholder="Masukkan Nomor Rekening">
-            </div>
-            
-            
+                <label>Harga</label>
+                <input type="text" name="harga" id="harga" class="form-control" placeholder="Masukkan harga ex. 100000">
+            </div> 
         </div>
-      
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -99,7 +112,7 @@
               
                   <!-- Button trigger modal -->
                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Bank
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Harga
                   </button>
 
                 </div>
@@ -109,23 +122,25 @@
                 <table id="datatable" class="table table-bordered table-striped">
                   <thead>   
                   <tr>
-                    <th>ID Bank</th>
-                    <th>Nama Bank</th>
-                    <th>Nama Rekening</th>
-                    <th>No Rekening</th>
+                    <th>No</th>
+                    <th hidden>ID Harga</th>
+                    <th>Jenis Layanan</th>
+                    <th>Durasi File</th>
+                    <th>Harga</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($bank as $bank)
+                  @foreach($subtitle as $harga)
                   <tr>
-                    <td scope="row" class="text-center">{{$bank->id_bank}}</td>
-                    <td>{{$bank->nama_bank}}</td>
-                    <td>{{$bank->nama_rekening}}</td>
-                    <td>{{$bank->no_rekening}}</td>
+                    <th scope="row" class="text-center">{{$loop->iteration}}</th>
+                    <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
+                    <td>{{$harga->jenis_layanan}}</td>
+                    <td>{{$harga->durasi_file}}</td>
+                    <td>{{$harga->harga}}</td>
                     <td>
                       <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#updateModal">Edit</i></button>
-                      <a href="#" class="btn btn-danger delete" bank-id="{{$bank->id_bank}}">Delete</a>
+                      <a href="#" class="btn btn-danger delete" harga-id="{{$harga->id_parameter_order}}">Delete</a>
                     </td>
                   </tr>
                   @endforeach
@@ -151,11 +166,11 @@
 <script>
     $('.delete').click(function(){
 
-        var bank_id = $(this).attr('bank-id')
+        var harga_id = $(this).attr('harga-id')
 
         Swal.fire({
           title: "Apakah anda yakin?",
-          text: "Hapus data bank "+bank_id+"??",
+          text: "Hapus data harga "+harga_id+"??",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -163,7 +178,7 @@
           confirmButtonText: 'Ya, hapus!'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location = "/bank/"+bank_id+"/delete";  
+            window.location = "/daftar-harga-subtitle/"+harga_id+"/delete";  
             Swal.fire(
               'Berhasil!',
               'Data berhasil dihapus ',
@@ -214,11 +229,11 @@ $(document).ready(function () {
     var data = table.row($tr).data();
     console.log(data);
 
-    $('#nama_bank').val(data[1]);
-    $('#nama_rekening').val(data[2]);
-    $('#no_rekening').val(data[3]); 
+    $('#jenis_layanan').val(data[2]);
+    $('#durasi_file').val(data[3]);
+    $('#harga').val(data[4]); 
 
-    $('#editForm').attr('action', '/bank/'+data[0]);
+    $('#editForm').attr('action', '/daftar-harga-subtitle/'+data[1]);
     $('#editModal').modal('show');
     
   });

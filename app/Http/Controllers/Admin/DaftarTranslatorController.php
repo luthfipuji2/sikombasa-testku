@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class DaftarTranslatorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +16,12 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function dashboard()
-    {
-        return view('pages.admin.home');
-    }
-
     public function index()
     {
-        $admin = DB::table('admin')
-            ->join('users', 'admin.id', '=', 'users.id')
+        $trans = DB::table('translator')
+            ->join('users', 'translator.id', '=', 'users.id')
             ->get();
-        return view('pages.admin.DaftarAdmin',  ['admin' => $admin]);
+        return view('pages.admin.DaftarTranslator',  ['trans' => $trans]);
     }
 
     /**

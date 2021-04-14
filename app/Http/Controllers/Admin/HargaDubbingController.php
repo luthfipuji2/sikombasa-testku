@@ -7,7 +7,7 @@ use App\Models\Admin\Harga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class HargaDokumenController extends Controller
+class HargaDubbingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class HargaDokumenController extends Controller
      */
     public function index()
     {
-        $dokumen = DB::table('parameter_order')->whereNotNull('jumlah_halaman')->get();
-        return view('pages.admin.HargaDokumen', ['dokumen' => $dokumen]);
+        $dubbing = DB::table('parameter_order')->whereNotNull('durasi_file')->orWhereNotNull('jumlah_dubber')
+        ->get();
+        return view('pages.admin.HargaDubbing', ['dubbing' => $dubbing]);
     }
 
     /**
@@ -40,17 +41,19 @@ class HargaDokumenController extends Controller
     {
         $this->validate($request,[
             'jenis_layanan' => 'required',
-            'jumlah_halaman' => 'required',
+            'durasi_file' => 'required',
+            'jumlah_dubber' =>'required',
             'harga' => 'required'
         ]);
 
         Harga::create([
             'jenis_layanan' => $request->jenis_layanan,
-            'jumlah_halaman' => $request->jumlah_halaman,
+            'durasi_file' => $request->durasi_file,
+            'jumlah_dubber' => $request->jumlah_dubber,
             'harga' => $request->harga
         ]);
 
-        return redirect('/daftar-harga-dokumen')->with('success', 'Harga baru berhasil ditambahkan');
+        return redirect('/daftar-harga-dubbing')->with('success', 'Harga baru berhasil ditambahkan');
     }
 
     /**
@@ -86,7 +89,8 @@ class HargaDokumenController extends Controller
     {
         $this->validate($request,[
             'jenis_layanan' => 'required',
-            'jumlah_halaman' => 'required',
+            'durasi_file' => 'required',
+            'jumlah_dubber' => 'required',
             'harga' => 'required'
         ]);
 
@@ -95,10 +99,11 @@ class HargaDokumenController extends Controller
         Harga::where('id_parameter_order', $harga->id_parameter_order)
                     ->update([
                         'jenis_layanan' => $request->jenis_layanan,
-                        'jumlah_halaman' => $request->jumlah_halaman,
+                        'durasi_file' => $request->durasi_file,
+                        'jumlah_dubber' => $request->jumlah_dubber,
                         'harga' => $request->harga
                     ]);
-        return redirect('/daftar-harga-dokumen')->with('success', 'Data harga berhasil diubah');
+        return redirect('/daftar-harga-dubbing')->with('success', 'Data harga berhasil diubah');
     }
 
     /**
@@ -110,6 +115,6 @@ class HargaDokumenController extends Controller
     public function destroy(Harga $harga)
     {
         Harga::destroy($harga->id_parameter_order);
-        return redirect('/daftar-harga-dokumen')->with('success', 'Data harga berhasil dihapus');
+        return redirect('/daftar-harga-dubbing')->with('success', 'Data harga berhasil dihapus');
     }
 }
