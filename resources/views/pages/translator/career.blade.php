@@ -97,13 +97,32 @@
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Provinsi</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Provinsi">
+                        <select name="province" id="province" class="form-control">
+                            <option value="">Provinsi</option>
+                            @foreach ($provinces as $id => $name)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kota / Kabupaten</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Kota / Kabupaten">
+                        <select name="city" id="city" class="form-control">
+                            <option value="">Kota / Kabupaten</option>
+                            $(function () {
+                            $('#province').on('change', function () {
+                                axios.post('{{ route('career.storeCities') }}', {id: $(this).val()})
+                                    .then(function (response) {
+                                        $('#city').empty();
+
+                                        $.each(response.data, function (id, name) {
+                                            $('#city').append(new Option(name, id))
+                                        })
+                                    });
+                            });
+                        });
+                        </select>
                         </div>
                       </div>
                       <div class="form-group row">
