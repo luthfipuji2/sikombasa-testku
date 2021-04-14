@@ -33,5 +33,10 @@ class TranslatorController extends Controller
         $user = Auth::user();
         return view('pages.translator.review', compact('user'));
     }
+    public function career()
+    {
+        $user = Auth::user();
+        return view('pages.translator.career', compact('user'));
+    }
     
 }

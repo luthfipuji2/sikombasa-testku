@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/find-a-job', [App\Http\Controllers\Translator\TranslatorController::class, 'find']);
         Route::get('/to-do-list', [App\Http\Controllers\Translator\TranslatorController::class, 'todo']);
         Route::get('/review', [App\Http\Controllers\Translator\TranslatorController::class, 'review']);
+        Route::get('/career', [App\Http\Controllers\Translator\TranslatorController::class, 'career']);
     });
  
     Route::middleware(['klien'])->group(function () {
