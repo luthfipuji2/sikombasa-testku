@@ -11,74 +11,13 @@
                   <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab">Profile</a></li>
                   <li class="nav-item"><a class="nav-link" href="#document" data-toggle="tab">Required Documents</a></li>
                   <li class="nav-item"><a class="nav-link" href="#certificate" data-toggle="tab">Skills Certificate</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Progress</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#progress" data-toggle="tab">Progress</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-                  <div class="tab-pane" id="activity">
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Shared publicly - 7:30 PM today</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Sent you a message - 3 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="Response">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-danger">Send</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
+                  <div class="tab-pane" id="progress">
+                    <!-- Tab Activity di sini -->
                   </div>
 
                   <div class="active tab-pane" id="profile">
@@ -228,18 +167,18 @@
                   </div>
 
                   <div class="tab-pane" id="certificate">
-                    <div class="control-group after-add-more">
-                        <form class="form-horizontal">
+                    <thead>
+                        <form class="form-horizontal" id="dynamic_form">
                             <div class="form-group row">
                                 <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" placeholder="Nama Sertifikat">
+                                <input type="text" name="nama" class="form-control" id="inputName" placeholder="Nama Sertifikat">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
+                                <input type="text" name="nomor" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -251,15 +190,20 @@
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
+                                <input type="text" name="penerbit" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
+                                <input type="text" name="kadaluwarsa" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
                                 </div>
                             </div>
+                        </form>
+                    </thead>
+                    <tbody>
+                    <tbody>
+                    <tfoot>
                             <div class="form-group row">
                                 <div class="col-sm-10">
                                     <button class="btn btn-success add-more" type="button">
@@ -272,65 +216,14 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-
-                    <div class="copy-invisible">
-                        <div class="control-group">
-                        <form class="form-horizontal">
-                            <div class="form-group row">
-                                <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName" placeholder="Nama Sertifikat">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
-                                <div class="col-sm-10">
-                                    <input type="file" name="photo" class="form-input">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
-                                <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <button class="btn btn-success add-more" type="button">
-                                        <i class="nav-icon fas fa-plus"></i> Add
-                                    </button> 
-                                    <button class="btn btn-danger remove" type="button">
-                                        <i class="nav-icon fas fa-times"></i> Remove
-                                    </button> 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                        </div>
-                    </div>
+                    </tfoot>
+                  </div>
                   </div>
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
-              </div><!-- /.card-body -->
+              </div>
+              <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
@@ -353,16 +246,45 @@ $(function () {
             });
     });
 });
+</script>
+<script>
 $(document).ready(function() {
-  $(".add-more").click(function(){ 
-      var html = $(".copy").html();
-      $(".after-add-more").after(html);
+  var count = 1;
+  dinamyc_field(count);
+  function dynamic_field(number){
+    var html = '<tr>'
+    html += '<td><input type="text" name="nama[]" class="form-control" /></td>';
+    html += '<td><input type="text" name="nomor[]" class="form-control" /></td>';
+    html += '<td><input type="file" name="photo[]" class="form-control" /></td>';
+    html += '<td><input type="text" name="penerbit[]" class="form-control" /></td>';
+    html += '<td><input type="text" name="kadaluwarsa[]" class="form-control" /></td>';
+
+    if(number > 1){
+      html += '<td><div class="col-sm-10"><button class="btn btn-danger" type="button" name="remove"><i class="nav-icon fas fa-times"></i>Remove</button></div></td></tr>';
+      $('tbody').append(html);
+    }else{
+      html += '<td><div class="col-sm-10"><button class="btn btn-success" type="button" name="add"><i class="nav-icon fas fa-plus"></i>Add</button></div></td></tr>';
+      $('tbody').html(html);
+    }
+  }
+
+  $('#add').click(function(){ 
+    count++;
+    dynamic_field(count);
   });
 
   // saat tombol remove dklik control group akan dihapus 
-  $("body").on("click",".remove",function(){ 
-      $(this).parents(".control-group").remove();
+  $(document).on("click", '#remove', function(){ 
+      count--;
+      dynamic_field(count);
   });
+)};
+
+$('#dynamic_form').on('submit', function(){
+  event.preventDefault();
+  $.ajax({
+    url:'{{}}'
+  })
 });
 </script>
 @endpush
