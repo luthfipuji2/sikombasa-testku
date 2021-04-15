@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Translator\TranslatorController;
+use App\Http\Controllers\Translator\TCareerController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -62,8 +63,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/find-a-job', [App\Http\Controllers\Translator\TranslatorController::class, 'find']);
         Route::get('/to-do-list', [App\Http\Controllers\Translator\TranslatorController::class, 'todo']);
         Route::get('/review', [App\Http\Controllers\Translator\TranslatorController::class, 'review']);
-        Route::get('/career', [App\Http\Controllers\Translator\TranslatorController::class, 'career']);
-        Route::post('/career', [App\Http\Controllers\Translator\TranslatorController::class, 'storeCities'])->name('career.storeCities');   
+        Route::get('/career', [App\Http\Controllers\Translator\CareerController::class, 'index']);
+        Route::post('/career', [App\Http\Controllers\Translator\CareerController::class, 'store']);   
     });
  
     Route::middleware(['klien'])->group(function () {
