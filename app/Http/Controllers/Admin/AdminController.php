@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Admin;
+use App\Models\Translator;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +20,9 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('pages.admin.home');
+        $user = User::count();
+        $translator = Translator::count();
+        return view('pages.admin.home', compact('user', 'translator'));
     }
 
     public function index()
