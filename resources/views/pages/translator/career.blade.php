@@ -21,96 +21,94 @@
                   </div>
 
                   <div class="active tab-pane" id="profile">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" method="POST" action="/career">
+                    {{ csrf_field() }}
+                      <input type="hidden" name="id" value={{ Auth::user()->id }}>
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">NIK</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Nomor Induk Kependudukan">
+                          <input type="text" class="form-control" name="nik" placeholder="Nomor Induk Kependudukan">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Keahlian</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Keahlian">
+                          <input type="text" class="form-control" name="keahlian" placeholder="Keahlian">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Provinsi</label>
                         <div class="col-sm-10">
-                        <select name="province" id="province" class="form-control">
-                            <option value="">Provinsi</option>
-                            @foreach ($provinces as $id => $name)
-                                <option value="{{ $id }}">{{ $name }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control" id="inputName2" name="provinsi" placeholder="Kecamatan">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kota / Kabupaten</label>
                         <div class="col-sm-10">
-                        <select name="city" id="city" class="form-control">
+                        <!-- <select name="city" id="city" class="form-control" name="kabupaten">
                             <option value="">Kota / Kabupaten</option>
-                        </select>
+                        </select> -->
+                        <input type="text" class="form-control" id="inputName2" name="kabupaten" placeholder="Kecamatan">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kecamatan</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" placeholder="Kecamatan">
+                        <input type="text" class="form-control" id="inputName2" name="kecamatan" placeholder="Kecamatan">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kode Pos</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Kode Pos">
+                          <input type="text" class="form-control" id="inputName2" name="kode_pos" placeholder="Kode Pos">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Detail Alamat</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Detail Lainnya (Cth:Blok / Unit No. dan Patokan)">
+                          <input type="text" class="form-control" id="inputName2" name="alamat" placeholder="Detail Lainnya (Cth:Blok / Unit No. dan Patokan)">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Nama Bank</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Nama Bank">
+                          <input type="text" class="form-control" id="inputName2" name="nama_bank" placeholder="Nama Bank">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">No. Rekening</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Nomor Rekening">
+                          <input type="text" class="form-control" id="inputName2" name="rekening_bank" placeholder="Nomor Rekening">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">A/N Rekening</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="A/N Rekening">
+                          <input type="text" class="form-control" id="inputName2" name="nama_rekening" placeholder="A/N Rekening">
                         </div>
                       </div> 
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Tanggal Lahir">
+                          <input type="text" class="form-control" id="inputName2" name="tgl_lahir" placeholder="Tanggal Lahir">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Jenis Kelamin">
+                          <input type="text" class="form-control" id="inputName2" name="jenis_kelamin" placeholder="Jenis Kelamin">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">No. Telepon / HP</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Nomor Telepon / Handphone">
+                          <input type="text" class="form-control" id="inputName2" name="no_telp" placeholder="Nomor Telepon / Handphone">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="photo" class="col-sm-2 col-form-label">Foto KTP</label>
                         <div class="col-sm-10">
-                          <input type="file" name="photo" class="form-input">
+                          <input type="file" name="foto_ktp" class="form-input">
                         </div>
                       </div>
 
@@ -234,19 +232,7 @@
 @endsection
 
 @push('scripts')
-<script>
-$(function () {
-    $('#province').on('change', function () {
-        axios.post('{{ route('career.storeCities') }}', {id: $(this).val()})
-            .then(function (response) {
-                $('#city').empty();
-                $.each(response.data, function (id, name) {
-                    $('#city').append(new Option(name, id))
-                })
-            });
-    });
-});
-</script>
+</script> -->
 <script>
 $(document).ready(function() {
   var count = 1;
