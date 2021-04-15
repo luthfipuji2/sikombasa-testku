@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
 
           <li class="nav-item has-treeview">
-            <a href="/profile" class="nav-link">
+            <a href="/profile-admin" class="nav-link">
               <i class="nav-icon fas fa-user orange"></i>
               <p>
                 Profile
