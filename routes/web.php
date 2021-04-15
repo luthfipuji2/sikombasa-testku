@@ -45,9 +45,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('daftar-admin', 'App\Http\Controllers\Admin\AdminController');
         Route::resource('daftar-klien', 'App\Http\Controllers\Admin\DaftarKlienController');
         Route::resource('daftar-translator', 'App\Http\Controllers\Admin\DaftarTranslatorController');
-       
-
-        // Route::resource('profile', 'App\Http\Controllers\Admin\ProfileController');
+        Route::resource('profile', 'App\Http\Controllers\Admin\ProfileController');
+        Route::patch('/biodata/{user}', 'App\Http\Controllers\Admin\ProfileController@updateBiodata');
         
 
         // Route::post('/users', [App\Http\Controllers\Admin\AdminController::class, 'storeUsers'])->name('users');

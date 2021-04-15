@@ -159,6 +159,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+    @yield('container')
         <router-view></router-view>
         <vue-progress-bar></vue-progress-bar>
 

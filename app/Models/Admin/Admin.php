@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class Admin extends Model
     protected $table = 'admin';
     protected $primaryKey = 'id_admin';
     protected $fillable = [
+        'id',
         'alamat',
         'provinsi',
         'kabupaten',
@@ -20,4 +22,9 @@ class Admin extends Model
         'jenis_kelamin',
         'no_telp'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
