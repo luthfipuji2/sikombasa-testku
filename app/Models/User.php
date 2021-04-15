@@ -65,8 +65,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+
     public function admin()
     {
         return $this->hasOne(Admin::class);
+
+    public function klien(){
+        return $this->belongsTo('App\Klien');
+
     }
 }

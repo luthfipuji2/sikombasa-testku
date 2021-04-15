@@ -77,7 +77,7 @@
             </li>
 
                 <li class="nav-item has-treeview">
-                <a href="/admin-profile" class="nav-link">
+                <a href="/biodata-klien" class="nav-link">
                 <i class="nav-icon fas fa-user orange"></i>
                 <p>
                     Profile

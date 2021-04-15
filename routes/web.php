@@ -2,6 +2,7 @@
  
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Translator\TranslatorController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -55,19 +56,29 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
-
-    // Route::middleware(['admin'])->group(function () {
-    //     Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('admin');
-    // });
     Route::middleware(['translator'])->group(function () {
-        Route::get('/translator', [App\Http\Controllers\Admin\TranslatorController::class, 'index'])->name('translator');
+        Route::get('/translator', [App\Http\Controllers\Translator\TranslatorController::class, 'index']);
+        Route::get('/profile', [App\Http\Controllers\Translator\TranslatorController::class, 'profile']);
+        Route::get('/find-a-job', [App\Http\Controllers\Translator\TranslatorController::class, 'find']);
+        Route::get('/to-do-list', [App\Http\Controllers\Translator\TranslatorController::class, 'todo']);
+        Route::get('/review', [App\Http\Controllers\Translator\TranslatorController::class, 'review']);
+        Route::get('/career', [App\Http\Controllers\Translator\TranslatorController::class, 'career']);
+        Route::post('/career', [App\Http\Controllers\Translator\TranslatorController::class, 'storeCities'])->name('career.storeCities');   
     });
  
     Route::middleware(['klien'])->group(function () {
-        Route::resource('menu-order', 'App\Http\Controllers\Admin\KlienController');
-        //Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'dashboard'])->name('klien');
-        //Route::get('/menu-order', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('menu-order');
-        //Route::post('/order-teks', [App\Http\Controllers\Admin\KlienController::class, 'orderTeks'])->name('order-teks');
+        Route::resource('/biodata', 'App\Http\Controllers\Admin\BiodataKlienController');
+        //biodata klien
+        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('klien');
+        // Route::get('/klien/create', [App\Http\Controllers\Admin\KlienController::class, 'create'])->name('klien');
+        // Route::get('/klien/{klien}', [App\Http\Controllers\Admin\KlienController::class, 'show']);
+        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'store']);
+        Route::resource('menu-order', 'App\Http\Controllers\Admin\OrderMenuController');
+
+
+        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'dashboard'])->name('klien');
+        // Route::get('/menu-order', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('menu-order');
+        // Route::post('/order-teks', [App\Http\Controllers\Admin\KlienController::class, 'orderTeks'])->name('order-teks');
     });
     
  
@@ -77,11 +88,3 @@ Route::middleware(['auth'])->group(function () {
     });
  
 });
-
-
-//Route Admin
-//Route Admin
-// Route::get('/adm', function () {
-//     return view('layouts.admin.dashboard');
-// });
-
