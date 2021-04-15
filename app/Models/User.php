@@ -69,7 +69,8 @@ class User extends Authenticatable
     public function admin()
     {
         return $this->hasOne(Admin::class);
-
+    }
+    
     public function klien(){
         return $this->belongsTo('App\Klien');
 
