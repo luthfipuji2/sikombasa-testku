@@ -22,7 +22,7 @@
 
                   <div class="active tab-pane" id="profile">
                     <form class="form-horizontal" method="POST" action="/career">
-                    {{ csrf_field() }}
+                    @csrf
                       <input type="hidden" name="id" value={{ Auth::user()->id }}>
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">NIK</label>
