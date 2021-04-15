@@ -105,7 +105,7 @@ class ProfileController extends Controller
                         'email'     => $request->email,
                     ]);
 
-        return redirect('/profile')->with('success', 'Profile anda berhasil diubah');
+        return redirect('/profile-admin')->with('success', 'Profile anda berhasil diubah');
     }
 
     public function updateBiodata(Request $request, User $user) {
@@ -120,7 +120,7 @@ class ProfileController extends Controller
             'no_telp' => $request['no_telp'],
         ]);
 
-        return redirect('/profile')->with('success', 'Profile anda berhasil diubah');
+        return redirect('/profile-admin')->with('success', 'Profile anda berhasil diubah');
         
     }
 

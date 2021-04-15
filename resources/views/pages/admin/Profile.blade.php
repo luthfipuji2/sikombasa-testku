@@ -22,7 +22,7 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="profile">
 
-                  <form method="POST" action="/profile/{{$users->id}}">
+                  <form method="POST" action="/profile-admin/{{$users->id}}">
                     @method('patch')
                     @csrf
                     <form role="form">
@@ -69,7 +69,7 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="biodata">
-                  <form method="POST" action="/biodata/{{$users->id_admin}}">
+                  <form method="POST" action="/biodata-admin/{{$users->id_admin}}">
                     @method('patch')
                     @csrf
                     <form role="form">
