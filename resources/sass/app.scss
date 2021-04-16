@@ -15,6 +15,8 @@ $fa-font-path: "../webfonts";
 
 @import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
 
+@import '~toastr/toastr';
+
 
 .router-link-exact-active {
     background-color: rgb(255, 103, 15);

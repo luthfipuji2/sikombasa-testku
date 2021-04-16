@@ -73,7 +73,17 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'role' => 'required',
+        ]);
+
+        $users = User::find($id);
+        
+        User::where('id', $users->id)
+                    ->update([
+                        'role'    => $request->role,
+                    ]);
+        return redirect('/users')->with('success', 'Role user berhasil diubah');
     }
 
     /**
@@ -82,8 +92,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+        return redirect('/users')->with('success', 'Data user berhasil dihapus');
     }
 }
