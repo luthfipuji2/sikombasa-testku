@@ -177,6 +177,7 @@
                         <form action="{{route('menu-order.store')}}" method="POST">
                         @csrf
                         <!-- <form action="{{ url('order-teks') }}" method="POST"> -->
+                        <input type="hidden" name="id_klien" id="id_klien">
                             <div class="form-group">
                                 <label for="jenis_layanan">Jenis Layanan</label>
                                 <input type="text" class="form-control" placeholder="Masukkan Jenis Layanan" 

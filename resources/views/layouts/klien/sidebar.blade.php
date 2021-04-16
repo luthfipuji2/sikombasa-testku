@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <title>@yield('title')</title>
     <title>AdminLTE 3 | Starter</title>
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -77,7 +77,7 @@
             </li>
 
                 <li class="nav-item has-treeview">
-                <a href="/biodata-klien" class="nav-link">
+                <a href="/biodata" class="nav-link">
                 <i class="nav-icon fas fa-user orange"></i>
                 <p>
                     Profile
@@ -86,9 +86,9 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="/admin-edit-data" class="nav-link">
+                    <a href="/biodata" class="nav-link">
                     <i class="fas fa-users nav-icon"></i>
-                    <p>Edit Data</p>
+                    <p>My Biodata</p>
                     </a>
                 </li>
                 </ul>

@@ -18,11 +18,6 @@
             @csrf
             <input type="hidden" name="id">
             <div class="form-group">
-                <label for="name">Nama</label>
-                <!-- <input type="text" class="form-control" id="name" name="name"> -->
-                <input type="text" class="form-control" id="name" name="name" readonly value="">
-            </div>
-            <div class="form-group">
                 <label for="nik">NIK</label>
                 <input type="text" class="form-control" id="nik" name="nik">
             </div>
