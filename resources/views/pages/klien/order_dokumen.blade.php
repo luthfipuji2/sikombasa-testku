@@ -174,21 +174,30 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                        <form action="{{route('menu-order.store')}}" method="POST">
+                        <form action="{{route('order-teks.store')}}" method="POST">
                         @csrf
                         <!-- <form action="{{ url('order-teks') }}" method="POST"> -->
-                        <input type="hidden" name="id_klien" id="id_klien">
+                        <input type="hidden" name="id">
                             <div class="form-group">
-                                <label for="jenis_layanan">Jenis Layanan</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Jenis Layanan" 
-                                name="jenis_layanan" value="{{ old('jenis_layanan') }}" id="jenis_layanan">
+                            <label for="jenis_layanan">Jenis Layanan</label>
+                                <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
+                                id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
+                                    <option value="Basic">Basic</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                                @error ('jenis_layanan')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="text">Text</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Teks" 
+                            
+                            <label for="text">Teks</label>
+                            <textarea rows="10" cols="70" form="usrform" type="text" class="form-control" placeholder="Masukkan Teks" 
                                 name="text" value="{{ old('text') }}" id="text">
+                            </textarea>
                             </div>
-                        </div>
+                        
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>

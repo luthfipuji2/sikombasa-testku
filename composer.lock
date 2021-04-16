@@ -5,8 +5,6 @@
         "This file is @generated automatically"
     ],
     "content-hash": "3c7ebb86ac2dc452b2c6af667c527363",
-  
-  
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3812,7 +3810,6 @@
             "time": "2020-08-18T17:17:46+00:00"
         },
         {
-
             "name": "sabberworm/php-css-parser",
             "version": "8.3.1",
             "source": {
@@ -3860,7 +3857,6 @@
                 "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.3.1"
             },
             "time": "2020-06-01T09:10:00+00:00"
-
         },
         {
             "name": "swiftmailer/swiftmailer",
