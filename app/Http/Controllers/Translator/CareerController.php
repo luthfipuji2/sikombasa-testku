@@ -15,29 +15,18 @@ class CareerController extends Controller
         // $career = DB::table('translator')->get();
         $user = Auth::user();
         // $provinces = Province::pluck('name', 'id');
-        return view('pages.translator.career', compact('user'));
+        return view('pages.translator.biodata', compact('user'));
     }
     public function store(Request $request){
-        // $user = Auth::user();
-        // return view('pages.translator.career', compact('user'));
-        // Translator::create([
-        //     'id' => $request->id,
-        //     'nik' => $request->nik,
-        //     'keahlian' => $request->keahlian,
-        //     'provinsi' => $request->provinsi,
-        //     'kabupaten' => $request->kabupaten,
-        //     'kecamatan' => $request->kecamatan,
-        //     'kode_pos' => $request->kode_pos,
-        //     'alamat' => $request->alamat,
-        //     'nama_bank' => $request->nama_bank,
-        //     'nama_rekening' => $request->nama_rekening,
-        //     'rekening_bank' => $request->rekening_bank,
-        //     'tgl_lahir' => $request->tgl_lahir,
-        //     'jenis_kelamin' => $request->jenis_kelamin,
-        //     'no_telp' => $request->no_telp,
-        //     'foto_ktp' => $request->foto_ktp
-        // ]);
-        return $request;
+        Translator::create($request->all());
+        return redirect('/document');
+    }
+    public function indexDocument()
+    {
+        // $career = DB::table('translator')->get();
+        $user = Auth::user();
+        // $provinces = Province::pluck('name', 'id');
+        return view('pages.translator.document', compact('user'));
     }
 }
 ?>

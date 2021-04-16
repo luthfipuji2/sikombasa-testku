@@ -9,14 +9,14 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab">Profile</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#document" data-toggle="tab">Required Documents</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#certificate" data-toggle="tab">Skills Certificate</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#progress" data-toggle="tab">Progress</a></li>
+                  <li class="nav-item"><a class="nav-link disabled" href="#document" data-toggle="tab">Required Documents</a></li>
+                  <li class="nav-item"><a class="nav-link disabled" href="#certificate" data-toggle="tab">Skills Certificate</a></li>
+                  <li class="nav-item"><a class="nav-link disabled" href="#progress" data-toggle="tab">Progress</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-                  <div class="tab-pane" id="progress">
+                  <div class="disabled tab-pane" id="progress">
                     <!-- Tab Activity di sini -->
                   </div>
 
@@ -96,7 +96,14 @@
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="jenis_kelamin" placeholder="Jenis Kelamin">
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio1" name="jenis_kelamin" value="laki-laki" class="custom-control-input">
+                          <label class="custom-control-label" for="customRadio1">Laki-laki</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="customRadio2" name="jenis_kelamin" value="perempuan" class="custom-control-input">
+                          <label class="custom-control-label" for="customRadio2">Perempuan</label>
+                        </div>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -120,7 +127,7 @@
                     </form>
                   </div>
 
-                  <div class="tab-pane" id="document">
+                  <div class="disabled tab-pane" id="document">
                     <div class="form-group row">
                         <label for="inputName2" class="col-sm-3 col-form-label">Curriculum Vitae</label>
                           <div class="col-sm-5">
@@ -164,7 +171,7 @@
 
                   </div>
 
-                  <div class="tab-pane" id="certificate">
+                  <div class="disabled tab-pane" id="certificate">
                     <thead>
                         <form class="form-horizontal" id="dynamic_form">
                             <div class="form-group row">
@@ -274,3 +281,4 @@ $('#dynamic_form').on('submit', function(){
 });
 </script>
 @endpush
+
