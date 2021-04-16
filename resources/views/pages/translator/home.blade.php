@@ -1,5 +1,6 @@
 @extends('layouts.translator.master')
- 
+
+@section('title', 'Starter Page')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
