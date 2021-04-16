@@ -28,7 +28,7 @@ class Klien extends Model
     ];
 
     public function order(){
-        return $this->hasMany('App\Order');
+        return $this->belongsTo('App\Order');
     }
 
     public function user(){

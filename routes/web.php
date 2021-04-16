@@ -44,9 +44,10 @@ Route::middleware(['auth'])->group(function () {
     });
  
     Route::middleware(['klien'])->group(function () {
+        Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
         Route::resource('/biodata', 'App\Http\Controllers\Klien\BiodataKlienController');
         //biodata klien
-        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('klien');
+        
         // Route::get('/klien/create', [App\Http\Controllers\Admin\KlienController::class, 'create'])->name('klien');
         // Route::get('/klien/{klien}', [App\Http\Controllers\Admin\KlienController::class, 'show']);
         // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'store']);

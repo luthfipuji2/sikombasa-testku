@@ -16,6 +16,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+<!-- Sweet Alert -->
+@include('sweetalert::alert')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>

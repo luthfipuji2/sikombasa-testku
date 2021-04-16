@@ -46,7 +46,7 @@ class Order extends Model
     ];
 
     public function klien(){
-        return $this->belongsTo('App\Klien');
+        return $this->hasMany('App\Klien');
     }
 
     public function translator(){

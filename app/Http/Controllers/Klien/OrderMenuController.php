@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Klien;
 
 use Illuminate\Http\Request;
 
@@ -41,8 +42,10 @@ class OrderMenuController extends Controller
      */
     public function store(Request $request)
     {
+        $user=Auth::user();
+        $klien=Klien::where('id_klien', $user->id)->first();
         Order::create([
-            //'id_klien'=>Auth::user()->id,
+            'id_klien'=>$klien->id_klien,
             'jenis_layanan'=>$request->jenis_layanan, 
             'text'=>$request->text
         ]);

@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\Klien;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 use Illuminate\Http\Request;
 
@@ -32,7 +34,10 @@ class BiodataKlienController extends Controller
 
     
     public function store(Request $request){
+        
+        $id=Auth::user()->id;
         Klien::create([
+            'id'=>$id,
             'nik'=>$request->nik,
             'alamat'=>$request->alamat,
             'provinsi'=>$request->provinsi,
@@ -44,6 +49,7 @@ class BiodataKlienController extends Controller
             'no_telp'=>$request->no_telp,
             'foto_ktp'=>$request->foto_ktp
         ]);
-        return redirect('/biodata')->with('success', 'Data berhasil ditambahkan');
+        
+        return redirect('/klien')->with('success', 'Biodata berhasil di tambahkan');
     }
 }
