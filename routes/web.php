@@ -71,16 +71,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
         Route::resource('/biodata', 'App\Http\Controllers\Klien\BiodataKlienController');
         //biodata klien
-        
-        // Route::get('/klien/create', [App\Http\Controllers\Admin\KlienController::class, 'create'])->name('klien');
-        // Route::get('/klien/{klien}', [App\Http\Controllers\Admin\KlienController::class, 'show']);
-        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'store']);
-        Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
-
-
-        // Route::get('/klien', [App\Http\Controllers\Admin\KlienController::class, 'dashboard'])->name('klien');
-        // Route::get('/menu-order', [App\Http\Controllers\Admin\KlienController::class, 'index'])->name('menu-order');
-        // Route::post('/order-teks', [App\Http\Controllers\Admin\KlienController::class, 'orderTeks'])->name('order-teks');
+        Route::resource('order-teks', 'App\Http\Controllers\Klien\OrderTeksController');
+        Route::resource('order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController');
+        Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
     });
     
  

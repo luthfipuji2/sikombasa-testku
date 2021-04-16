@@ -104,13 +104,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url ('/menu-order') }}" class="nav-link">
+                    <a href="{{ url ('/order-teks') }}" class="nav-link">
                     <i class="nav-icon fas fa-language"></i>
                         <p>Menu</p>
                     </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/klien-pembayaran" class="nav-link">
+                        <a href="menu-pembayaran" class="nav-link">
                         <i class="nav-icon fab fa-cc-visa"></i>
                         <p>Pembayaran</p>
                     </a>
