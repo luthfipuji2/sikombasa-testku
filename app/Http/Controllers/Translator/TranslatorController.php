@@ -13,11 +13,6 @@ class TranslatorController extends Controller
         $user = Auth::user();
         return view('pages.translator.home', compact('user'));
     }
-    public function profile()
-    {
-        $user = Auth::user();
-        return view('pages.translator.profile', compact('user'));
-    }
     public function find()
     {
         $user = Auth::user();

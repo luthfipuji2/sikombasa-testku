@@ -87,154 +87,180 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="tab-pane" id="activity">
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="user image">
-                        <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Shared publicly - 7:30 PM today</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Sent you a message - 3 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="Response">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-danger">Send</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
+ 
                   </div>
 
                   <div class="active tab-pane" id="profile">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="/profile" method="post">
+                    @method('patch')
+                    @csrf
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">NIK</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Nomor Induk Kependudukan">
+                          <input type="text" class="form-control @error('nik') is-invalid @enderror" name="nik" id="inputName" placeholder="Nomor Induk Kependudukan" value="{{$data->nik}}">
+                          @error('nik')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Keahlian</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Keahlian">
+                          <input type="text" class="form-control @error('keahlian') is-invalid @enderror" name="keahlian" id="inputEmail" placeholder="Keahlian" value="{{$data->keahlian}}">
+                          @error('keahlian')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Provinsi</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Provinsi">
+                          <input type="text" class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="inputName2" placeholder="Provinsi" value="{{$data->provinsi}}">
+                          @error('provinsi')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kota / Kabupaten</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Kota / Kabupaten">
+                          <input type="text" class="form-control @error('kabupaten') is-invalid @enderror" name="kabupaten" id="inputName2" placeholder="Kota / Kabupaten (Cth: Kota Kediri / Kabupaten Kediri)" value="{{$data->kabupaten}}">
+                          @error('kabupaten')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kecamatan</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Kecamatan">
+                          <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" id="inputName2" placeholder="Kecamatan" value="{{$data->kecamatan}}">
+                          @error('kecamatan')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kode Pos</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Kode Pos">
+                          <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" id="inputName2" placeholder="Kode Pos" value="{{$data->kode_pos}}">
+                          @error('kode_pos')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Detail Alamat</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Detail Lainnya (Cth:Blok / Unit No. dan Patokan)">
+                          <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="inputName2" placeholder="Detail Lainnya (Cth:Blok / Unit No. dan Patokan)" value="{{$data->alamat}}">
+                          @error('alamat')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Nama Bank</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Nama Bank">
+                          <input type="text" class="form-control @error('nama_bank') is-invalid @enderror" name="nama_bank" id="inputName2" placeholder="Nama Bank" value="{{$data->nama_bank}}">
+                          @error('nama_bank')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">No. Rekening</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Nomor Rekening">
+                          <input type="text" class="form-control @error('rekening_bank') is-invalid @enderror" name="rekening_bank" id="inputName2" placeholder="Nomor Rekening" value="{{$data->rekening_bank}}">
+                          @error('rekening_bank')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">A/N Rekening</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="A/N Rekening">
+                          <input type="text" class="form-control @error('nama_rekening') is-invalid @enderror" name="nama_rekening" id="inputName2" placeholder="A/N Rekening" value="{{$data->nama_rekening}}">
+                          @error('nama_rekening')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div> 
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Tanggal Lahir">
+                          <input type="date"  name="tgl_lahir"  class="form-control @error('tgl_lahir') is-invalid @enderror" value="{{$data->tgl_lahir}}">
+                          @error('tgl_lahir')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                        @if($data->jenis_kelamin=='laki-laki')
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Jenis Kelamin">
+                          <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="jenis_kelamin" value="laki-laki" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="customRadio1">Laki-laki</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="jenis_kelamin" value="perempuan" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio2">Perempuan</label>
+                          </div>
                         </div>
+                        @elseif($data->jenis_kelamin=='perempuan')
+                        <div class="col-sm-10">
+                          <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="jenis_kelamin" value="laki-laki" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio1">Laki-laki</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="jenis_kelamin" value="perempuan" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="customRadio2">Perempuan</label>
+                          </div>
+                        </div>
+                        @endif
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">No. Telepon / HP</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Nomor Telepon / Handphone">
+                          <input type="text" class="form-control @error('no_telp') is-invalid @enderror" name="no_telp" id="inputName2" placeholder="Nomor Telepon / Handphone" value="{{$data->no_telp}}">
+                          @error('no_telp')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="photo" class="col-sm-2 col-form-label">Foto KTP</label>
                         <div class="col-sm-10">
-                          <input type="file" name="photo" class="form-input">
+                          <input type="file" name="foto_ktp @error('foto_ktp') is-invalid @enderror" class="form-input" value="{{$data->foto_ktp}}">
+                          @error('no_telp')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
 

@@ -27,19 +27,34 @@
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">NIK</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="nik" placeholder="Nomor Induk Kependudukan">
+                          <input type="text" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" placeholder="Nomor Induk Kependudukan">
+                          @error('nik')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Keahlian</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" name="keahlian" placeholder="Keahlian">
+                          <input type="text" class="form-control @error('keahlian') is-invalid @enderror" name="keahlian" value="{{ old('keahlian') }}" placeholder="Keahlian">
+                          @error('keahlian')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Provinsi</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" name="provinsi" placeholder="Kecamatan">
+                        <input type="text" class="form-control @error('provinsi') is-invalid @enderror" id="inputName2" name="provinsi" value="{{ old('provinsi') }}" placeholder="Provinsi">
+                        @error('provinsi')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
@@ -48,49 +63,89 @@
                         <!-- <select name="city" id="city" class="form-control" name="kabupaten">
                             <option value="">Kota / Kabupaten</option>
                         </select> -->
-                        <input type="text" class="form-control" id="inputName2" name="kabupaten" placeholder="Kecamatan">
+                        <input type="text" class="form-control @error('kabupaten') is-invalid @enderror" id="inputName2" name="kabupaten" value="{{ old('kabupaten') }}" placeholder="Kota / Kabupaten (Cth: Kota Kediri / Kabupaten Kediri)">
+                        @error('kabupaten')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kecamatan</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" name="kecamatan" placeholder="Kecamatan">
+                        <input type="text" class="form-control @error('kecamatan') is-invalid @enderror" id="inputName2" name="kecamatan" value="{{ old('kecamatan') }}" placeholder="Kecamatan">
+                        @error('kecamatan')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Kode Pos</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="kode_pos" placeholder="Kode Pos">
+                          <input type="text" class="form-control @error('kode_pos') is-invalid @enderror" id="inputName2" name="kode_pos" value="{{ old('kode_pos') }}" placeholder="Kode Pos">
+                          @error('kode_pos')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Detail Alamat</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="alamat" placeholder="Detail Lainnya (Cth:Blok / Unit No. dan Patokan)">
+                          <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="inputName2" name="alamat" value="{{ old('alamat') }}" placeholder="Detail Lainnya (Cth:Blok / Unit No. dan Patokan)">
+                          @error('alamat')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Nama Bank</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="nama_bank" placeholder="Nama Bank">
+                          <input type="text" class="form-control @error('nama_bank') is-invalid @enderror" id="inputName2" name="nama_bank" value="{{ old('nama_bank') }}" placeholder="Nama Bank">
+                          @error('nama_bank')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">No. Rekening</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="rekening_bank" placeholder="Nomor Rekening">
+                          <input type="text" class="form-control @error('rekening_bank') is-invalid @enderror" id="inputName2" name="rekening_bank" value="{{ old('rekening_bank') }}" placeholder="Nomor Rekening">
+                          @error('rekening_bank')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">A/N Rekening</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="nama_rekening" placeholder="A/N Rekening">
+                          <input type="text" class="form-control @error('nama_rekening') is-invalid @enderror" id="inputName2" name="nama_rekening" value="{{ old('nama_rekening') }}" placeholder="A/N Rekening">
+                          @error('nama_rekening')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div> 
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="tgl_lahir" placeholder="Tanggal Lahir">
+                          <input type="date"  name="tgl_lahir"  value="{{ old('tgl_lahir') }}" class="form-control @error('tgl_lahir') is-invalid @enderror">
+                          @error('tgl_lahir')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
@@ -104,18 +159,33 @@
                           <input type="radio" id="customRadio2" name="jenis_kelamin" value="perempuan" class="custom-control-input">
                           <label class="custom-control-label" for="customRadio2">Perempuan</label>
                         </div>
+                        @error('jenis_kelamin')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">No. Telepon / HP</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" name="no_telp" placeholder="Nomor Telepon / Handphone">
+                          <input type="text" class="form-control @error('no_telp') is-invalid @enderror" id="inputName2" name="no_telp" value="{{ old('no_telp') }}" placeholder="Nomor Telepon / Handphone">
+                          @error('no_telp')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="photo" class="col-sm-2 col-form-label">Foto KTP</label>
                         <div class="col-sm-10">
-                          <input type="file" name="foto_ktp" class="form-input">
+                          <input type="file" name="foto_ktp" value="{{ old('foto_ktp') }}" class="form-input @error('foto_ktp') is-invalid @enderror">
+                          @error('foto_ktp')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
                         </div>
                       </div>
 
@@ -128,100 +198,11 @@
                   </div>
 
                   <div class="disabled tab-pane" id="document">
-                    <div class="form-group row">
-                        <label for="inputName2" class="col-sm-3 col-form-label">Curriculum Vitae</label>
-                          <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="cv" for="exampleInputFile">Choose file</label>
-                          </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputName2" class="col-sm-3 col-form-label">Ijazah Terakhir</label>
-                          <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="ijazah" for="exampleInputFile">Choose file</label>
-                          </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputName2" class="col-sm-3 col-form-label">Portofolio</label>
-                          <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="portofolio" for="exampleInputFile">Choose file</label>
-                          </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputName2" class="col-sm-3 col-form-label">Surat Keterangan Sehat</label>
-                          <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="sk" for="exampleInputFile">Choose file</label>
-                          </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputName2" class="col-sm-3 col-form-label">Surat Keterangan Berkelakuan Baik</label>
-                          <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="skck" for="exampleInputFile">Choose file</label>
-                          </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class=" col-sm-10">
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                      </div>
-
+                    <!-- Tab Document di sini -->
                   </div>
 
                   <div class="disabled tab-pane" id="certificate">
-                    <thead>
-                        <form class="form-horizontal" id="dynamic_form">
-                            <div class="form-group row">
-                                <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
-                                <div class="col-sm-10">
-                                <input type="text" name="nama" class="form-control" id="inputName" placeholder="Nama Sertifikat">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
-                                <div class="col-sm-10">
-                                <input type="text" name="nomor" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
-                                <div class="col-sm-10">
-                                    <input type="file" name="photo" class="form-input">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
-                                <div class="col-sm-10">
-                                <input type="text" name="penerbit" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
-                                <div class="col-sm-10">
-                                <input type="text" name="kadaluwarsa" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
-                                </div>
-                            </div>
-                        </form>
-                    </thead>
-                    <tbody>
-                    <tbody>
-                    <tfoot>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <button class="btn btn-success add-more" type="button">
-                                        <i class="nav-icon fas fa-plus"></i> Add
-                                    </button> 
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
-                    </tfoot>
+                   <!-- Tab Certificate di sini -->
                   </div>
                   </div>
                   <!-- /.tab-pane -->
@@ -239,46 +220,6 @@
 @endsection
 
 @push('scripts')
-</script> -->
-<script>
-$(document).ready(function() {
-  var count = 1;
-  dinamyc_field(count);
-  function dynamic_field(number){
-    var html = '<tr>'
-    html += '<td><input type="text" name="nama[]" class="form-control" /></td>';
-    html += '<td><input type="text" name="nomor[]" class="form-control" /></td>';
-    html += '<td><input type="file" name="photo[]" class="form-control" /></td>';
-    html += '<td><input type="text" name="penerbit[]" class="form-control" /></td>';
-    html += '<td><input type="text" name="kadaluwarsa[]" class="form-control" /></td>';
 
-    if(number > 1){
-      html += '<td><div class="col-sm-10"><button class="btn btn-danger" type="button" name="remove"><i class="nav-icon fas fa-times"></i>Remove</button></div></td></tr>';
-      $('tbody').append(html);
-    }else{
-      html += '<td><div class="col-sm-10"><button class="btn btn-success" type="button" name="add"><i class="nav-icon fas fa-plus"></i>Add</button></div></td></tr>';
-      $('tbody').html(html);
-    }
-  }
-
-  $('#add').click(function(){ 
-    count++;
-    dynamic_field(count);
-  });
-
-  // saat tombol remove dklik control group akan dihapus 
-  $(document).on("click", '#remove', function(){ 
-      count--;
-      dynamic_field(count);
-  });
-)};
-
-$('#dynamic_form').on('submit', function(){
-  event.preventDefault();
-  $.ajax({
-    url:'{{}}'
-  })
-});
-</script>
 @endpush
 
