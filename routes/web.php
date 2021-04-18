@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Translator\TranslatorController;
 use App\Http\Controllers\Translator\CareerController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Klien\BiodataKlienController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -72,11 +73,12 @@ Route::middleware(['auth'])->group(function () {
  
     Route::middleware(['klien'])->group(function () {
         Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
-        Route::resource('/biodata', 'App\Http\Controllers\Klien\BiodataKlienController');
-        //biodata klien
+        Route::resource('biodata', 'App\Http\Controllers\Klien\BiodataKlienController');
+        Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
         Route::resource('order-teks', 'App\Http\Controllers\Klien\OrderTeksController');
         Route::resource('order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController');
         Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
+        Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
     });
     
  
