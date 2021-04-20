@@ -17,7 +17,8 @@ class CreateMasterKeahlianTable extends Migration
             $table->bigIncrements('id_master_keahlian');
             $table->unsignedBigInteger('id_translator');
             $table->foreign('id_translator')->references('id_translator')->on('translator')->onDelete('cascade');
-            $table->string('nama_master_keahlian');
+            $table->unsignedBigInteger('id_keahlian');
+            $table->foreign('id_keahlian')->references('id_keahlian')->on('keahlian')->onDelete('cascade');
             $table->timestamps();
         });
     }
