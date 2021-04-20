@@ -9,10 +9,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Admin</title>
-  
+  <title>@yield('title')</title>
+ 
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="css/app.css">
+  <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
@@ -93,46 +95,91 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
 
               <li class="nav-item">
-                <a href="/daftar-bank" class="nav-link">
+                <a href="{{ url ('/bank') }}" class="nav-link">
                   <i class="fas fa-university nav-icon"></i>
                   <p>Daftar Bank</p>
                 </a>
               </li>
 
-              <li class="nav-item">
-                <router-link to="/admin-parameter-order" class="nav-link">
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                   <i class="fas fa-money-bill-wave nav-icon"></i>
                   <p>Daftar Harga</p>
-                </router-link>
+                  <i class="right fa fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/daftar-harga-teks" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Teks</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-dokumen" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Dokumen</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-subtitle" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Subtitle</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-dubbing" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Dubbing</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-transkrip" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Transkrip</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/daftar-harga-interpreter" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Interpreter</p>
+                    </a>
+                  </li>
+               </ul>
               </li>
 
               <li class="nav-item">
-                <a href="/admin-daftar" class="nav-link">
+                <a href="/daftar-admin" class="nav-link">
                   <i class="fas fa-user-secret nav-icon"></i>
                   <p>Daftar Admin</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="/daftar-klien" class="nav-link">
+                  <i class="fas fa-male nav-icon"></i>
+                  <p>Daftar Klien</p>
+                </a>
+              </li>
               
+              <li class="nav-item">
+                <a href="/daftar-translator" class="nav-link">
+                  <i class="fas fa-user-tie nav-icon"></i>
+                  <p>Daftar Translator</p>
+                </a>
+              </li>
+
             </ul>
           </li>
 
           
 
           <li class="nav-item has-treeview">
-            <router-link to="/admin-profile" class="nav-link">
+            <a href="/profile-admin" class="nav-link">
               <i class="nav-icon fas fa-user orange"></i>
               <p>
                 Profile
               </p>
-            </router-link>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <router-link to="/admin-edit-data" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
-                  <p>Edit Data</p>
-                </router-link>
-              </li>
-            </ul>
+            <a>
           </li>
 
           <li class="nav-item">
@@ -186,17 +233,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- REQUIRED SCRIPTS -->
 
+
 <script src="js/app.js"></script>
+
+
 <script>
-    $(document).ready(function () {
-      var table = $('#example').DataTable( {
-        lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
-    } );
- 
-    table.buttons().container()
-        .appendTo( '#example_wrapper .col-md-6:eq(0)' );      
-    });
+  @if(\Session::has('success'))
+      toastr.success('{{Session::get('success')}}', 'Berhasil')
+  @endif
 </script>
+
+@stack('addon-script')
+
 </body>
 </html>
