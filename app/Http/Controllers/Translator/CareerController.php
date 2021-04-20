@@ -7,6 +7,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\Translator\Translator;
+use App\Models\Translator\Certificate;
 
 use Illuminate\Http\Request;
 class CareerController extends Controller
@@ -54,6 +55,17 @@ class CareerController extends Controller
         $user = Auth::user();
         // $provinces = Province::pluck('name', 'id');
         return view('pages.translator.certificate', compact('user'));
+    }
+    public function submitCertificate(Request $request){
+        foreach($request->no_sertifikat as $key=>$no_sertifikat){
+            $data = new Certificate();
+            // $data->nama_sertifikat = $request->$nama_sertifikat[$key];
+            $data->no_sertifikat = $request->$no_sertifikat;
+            // $data->bukti_dokumen = $request->$bukti_dokumen[$key];
+            // $data->diterbitkan_oleh = $request->$diterbitkan_oleh[$key];
+            // $data->masa_berlaku = $request->$masa_berlaku[$key];
+            $data->save();
+        }
     }
 }
 ?>
