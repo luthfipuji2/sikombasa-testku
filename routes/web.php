@@ -68,8 +68,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/career', [App\Http\Controllers\Translator\CareerController::class, 'index']);
         Route::post('/career', [App\Http\Controllers\Translator\CareerController::class, 'store']);
         Route::get('/document', [App\Http\Controllers\Translator\CareerController::class, 'indexDocument']);
+        Route::post('/document', [App\Http\Controllers\Translator\CareerController::class, 'submitDocument']);
         Route::get('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'indexCertificate']);
         Route::post('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'submitCertificate'])->name('certificate'); 
+        Route::get('/progress', [App\Http\Controllers\Translator\CareerController::class, 'indexProgress']);
     });
  
     Route::middleware(['klien'])->group(function () {

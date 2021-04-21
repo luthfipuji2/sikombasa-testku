@@ -30,7 +30,7 @@
                   
                   <div class="disabled tab-pane" id="add-on">
                   <div class="copy invisible">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="POST" action="/certificate">
                         @csrf
                             <div class="form-group row">
                               <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
@@ -106,7 +106,7 @@
                                 </button> 
                         </tr>
                       </div> -->
-                    <div class="default">
+
                     <form class="form-horizontal" method="POST" action="/certificate">
                         @csrf
                           <div class="form-group row">
@@ -144,9 +144,9 @@
                             <i class="nav-icon fas fa-plus"></i> Add More
                             </button>
                           </div>
-                      </div>
-                    </div>
+                    
                     <div class="body">
+                    
                     </div>
                     <div class="foot">
                         <button type="submit" class="btn btn-primary">Submit</button>

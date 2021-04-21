@@ -28,36 +28,37 @@
                     <div class="form-group row">
                         <label for="inputName2" class="col-sm-3 col-form-label">Curriculum Vitae</label>
                           <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="cv" for="exampleInputFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="cv" value="{{ old('cv') }}">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                           </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row" method="POST" action="/document">
+                    @csrf
                         <label for="inputName2" class="col-sm-3 col-form-label">Ijazah Terakhir</label>
                           <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="ijazah" for="exampleInputFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="ijazah_terakhir" value="{{ old('ijazah_terakhir') }}">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                           </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputName2" class="col-sm-3 col-form-label">Portofolio</label>
                           <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="portofolio" for="exampleInputFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="portofolio" value="{{ old('portofolio') }}">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                           </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputName2" class="col-sm-3 col-form-label">Surat Keterangan Sehat</label>
                           <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="sk" for="exampleInputFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="sk_sehat" value="{{ old('sk_sehat') }}">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                           </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputName2" class="col-sm-3 col-form-label">Surat Keterangan Berkelakuan Baik</label>
                           <div class="col-sm-5">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" name="skck" for="exampleInputFile">Choose file</label>
+                                <input type="file" class="custom-file-input" id="exampleInputFile" name="skck" value="{{ old('skck') }}">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                           </div>
                     </div>
                     <div class="form-group row">
