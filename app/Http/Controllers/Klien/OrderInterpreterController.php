@@ -7,9 +7,8 @@ use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Klien;
-
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class OrderInterpreterController extends Controller
 {
@@ -53,7 +52,10 @@ class OrderInterpreterController extends Controller
         Order::create([
             'id_klien'=>$klien->id_klien,
             'jenis_layanan'=>$request->jenis_layanan, 
-            //'text'=>$request->text
+            'durasi_pertemuan'=>$request->durasi_pertemuan,
+            'alamat'=>$request->alamat,
+            'longitude'=>$request->longitude,
+            'latitude'=>$request->latitude
         ]);
         return redirect(route('menu-pembayaran.index'))->with('success', 'Data berhasil ditambahkan');
     }
@@ -102,4 +104,5 @@ class OrderInterpreterController extends Controller
     {
         //
     }
+
 }

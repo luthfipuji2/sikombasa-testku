@@ -53,7 +53,7 @@
                             <!-- Text -->
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                             content.</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teksModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Order Interpreter</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#interpreterModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Order Interpreter</button>
                         </div>
                         </div>
                         </div>
@@ -104,7 +104,7 @@
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                             content.</p>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teksModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Order Teks</button>
-                            <!-- <a href="/order-teks" class=" text-center btn btn-primary">Order Here</a> -->
+                            
                         </div>
                         </div>
                         </div>
@@ -164,11 +164,11 @@
 
 
             <!-- Modal Interpreter -->
-            <div class="modal fade" id="teksModal" tabindex="-1" aria-labelledby="teksModalLabel" aria-hidden="true">
+            <div class="modal fade" id="interpreterModal" tabindex="-1" aria-labelledby="interpreterModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="teksModalLabel">Order</h5>
+                        <h5 class="modal-title" id="interpreterModalLabel">Order Menu Interpreter</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -207,14 +207,19 @@
                                 @enderror
                             </div>
 
-
-                        
+                            <div>
+                            <label for="text">Alamat</label>
+                            <textarea type="text" class="form-control" placeholder="Masukkan Alamat" 
+                                name="text" value="{{ old('text') }}" id="text">
+                            </textarea>
+                            </div>
+                            
+                            </br>
                             <label for="text">Select Your Location</label>
                             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
                             integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
                             crossorigin=""/>
 
-                            <!-- Make sure you put this AFTER Leaflet's CSS -->
                             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
                             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
                             crossorigin=""></script>
@@ -223,35 +228,34 @@
 
                             <div id="mapid"></div>
 
-                            <script src="public/js/leaflet-hash.js"></script>
-
-                            <link rel="stylesheet" href="public/js/L.Control.MousePosition.css"></script>
-
-                            <script src="public/js/L.Control.MousePosition.js"></script>
-
-                            <script> var hash = new L.Hash(map); </script>
-
-                            <script> L.control.mousePosition().addTo(map);</script>
-
                             <script>
                                var map = L.map('mapid').setView([-7.5557418, 110.8545274], 13);
                                L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
                                     maxZoom: 20,
-                                    subdomains:['mt0','mt1','mt2','mt3']
+                                    subdomains:['mt0','mt1','mt2','mt3'] 
                                 }).addTo(map);
-                                L.marker([-7.5557418, 110.8545274]).addTo(map)
+                            </script>
+                        
+                            <script>
+                                var theMarker = {};
+                                map.on('click', function(e){
+                                    if (theMarker !=undefined){
+                                    map.removeLayer(theMarker);
+                                        $('#latitude').val(e.latlng.lat);
+                                        $('#longitude').val(e.latlng.lng);
+                                    };
+                                    theMarker = L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
+                                });
                             </script>
 
-
+                            </br>
                             <label for="text">Longitude</label>
-                            <input type="text" class="form-control" value="hash" id="location" name="location">
-
+                            <input type="text" class="form-control"  id="e.latlng.lat" name="lat">
+                            
+                            </br>
                             <label for="text">Latitude</label>
-                            <input type="text" class="form-control" value="hash" id="location" name="location">
-
+                            <input type="text" class="form-control" id="e.latlng.lng" name="lng">
                             </div>
-                        
-                
 
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
