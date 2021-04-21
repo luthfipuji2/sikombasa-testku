@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKeahlianTable extends Migration
+class AlterTableKeahlian extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,6 @@ class CreateKeahlianTable extends Migration
     {
         Schema::create('keahlian', function (Blueprint $table) {
             $table->bigIncrements('id_keahlian');
-            $table->unsignedBigInteger('id_master_keahlian');
-            $table->foreign('id_master_keahlian')->references('id_master_keahlian')->on('master_keahlian')->onDelete('cascade');
             $table->string('nama_sertifikat');
             $table->string('no_sertifikat');
             $table->string('bukti_dokumen');

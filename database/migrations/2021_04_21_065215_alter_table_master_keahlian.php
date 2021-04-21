@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasterKeahlianTable extends Migration
+class AlterTableMasterKeahlian extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,8 @@ class CreateMasterKeahlianTable extends Migration
             $table->bigIncrements('id_master_keahlian');
             $table->unsignedBigInteger('id_translator');
             $table->foreign('id_translator')->references('id_translator')->on('translator')->onDelete('cascade');
-            $table->string('nama_master_keahlian');
+            $table->unsignedBigInteger('id_keahlian');
+            $table->foreign('id_keahlian')->references('id_keahlian')->on('keahlian')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateMasterKeahlianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_keahlian');
+        //
     }
 }
