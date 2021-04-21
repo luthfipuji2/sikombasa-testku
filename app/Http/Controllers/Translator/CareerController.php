@@ -57,14 +57,21 @@ class CareerController extends Controller
         return view('pages.translator.certificate', compact('user'));
     }
     public function submitCertificate(Request $request){
-        foreach($request->no_sertifikat as $key=>$no_sertifikat){
-            $data = new Certificate();
-            // $data->nama_sertifikat = $request->$nama_sertifikat[$key];
-            $data->no_sertifikat = $request->$no_sertifikat;
-            // $data->bukti_dokumen = $request->$bukti_dokumen[$key];
-            // $data->diterbitkan_oleh = $request->$diterbitkan_oleh[$key];
-            // $data->masa_berlaku = $request->$masa_berlaku[$key];
-            $data->save();
+
+        $nama_sertifikat=$request->nama_sertifikat;
+        $no_sertifikat=$request->no_sertifikat;
+        $bukti_dokumen=$request->bukti_dokumen;
+        $diterbitkan_oleh=$request->diterbitkan_oleh;
+        $masa_berlaku=$request->masa_berlaku;
+
+        foreach($no_sertifikat as $key=>$no_sertifikat){
+            $data['nama_sertifikat']=$nama_sertifikat[$key];
+            $data['no_sertifikat']=$no_sertifikat;
+            $data['bukti_dokumen']=$bukti_dokumen[$key];
+            $data['diterbitkan_oleh']=$diterbitkan_oleh[$key];
+            $data['masa_berlaku']=$masa_berlaku[$key];
+
+            Certificate::create($data);
         }
     }
 }

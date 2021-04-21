@@ -27,7 +27,7 @@
                   <div class="disabled tab-pane" id="document">
                    <!-- Tab Document di sini -->
                   </div>
-
+                  
                   <div class="disabled tab-pane" id="add-on">
                   <div class="copy invisible">
                         <form class="form-horizontal">
@@ -47,7 +47,7 @@
                             <div class="form-group row">
                               <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
                                 <div class="col-sm-10">
-                                  <input type="file" name="bukti_dokumen" class="form-input">
+                                  <input type="file" name="bukti_dokumen[]" class="form-input">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -106,7 +106,7 @@
                                 </button> 
                         </tr>
                       </div> -->
-                    <div class="default"> 
+                    <div class="default">
                     <form class="form-horizontal" method="POST" action="/certificate">
                         @csrf
                           <div class="form-group row">
@@ -124,7 +124,7 @@
                           <div class="form-group row">
                             <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
                               <div class="col-sm-10">
-                                <input type="file" name="bukti_dokumen" class="form-input">
+                                <input type="file" name="bukti_dokumen[]" class="form-input">
                               </div>
                           </div>
                           <div class="form-group row">
