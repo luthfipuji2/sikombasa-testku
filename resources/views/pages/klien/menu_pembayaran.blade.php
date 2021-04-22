@@ -110,10 +110,6 @@
               <div class="card-header">
                 <div class="card-tools">
               
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Harga
-                  </button>
 
                 </div>
               </div>
@@ -123,10 +119,9 @@
                   <thead>   
                   <tr>
                     <th>No</th>
-                    <th hidden></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>ID Order</th>
+                    <th>Tanggal Order</th>
+                    <th>Harga</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -134,13 +129,12 @@
                   
                   <tr>
                     <th scope="row" class="text-center"></th>
-                    <td scope="row" class="text-center" hidden></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td>
-                      <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#updateModal">Edit</i></button>
-                      <a href="#" class="btn btn-danger delete" harga-id="">Delete</a>
+                      <button type="button" class="btn btn-primary detail" data-toggle="modal" data-target="#detailModal">Detail</i></button>
+                      <button type="button" class="btn btn-danger upload" data-toggle="modal" data-target="#strukModal">Upload Struk Pembayaran</i></button>
                     </td>
                   </tr>
                   
@@ -163,82 +157,9 @@
 
 @push('addon-script')
 
-<script>
-    $('.delete').click(function(){
 
-        var harga_id = $(this).attr('harga-id')
 
-        Swal.fire({
-          title: "Apakah anda yakin?",
-          text: "Hapus data harga "+harga_id+"??",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Ya, hapus!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location = "/daftar-harga-teks/"+harga_id+"/delete";  
-            Swal.fire(
-              'Berhasil!',
-              'Data berhasil dihapus ',
-              'success'
-            )
-          }
-        })
-    });
-</script>
 
-<script>
-$(document).ready(function () {
-
-  var table = $('#datatable').DataTable({
-     dom: 'Bfrtip',
-    "responsive": true, "lengthChange": false, "autoWidth": false,
-    "buttons": [
-      {
-                extend:    'copyHtml5',
-                text:      '<i class="far fa-copy"></i>',
-                titleAttr: 'Copy'
-            },
-            {
-                extend:    'excelHtml5',
-                text:      '<i class="far fa-file-excel"></i>',
-                titleAttr: 'Excel'
-            },
-            {
-                extend:    'csvHtml5',
-                text:      '<i class="fas fa-file-csv"></i>',
-                titleAttr: 'CSV'
-            },
-            {
-                extend:    'pdfHtml5',
-                text:      '<i class="far fa-file-pdf"></i>',
-                titleAttr: 'PDF'
-            }
-    ]
-  })
-     
-    table.on('click', '.edit', function(){
-
-    $tr = $(this).closest('tr');
-    if($($tr).hasClass('child')) {
-      $tr = $tr.prev('.parent');
-    }
-
-    var data = table.row($tr).data();
-    console.log(data);
-
-    $('#jenis_layanan').val(data[2]);
-    $('#jumlah_karakter').val(data[3]);
-    $('#harga').val(data[4]); 
-
-    $('#editForm').attr('action', '/daftar-harga-teks/'+data[1]);
-    $('#editModal').modal('show');
-    
-  });
-});
-</script>
 @endpush
 
 

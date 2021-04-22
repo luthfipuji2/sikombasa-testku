@@ -82,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController');
         Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
         Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
+        Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
     });
     
  
