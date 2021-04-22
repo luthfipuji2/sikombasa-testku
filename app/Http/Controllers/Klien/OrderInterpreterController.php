@@ -50,10 +50,10 @@ class OrderInterpreterController extends Controller
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
         Order::create([
-            'id_klien'=>$klien->id_klien,
+           // 'id'=>$klien->id_klien,
             'jenis_layanan'=>$request->jenis_layanan, 
             'durasi_pertemuan'=>$request->durasi_pertemuan,
-            'alamat'=>$request->alamat,
+            'lokasi'=>$request->lokasi,
             'longitude'=>$request->longitude,
             'latitude'=>$request->latitude
         ]);

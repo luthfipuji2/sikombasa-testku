@@ -208,9 +208,9 @@
                             </div>
 
                             <div>
-                            <label for="text">Alamat</label>
-                            <textarea type="text" class="form-control" placeholder="Masukkan Alamat" 
-                                name="text" value="{{ old('text') }}" id="text">
+                            <label for="text">Lokasi</label>
+                            <textarea type="text" class="form-control" placeholder="Tuliskan Lokasi Terkini" 
+                                name="lokasi" value="{{ old('text') }}" id="lokasi">
                             </textarea>
                             </div>
                             
@@ -250,11 +250,11 @@
 
                             </br>
                             <label for="text">Longitude</label>
-                            <input type="text" class="form-control"  id="e.latlng.lat" name="lat">
+                            <input type="text" class="form-control"  id="latitude" name="latitude">
                             
                             </br>
                             <label for="text">Latitude</label>
-                            <input type="text" class="form-control" id="e.latlng.lng" name="lng">
+                            <input type="text" class="form-control" id="longitude" name="longitude">
                             </div>
 
                         <div class="modal-footer">
