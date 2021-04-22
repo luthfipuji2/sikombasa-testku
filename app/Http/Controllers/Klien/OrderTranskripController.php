@@ -1,17 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Klien;
+
 use App\Models\User;
 use App\Models\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Klien;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class OrderTeksController extends Controller
+class OrderTranskripController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function dashboard()
     {
         $user = Auth::user();
@@ -21,7 +26,7 @@ class OrderTeksController extends Controller
     public function index()
     {
         $menu=Order::all();
-        return view('pages.klien.order_teks', compact('menu'));
+        return view('pages.klien.order_transkrip', compact('menu'));
     }
 
     /**
@@ -45,12 +50,14 @@ class OrderTeksController extends Controller
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
         Order::create([
-            //'id_klien'=>$klien->id_klien,
+           // 'id'=>$klien->id_klien,
             'jenis_layanan'=>$request->jenis_layanan, 
-            'text'=>$request->text
+            'durasi_pertemuan'=>$request->durasi_pertemuan,
+            'lokasi'=>$request->lokasi,
+            'longitude'=>$request->longitude,
+            'latitude'=>$request->latitude
         ]);
         return redirect(route('menu-pembayaran.index'))->with('success', 'Data berhasil ditambahkan');
-    }
     }
 
     /**
@@ -59,7 +66,7 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function show($id)
+    public function show($id)
     {
         //
     }
@@ -70,7 +77,7 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function edit($id)
+    public function edit($id)
     {
         //
     }
@@ -82,7 +89,7 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -93,7 +100,9 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function destroy($id)
+    public function destroy($id)
     {
         //
     }
+
+}

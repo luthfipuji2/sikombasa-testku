@@ -78,20 +78,11 @@
 
                 <li class="nav-item has-treeview">
                 <a href="/biodata" class="nav-link">
-                <i class="nav-icon fas fa-user orange"></i>
+                <i class="nav-icon fas fa-user yellow"></i>
                 <p>
                     Profile
-                    <i class="right fas fa-angle-left"></i>
                 </p>
                 </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="/biodata" class="nav-link">
-                    <i class="fas fa-users nav-icon"></i>
-                    <p>My Biodata</p>
-                    </a>
-                </li>
-                </ul>
             </li>
 
             <li class="nav-item has-treeview">
@@ -104,7 +95,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ url ('/order-teks') }}" class="nav-link">
+                    <a href="{{ url ('/menu-order') }}" class="nav-link">
                     <i class="nav-icon fas fa-language"></i>
                         <p>Menu</p>
                     </a>
