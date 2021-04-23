@@ -28,130 +28,73 @@
                    <!-- Tab Document di sini -->
                   </div>
 
-                  <div class="disabled tab-pane" id="add-on">
-                  <div class="copy invisible">
-                        <form class="form-horizontal" method="POST" action="/certificate">
-                        @csrf
-                            <div class="form-group row">
-                              <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" name="nama_sertifikat[]" id="inputName" placeholder="Nama Sertifikat">
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" name="no_sertifikat[]" id="inputEmail" placeholder="Nomor Sertifikat">
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
-                                <div class="col-sm-10">
-                                  <input type="file" name="bukti_dokumen" class="form-input">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                              <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
-                              <div class="col-sm-10">
-                                <input type="text" class="form-control" name="diterbitkan_oleh[]" id="inputEmail" placeholder="Diterbitkan Oleh">
-                              </div>
-                            </div>
-                            <div class="form-group row">
-                              <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
-                              <div class="col-sm-10">
-                                <input type="date" class="form-control" name="masa_berlaku[]" id="inputEmail" placeholder="Masa Berlaku">
-                              </div>
-                            </div>
-                            <div class="form-group row col-sm-2">
-                              <button class="btn btn-danger remove" type="button">
-                              <i class="nav-icon fas fa-times"></i> Remove
-                              </button>
-                            </div>
-                        </form>
-                  </div>
-                  </div>
-
                   <div class="active tab-pane" id="certificate">
-                    <div class="head">
-                      <!-- <div class="alternatif">
-                        <tr>
-                            <td><label for="inputName" class="col-form-label">Nama Sertifikat</label></td>
-                            <td><input type="text" name="nama_sertifikat[]" class="col-sm-10 form-control" placeholder="Nama Sertifikat"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="inputName" class="col-form-label">Nomor Sertifikat</label></td>
-                            <td><input type="text" name="no_sertifikat[]" class="col-sm-10 form-control" placeholder="Nomor Sertifikat"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="inputName" class="col-form-label">Bukti Dokumen</label></td>
-                            <td>
-                              <div class="col-sm-10">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" name="bukti_dokumen[]" for="exampleInputFile">Choose file</label>
-                              </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="inputName" class="col-form-label">Diterbitkan Oleh</label></td>
-                            <td><input type="text" name="diterbitkan_oleh[]" class="col-sm-10 form-control" placeholder="Diterbitkan Oleh"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="inputName" class="col-form-label">Masa Berlaku</label></td>
-                            <td><input type="text" name="masa_berlaku[]" class="col-sm-10 form-control" placeholder="Masa Berlaku"></td>
-                        </tr>
-                        <br>
-                        <tr>
-                                <button class="btn btn-success addMore" type="button">
-                                  <i class="nav-icon fas fa-plus"></i> Add
-                                </button> 
-                        </tr>
-                      </div> -->
-                    <form class="form-horizontal" method="POST" action="/certificate">
-                        @csrf
-                          <div class="form-group row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" name="nama_sertifikat[]" id="inputName" placeholder="Nama Sertifikat">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" name="no_sertifikat[]" id="inputEmail" placeholder="Nomor Sertifikat">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
-                              <div class="col-sm-10">
-                                <input type="file" name="bukti_dokumen" class="form-input">
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" name="diterbitkan_oleh[]" id="inputEmail" placeholder="Diterbitkan Oleh">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
-                            <div class="col-sm-10">
-                              <input type="date" class="form-control" name="masa_berlaku[]" id="inputEmail" placeholder="Masa Berlaku">
-                            </div>
-                          </div>
-                          <div class="form-group row col-sm-2">
-                            <button class="btn btn-success addMore" type="button">
-                            <i class="nav-icon fas fa-plus"></i> Add More
-                            </button>
-                          </div>
+                  <form action="/certificate" method="POST" enctype="multipart/form-data">
+                  @csrf
+                    <div class="control-group after-add-more">
+                    <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nama_sertifikat[]" id="inputName" placeholder="Nama Sertifikat">
                       </div>
-                    
-                    <div class="body">
-                    
+                      <label for="inputName" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="no_sertifikat[]" id="inputName" placeholder="Nomor Sertifikat">
+                      </div>
+                      <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
+                        <div class="col-sm-10">
+                          <input type="file" name="bukti_dokumen[]" class="form-input">
+                        </div>
+                      <label for="inputName" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="diterbitkan_oleh[]" id="inputName" placeholder="Diterbitkan Oleh">
+                        </div>
+                      <label for="inputName" class="col-sm-2 col-form-label">Masa Berlaku</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" name="masa_berlaku[]" id="inputName" placeholder="Masa Berlaku">
+                        </div>
+                      <br>
+                      <div class="col-sm-2">
+                      <button class="btn btn-success add-more" type="button">
+                        <i class="nav-icon fas fa-plus"></i> Add More
+                      </button>
+                      </div>
+                      <hr>
                     </div>
-                    <div class="foot">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="col-sm-2">
+                    <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
-                    </form>
+                  </form>
+
+                  <div class="copy invisible">
+                    <div class="control-group">
+                    <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nama_sertifikat[]" id="inputName" placeholder="Nama Sertifikat">
+                      </div>
+                      <label for="inputName" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="no_sertifikat[]" id="inputName" placeholder="Nomor Sertifikat">
+                      </div>
+                      <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
+                        <div class="col-sm-10">
+                          <input type="file" name="bukti_dokumen[]" class="form-input">
+                        </div>
+                      <label for="inputName" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" name="diterbitkan_oleh[]" id="inputName" placeholder="Diterbitkan Oleh">
+                        </div>
+                      <label for="inputName" class="col-sm-2 col-form-label">Masa Berlaku</label>
+                        <div class="col-sm-10">
+                          <input type="date" class="form-control" name="masa_berlaku[]" id="inputName" placeholder="Masa Berlaku">
+                        </div>
+                      <br>
+                      <div class="col-sm-2">
+                      <button class="btn btn-danger remove" type="button">
+                      <i class="nav-icon fas fa-times"></i> Remove
+                      </button>
+                      </div>
+                      <hr>
+                    </div>
                   </div>
                   </div>
                   <!-- /.tab-pane -->
@@ -170,17 +113,28 @@
 
 @push('scripts')
 <script type="text/javascript">
-$('.addMore').on('click', function(){
-  addMore();
-});
-function addMore(){
-  var html = $('.copy').html();
-  $('.body').append(html);
-  // alert('test');
-};
-$('body').on('click', '.remove', function(){
-$(this).parents('.form-horizontal').remove();
-});
+$(document).ready(function() {
+      $(".add-more").click(function(){ 
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
+      });
+
+      // saat tombol remove dklik control group akan dihapus 
+      $("body").on("click",".remove",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
+// $('.addMore').on('click', function(){
+//   addMore();
+// });
+// function addMore(){
+//   var html = $('.copy').html();
+//   $('.body').append(html);
+//   // alert('test');
+// };
+// $('body').on('click', '.remove', function(){
+// $(this).parents('.form-horizontal').remove();
+// });
 </script>
 @endpush
 

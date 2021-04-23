@@ -21,7 +21,7 @@
                   </div>
 
                   <div class="active tab-pane" id="profile">
-                    <form class="form-horizontal" method="POST" action="/career">
+                    <form class="form-horizontal" method="POST" action="/career" enctype="multipart/form-data">
                     @csrf
                       <input type="hidden" name="id" value={{ Auth::user()->id }}>
                       <div class="form-group row">
