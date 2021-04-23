@@ -18,8 +18,12 @@ class MenuPembayaranController extends Controller
      */
     public function index()
     {
-        $order_pembayaran = Order::all();
-        return view('pages.klien.menu_pembayaran', compact('order_pembayaran'));
+       // $order_pembayaran = Order::all();
+       // return view('pages.klien.menu_pembayaran', compact('order_pembayaran'));
+        
+            $order_pembayaran = Order::all();
+            return view('pages.klien.menu_pembayaran', ['order_pembayaran' => $order_pembayaran]);
+        
     }
 
     /**
