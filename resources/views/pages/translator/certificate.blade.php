@@ -59,7 +59,6 @@
                       </button>
                       </div>
                       <hr>
-                    </div>
                     <div class="col-sm-2">
                     <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
