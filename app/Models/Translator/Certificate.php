@@ -13,5 +13,8 @@ class Certificate extends Model{
                            'diterbitkan_oleh', 
                            'masa_berlaku'
                             ];
+    public function translator(){
+        return $this->belongsToMany(Translator::class, 'master_keahlian', 'id_keahlian', 'id_translator');
+    }
 }
 ?>

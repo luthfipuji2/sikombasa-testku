@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Translator\Translator;
+use App\Models\Translator\Certificate;
+use App\Models\Translator\Master_keahlian;
 
 use Illuminate\Http\Request;
 class ProfileController extends Controller
@@ -16,7 +18,17 @@ class ProfileController extends Controller
             ->join('translator', 'users.id', '=', 'translator.id')//translator.id adalah foreign key dari tabel users (atribut yg sama dari kedua tabel)
             ->where("users.id",$id_user)
             ->first();//load data
-        return view('pages.translator.profile', compact('data')); 
+
+        $translator = Translator::where('id', $user->id)->first();
+        $sertifikat = DB::table('keahlian')
+            ->join('master_keahlian', 'keahlian.id_keahlian', '=', 'master_keahlian.id_keahlian')
+            ->where("master_keahlian.id_translator", $translator->id_translator)
+            ->get();
+        return view('pages.translator.profile', [
+            'data'=>$data,
+            'sertifikat'=>$sertifikat
+            ]); 
+
     }
 
     public function update(Request $request, Translator $translator) {
