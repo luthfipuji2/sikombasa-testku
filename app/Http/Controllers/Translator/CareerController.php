@@ -9,6 +9,7 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\Translator\Translator;
 use App\Models\Translator\Certificate;
+use App\Models\Translator\Master_keahlian;
 use App\Models\Translator\Document;
 
 use Illuminate\Http\Request;
@@ -90,8 +91,18 @@ class CareerController extends Controller
             $nm_dokumen=$bukti_dokumen[$i]->getClientOriginalName();
             $bukti_dokumen[$i]->move(public_path().'\img\sertifikat', $nm_dokumen);
 
-            Certificate::create($data);
+            $keahlian = Certificate::create($data);
+
+            $user = Auth::user();
+
+            $translator = Translator::where('id', $user->id)->first();
+
+            $id = Master_keahlian::create([
+                'id_keahlian'=>$keahlian->id_keahlian,
+                'id_translator'=>$translator->id_translator
+            ]);
         }
+
         return redirect('/progress');
     }
     public function submitDocument(Request $request){
