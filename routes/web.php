@@ -70,7 +70,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/document', [App\Http\Controllers\Translator\CareerController::class, 'indexDocument']);
         Route::post('/document', [App\Http\Controllers\Translator\CareerController::class, 'submitDocument']);
         Route::get('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'indexCertificate']);
-        Route::post('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'submitCertificate'])->name('certificate'); 
+        Route::post('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'submitCertificate'])->name('certificate');
+        Route::post('/certificate-create', [App\Http\Controllers\Translator\ProfileController::class, 'createCertificate']); 
+        Route::post('/certificate-update/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'updateCertificate']); 
+        Route::get('/certificate/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'deleteCertificate']); 
         Route::get('/progress', [App\Http\Controllers\Translator\CareerController::class, 'indexProgress']);
     });
  
