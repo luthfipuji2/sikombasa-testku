@@ -205,12 +205,57 @@
                   </div>
 
                   <div class="tab-pane" id="certificate">
-                    <button class="btn btn-success add-more" type="button">
+                    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#createCertificate">
                         <i class="nav-icon fas fa-folder-plus"></i> Add More Certificates
                     </button>
-                    <table class="table table-borderless">
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="createCertificate" tabindex="-1" aria-labelledby="createCertificateLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="createCertificateLabel">Tambah Sertifikat</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                          <form action="/certificate-create" method="POST" enctype="multipart/form-data">
+                            @csrf
+                              <label for="inputName" class="col-sm-5 col-form-label">Nama Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="nama_sertifikat" id="inputName" placeholder="Nama Sertifikat">
+                                </div>
+                                <label for="inputName" class="col-sm-5 col-form-label">Nomor Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="no_sertifikat" id="inputName" placeholder="Nomor Sertifikat">
+                                </div>
+                                <label for="inputName2" class="col-sm-5 col-form-label">Bukti Dokumen</label>
+                                  <div class="col-sm-10">
+                                    <input type="file" name="bukti_dokumen" class="form-input">
+                                  </div>
+                                <label for="inputName" class="col-sm-5 col-form-label">Diterbitkan Oleh</label>
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="diterbitkan_oleh" id="inputName" placeholder="Diterbitkan Oleh">
+                                  </div>
+                                <label for="inputName" class="col-sm-5 col-form-label">Masa Berlaku</label>
+                                  <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="masa_berlaku" id="inputName" placeholder="Masa Berlaku">
+                                  </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <table id="datatable" class="table table-borderless">
                       <thead>
                         <tr>
+                          <th scope="col">#</th>
                           <th scope="col">Nama Sertifikat</th>
                           <th scope="col">Nomor Sertifikat</th>
                           <th scope="col">Bukti Dokumen</th>
@@ -220,19 +265,20 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($sertifikat as $sertif)
+                        @foreach($certificate as $sertif)
                           <tr>
+                            <td>{{$sertif->id_keahlian}}</td>
                             <td>{{$sertif->nama_sertifikat}}</td>
                             <td>{{$sertif->no_sertifikat}}</td>
                             <td>{{$sertif->bukti_dokumen}}</td>
                             <td>{{$sertif->diterbitkan_oleh}}</td>
                             <td>{{$sertif->masa_berlaku}}</td>
                             <td>
-                              <button class="btn btn-danger" type="button">
+                              <a href="/certificate/{{$sertif->id_keahlian}}" class="btn btn-danger">
                               <i class="nav-icon fas fa-trash-alt"></i>
-                              </button>
+                              </a>
 
-                              <button class="btn btn-primary" type="button">
+                              <button class="btn btn-primary edit" type="button" data-toggle="modal" data-target="#updateCertificate">
                               <i class="nav-icon fas fa-edit"></i>
                               </button>
                             </td>
@@ -240,6 +286,50 @@
                         @endforeach
                       </tbody>
                     </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="updateCertificate" tabindex="-1" aria-labelledby="updateCertificateLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="updateCertificateLabel">Edit Data Sertifikat</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                          <form action="/certificate-update" method="POST" enctype="multipart/form-data" id="editForm">
+                            @csrf
+                              <label for="nama_sertifikat" class="col-sm-5 col-form-label">Nama Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="nama_sertifikat" id="nama_sertifikat" placeholder="Nama Sertifikat">
+                                </div>
+                                <label for="no_sertifikat" class="col-sm-5 col-form-label">Nomor Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="no_sertifikat" id="no_sertifikat" placeholder="Nomor Sertifikat">
+                                </div>
+                                <label for="bukti_dokumen" class="col-sm-5 col-form-label">Bukti Dokumen</label>
+                                  <div class="col-sm-10">
+                                    <input type="file" name="bukti_dokumen" id="bukti_dokumen" class="form-input">
+                                  </div>
+                                <label for="diterbitkan_oleh" class="col-sm-5 col-form-label">Diterbitkan Oleh</label>
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="diterbitkan_oleh" id="diterbitkan_oleh" placeholder="Diterbitkan Oleh">
+                                  </div>
+                                <label for="masa_berlaku" class="col-sm-5 col-form-label">Masa Berlaku</label>
+                                  <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="masa_berlaku" id="masa_berlaku" placeholder="Masa Berlaku">
+                                  </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+
                   </div>
                   <!-- /.tab-pane -->
                 </div>
@@ -253,3 +343,32 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
 @endsection
+
+@push('scripts')
+<script>
+    
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var table = $('#datatable').DataTable();
+  //Edit Record
+  table.on('click', '.edit', function(){
+    $tr = $(this).closest('tr');
+    if($($tr).hasClass('child')){
+      $tr = $tr.prev('.parent');
+    }
+    var data = table.row($tr).data();
+    console.log(data);
+
+    $('#nama_sertifikat').val(data[1]);
+    $('#no_sertifikat').val(data[2]);
+    $('#bukti_dokumen').html(data[3]);
+    $('#diterbitkan_oleh').val(data[4]);
+    $('#masa_berlaku').val(data[5]);
+
+    $('#editForm').attr('action', '/certificate-update/'+data[0]);
+    $('#updateCertificate').modal('show');
+  })
+})
+</script>
+@endpush
