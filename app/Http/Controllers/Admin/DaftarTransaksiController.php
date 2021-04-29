@@ -3,38 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Admin;
-use App\Models\Klien;
-use App\Models\Order;
-use App\Models\Translator;
-use App\Models\User;
+use App\Models\Admin\Transaksi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class DaftarTransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function dashboard()
-    {
-        $user = User::count();
-        $translator = Translator::count();
-        $klien = Klien::count();
-        $order = Order::count();
-        return view('pages.admin.home', compact('user', 'translator', 'klien', 'order'));
-    }
-
     public function index()
     {
-        $admin = DB::table('admin')
-            ->join('users', 'admin.id', '=', 'users.id')
+        $transaksi = DB::table('transaksi')
+            ->join('order', 'transaksi.id_order', '=', 'order.id_order')
+            ->join('klien', 'order.id_klien', '=', 'klien.id_klien')
+            ->join('users', 'users.id', '=', 'klien.id')
             ->get();
-        return view('pages.admin.DaftarAdmin',  ['admin' => $admin]);
+        return view('pages.admin.DaftarTransaksi',  ['transaksi' => $transaksi]);
     }
 
     /**
@@ -87,9 +74,19 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_transaksi)
     {
-        //
+        $this->validate($request,[
+            'status_transaksi' => 'required'
+        ]);
+
+        $t = Transaksi::find($id_transaksi);
+        
+        Transaksi::where('id_transaksi', $t->id_transaksi)
+                    ->update([
+                        'status_transaksi'    => $request->status_transaksi,
+                    ]);
+        return redirect('/daftar-transaksi')->with('success', 'Status transaksi berhasil diubah');
     }
 
     /**
