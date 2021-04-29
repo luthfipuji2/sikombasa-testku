@@ -3,6 +3,14 @@
 @section('title', 'Edit Data User')
 
 @section('container')
+<style>
+.widget-user-header {
+    background-position: center center;
+    background-size: cover;
+    height: 200px !important;
+}
+</style>
+
 <!-- Main content -->
 <section class="content">
       <div class="container-fluid">
@@ -10,6 +18,19 @@
          
           <!-- /.col -->
           <div class="col-md-12 mt-3">
+
+          <div class="card card-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header text-white"
+                   style="background-image:url('./img/bg.jpg')">
+                <h3 class="widget-user-username text-right">{{$users->name}}</h3>
+                <h5 class="widget-user-desc text-right">{{$users->role}}</h5>
+              </div>
+              <div class="widget-user-image">
+                <img src="{{asset('images/'.$users->profile_photo_path)}}" class="img-circle profile-user-img img-fluid img-responsive" alt="User Avatar">
+              </div>
+            </div>
+
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
@@ -22,7 +43,7 @@
                 <div class="tab-content">
                   <div class="active tab-pane" id="profile">
 
-                  <form method="POST" action="/profile-admin/{{$users->id}}">
+                  <form method="POST" action="/profile-admin/{{$users->id}}" enctype="multipart/form-data">
                     @method('patch')
                     @csrf
                     <form role="form">
@@ -59,6 +80,11 @@
                             @enderror
                         </div>  
 
+                        <div class="form-group">
+                            <label for="profile_photo_path">Photo Profile</label>
+                            <input type="file" id="profile_photo_path"  name="profile_photo_path" class="form-control">
+                        </div> 
+
                         <div class="form-group row">
                             <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Ubah</button>
@@ -73,6 +99,11 @@
                     @method('patch')
                     @csrf
                     <form role="form">
+                    <div class="form-group" hidden>
+                            <label for="name">ID</label>
+                            <input type="text" id="id" placeholder="Masukkan Tanggal Lahir" name="id" value="{{ $users->id }}">
+                        </div>
+                    <div class="form-group">
                    
                     <div class="form-group">
                         <label for="jenis_kelamin">Jenis Kelamin</label>
