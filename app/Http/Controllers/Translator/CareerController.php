@@ -42,10 +42,11 @@ class CareerController extends Controller
         ]);
 
         $foto_ktp = $request->foto_ktp;
+        $id = $request->id;
         $nm_ktp=$foto_ktp->getClientOriginalName();
 
         $translator = new Translator;
-        $translator->id = $request->id;
+        $translator->id = $id;
         $translator->nik = $request->nik;
         $translator->keahlian = $request->keahlian;
         $translator->alamat = $request->alamat;
@@ -64,7 +65,7 @@ class CareerController extends Controller
         $foto_ktp->move(public_path().'\img\biodata', $nm_ktp);
 
         $translator->save();
-        return redirect('/document');
+        return redirect('/document')->with('toast_success', 'Data Created Successfully!');
     }
     public function indexDocument()
     {
@@ -119,7 +120,7 @@ class CareerController extends Controller
         }
 
 
-        return redirect('/progress');
+        return redirect('/progress')->with('toast_success', 'Data Created Successfully!');
     }
     public function submitDocument(Request $request){
         
@@ -160,7 +161,7 @@ class CareerController extends Controller
         $skck->move(public_path().'\img\dokumen', $nm_skck);
 
         $dokumen->save();
-        return redirect('/certificate');
+        return redirect('/certificate')->with('toast_success', 'Data Created Successfully!');
 
         // dd($request->all());
     }
