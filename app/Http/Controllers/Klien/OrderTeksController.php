@@ -45,7 +45,7 @@ class OrderTeksController extends Controller
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
         Order::create([
-            //'id_klien'=>$klien->id_klien,
+            'id_klien'=>$klien->id_klien,
             'jenis_layanan'=>$request->jenis_layanan, 
             'text'=>$request->text
         ]);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Translator\TranslatorController;
 use App\Http\Controllers\Translator\CareerController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Klien\BiodataKlienController;
+use App\Http\Controllers\Klien\OrderMenuController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -76,13 +77,23 @@ Route::middleware(['auth'])->group(function () {
  
     Route::middleware(['klien'])->group(function () {
         Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
-        Route::resource('biodata', 'App\Http\Controllers\Klien\BiodataKlienController');
+        Route::resource('profile', 'App\Http\Controllers\Klien\BiodataKlienController');
+        Route::patch('/biodata/{user}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
         Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
+
+        //order menu dokumen
+        Route::get('/order-dokumen', [App\Http\Controllers\Klien\OrderMenuController::class, 'indexDokumen'])->name('order-dokumen');
+        Route::post('/order-dokumen', [App\Http\Controllers\Klien\OrderMenuController::class, 'submitDokumen'])->name('order-dokumen');
+        Route::get('/show-order-dokumen', [App\Http\Controllers\Klien\OrderMenuController::class, 'showOrderDokumen'])->name('show-order-dokumen');
+
+        
         Route::resource('order-teks', 'App\Http\Controllers\Klien\OrderTeksController');
-        Route::resource('order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController');
+        
         Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
         Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
         Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
+
+
     });
     
  
