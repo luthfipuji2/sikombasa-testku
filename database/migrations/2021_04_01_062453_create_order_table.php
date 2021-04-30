@@ -25,7 +25,7 @@ class CreateOrderTable extends Migration
             $table->string('jumlah_halaman')->nullable();
             $table->string('text')->nullable();
             $table->string('nama_dokumen')->nullable();
-            $table->string('upload_dpkumen')->nullable();
+            $table->string('upload_dokumen')->nullable();
             $table->string('path_file')->nullable();
             $table->string('size')->nullable();
             $table->string('ekstensi')->nullable();
