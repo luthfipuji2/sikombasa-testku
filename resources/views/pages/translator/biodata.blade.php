@@ -129,7 +129,7 @@
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">A/N Rekening</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control @error('nama_rekening') is-invalid @enderror" id="inputName2" name="nama_rekening" value="{{ old('nama_rekening') }}" placeholder="A/N Rekening">
+                          <input type="text" class="form-control @error('nama_rekening') is-invalid @enderror" id="inputName2" name="nama_rekening" value="{{ old('nama_rekening') }}" placeholder="A/N Rekening (Cth: Ista Wiratama)">
                           @error('nama_rekening')
                           <div id="validationServer03Feedback" class="invalid-feedback">
                             {{$message}}
