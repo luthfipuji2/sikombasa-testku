@@ -4,78 +4,10 @@
 @section('content')
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-3">
-
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="" alt="User profile picture">
-                </div>
-
-                <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-
-                <p class="text-muted text-center">{{ Auth::user()->role }}</p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
-                  </li>
-                </ul>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- About Me Box -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">About Me</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
-
-                <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
-                </p>
-
-                <hr>
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                <p class="text-muted">Malibu, California</p>
-
-                <hr>
-
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design</span>
-                  <span class="tag tag-success">Coding</span>
-                  <span class="tag tag-info">Javascript</span>
-                  <span class="tag tag-warning">PHP</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
-
-                <hr>
-
-                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+          <div class="col-md-1">
           </div>
           <!-- /.col -->
-          <div class="col-md-9">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
@@ -273,43 +205,131 @@
                   </div>
 
                   <div class="tab-pane" id="certificate">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Nama Sertifikat</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" placeholder="Nama Sertifikat">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Nomor Sertifikat">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Bukti Dokumen</label>
-                          <div class="col-sm-10">
-                            <input type="file" name="photo" class="form-input">
+                    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#createCertificate">
+                        <i class="nav-icon fas fa-folder-plus"></i> Add More Certificates
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="createCertificate" tabindex="-1" aria-labelledby="createCertificateLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="createCertificateLabel">Tambah Sertifikat</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                           </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Diterbitkan Oleh</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Diterbitkan Oleh">
+                          <div class="modal-body">
+                          <form action="/certificate-create" method="POST" enctype="multipart/form-data">
+                            @csrf
+                              <label for="inputName" class="col-sm-5 col-form-label">Nama Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="nama_sertifikat" id="inputName" placeholder="Nama Sertifikat">
+                                </div>
+                                <label for="inputName" class="col-sm-5 col-form-label">Nomor Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="no_sertifikat" id="inputName" placeholder="Nomor Sertifikat">
+                                </div>
+                                <label for="inputName2" class="col-sm-5 col-form-label">Bukti Dokumen</label>
+                                  <div class="col-sm-10">
+                                    <input type="file" name="bukti_dokumen" class="form-input">
+                                  </div>
+                                <label for="inputName" class="col-sm-5 col-form-label">Diterbitkan Oleh</label>
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="diterbitkan_oleh" id="inputName" placeholder="Diterbitkan Oleh">
+                                  </div>
+                                <label for="inputName" class="col-sm-5 col-form-label">Masa Berlaku</label>
+                                  <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="masa_berlaku" id="inputName" placeholder="Masa Berlaku">
+                                  </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </div>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Masa Berlaku</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Masa Berlaku">
+                    </div>
+
+                    <table id="datatable" class="table table-borderless">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Nama Sertifikat</th>
+                          <th scope="col">Nomor Sertifikat</th>
+                          <th scope="col">Bukti Dokumen</th>
+                          <th scope="col">Diterbitkan Oleh</th>
+                          <th scope="col">Masa Berlaku</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($certificate as $sertif)
+                          <tr>
+                            <td>{{$sertif->id_keahlian}}</td>
+                            <td>{{$sertif->nama_sertifikat}}</td>
+                            <td>{{$sertif->no_sertifikat}}</td>
+                            <td>{{$sertif->bukti_dokumen}}</td>
+                            <td>{{$sertif->diterbitkan_oleh}}</td>
+                            <td>{{$sertif->masa_berlaku}}</td>
+                            <td>
+                              <a href="/certificate/{{$sertif->id_keahlian}}" class="btn btn-danger">
+                              <i class="nav-icon fas fa-trash-alt"></i>
+                              </a>
+
+                              <button class="btn btn-primary edit" type="button" data-toggle="modal" data-target="#updateCertificate">
+                              <i class="nav-icon fas fa-edit"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="updateCertificate" tabindex="-1" aria-labelledby="updateCertificateLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="updateCertificateLabel">Edit Data Sertifikat</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                          <form action="/certificate-update" method="POST" enctype="multipart/form-data" id="editForm">
+                            @csrf
+                              <label for="nama_sertifikat" class="col-sm-5 col-form-label">Nama Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="nama_sertifikat" id="nama_sertifikat" placeholder="Nama Sertifikat">
+                                </div>
+                                <label for="no_sertifikat" class="col-sm-5 col-form-label">Nomor Sertifikat</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="no_sertifikat" id="no_sertifikat" placeholder="Nomor Sertifikat">
+                                </div>
+                                <label for="bukti_dokumen" class="col-sm-5 col-form-label">Bukti Dokumen</label>
+                                  <div class="col-sm-10">
+                                    <input type="file" name="bukti_dokumen" id="bukti_dokumen" class="form-input">
+                                  </div>
+                                <label for="diterbitkan_oleh" class="col-sm-5 col-form-label">Diterbitkan Oleh</label>
+                                  <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="diterbitkan_oleh" id="diterbitkan_oleh" placeholder="Diterbitkan Oleh">
+                                  </div>
+                                <label for="masa_berlaku" class="col-sm-5 col-form-label">Masa Berlaku</label>
+                                  <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="masa_berlaku" id="masa_berlaku" placeholder="Masa Berlaku">
+                                  </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            </form>
+                          </div>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-success">Update</button>
-                        </div>
-                      </div>
-                    </form>
+                    </div> 
+
                   </div>
                   <!-- /.tab-pane -->
                 </div>
@@ -323,3 +343,32 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
 @endsection
+
+@push('scripts')
+<script>
+    
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var table = $('#datatable').DataTable();
+  //Edit Record
+  table.on('click', '.edit', function(){
+    $tr = $(this).closest('tr');
+    if($($tr).hasClass('child')){
+      $tr = $tr.prev('.parent');
+    }
+    var data = table.row($tr).data();
+    console.log(data);
+
+    $('#nama_sertifikat').val(data[1]);
+    $('#no_sertifikat').val(data[2]);
+    $('#bukti_dokumen').html(data[3]);
+    $('#diterbitkan_oleh').val(data[4]);
+    $('#masa_berlaku').val(data[5]);
+
+    $('#editForm').attr('action', '/certificate-update/'+data[0]);
+    $('#updateCertificate').modal('show');
+  })
+})
+</script>
+@endpush

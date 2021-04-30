@@ -21,5 +21,9 @@ class Translator extends Model{
                            'jenis_kelamin', 
                            'no_telp', 
                            'foto_ktp'];
+
+    public function keahlian(){
+    return $this->belongsToMany(Certificate::class, 'master_keahlian', 'id_translator', 'id_keahlian');
+    }
 }
 ?>

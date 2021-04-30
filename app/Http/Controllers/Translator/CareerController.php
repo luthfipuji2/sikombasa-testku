@@ -9,6 +9,7 @@ use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use App\Models\Translator\Translator;
 use App\Models\Translator\Certificate;
+use App\Models\Translator\Master_keahlian;
 use App\Models\Translator\Document;
 
 use Illuminate\Http\Request;
@@ -42,10 +43,27 @@ class CareerController extends Controller
 
         $foto_ktp = $request->foto_ktp;
         $nm_ktp=$foto_ktp->getClientOriginalName();
+
+        $translator = new Translator;
+        $translator->id = $request->id;
+        $translator->nik = $request->nik;
+        $translator->keahlian = $request->keahlian;
+        $translator->alamat = $request->alamat;
+        $translator->provinsi = $request->provinsi;
+        $translator->kecamatan = $request->kecamatan;
+        $translator->kabupaten = $request->kabupaten;
+        $translator->kode_pos = $request->kode_pos;
+        $translator->nama_bank = $request->nama_bank;
+        $translator->nama_rekening = $request->nama_rekening;
+        $translator->rekening_bank = $request->rekening_bank;
+        $translator->tgl_lahir = $request->tgl_lahir;
+        $translator->jenis_kelamin = $request->jenis_kelamin;
+        $translator->no_telp = $request->no_telp;
+        $translator->foto_ktp = $nm_ktp;
+
         $foto_ktp->move(public_path().'\img\biodata', $nm_ktp);
 
-        Translator::create($request->all());
-        
+        $translator->save();
         return redirect('/document');
     }
     public function indexDocument()
@@ -55,9 +73,7 @@ class CareerController extends Controller
     }
     public function indexCertificate()
     {
-        // $career = DB::table('translator')->get();
         $user = Auth::user();
-        // $provinces = Province::pluck('name', 'id');
         return view('pages.translator.certificate', compact('user'));
     }
     public function submitCertificate(Request $request){
@@ -75,23 +91,34 @@ class CareerController extends Controller
         $bukti_dokumen=$request->bukti_dokumen;
         $diterbitkan_oleh=$request->diterbitkan_oleh;
         $masa_berlaku=$request->masa_berlaku;
+
+        // $nm_dokumen=$bukti_dokumen->getClientOriginalName();
         
         $total = count($no_sertifikat);
         
         for($i=0;$i<$total;$i++)
         {
-
             $data['no_sertifikat'] = $no_sertifikat[$i];
             $data['nama_sertifikat'] = $nama_sertifikat[$i];
-            $data['bukti_dokumen'] = $bukti_dokumen[$i];
+            $data['bukti_dokumen'] = $bukti_dokumen[$i]->getClientOriginalName();
             $data['diterbitkan_oleh'] = $diterbitkan_oleh[$i];
             $data['masa_berlaku'] = $masa_berlaku[$i];
 
-            $nm_dokumen=$bukti_dokumen[$i]->getClientOriginalName();
-            $bukti_dokumen[$i]->move(public_path().'\img\sertifikat', $nm_dokumen);
+            $bukti_dokumen[$i]->move(public_path().'\img\sertifikat', $bukti_dokumen[$i]->getClientOriginalName());
 
-            Certificate::create($data);
+            $keahlian = Certificate::create($data);
+
+            $user = Auth::user();
+
+            $translator = Translator::where('id', $user->id)->first();
+
+            $id = Master_keahlian::create([
+                'id_keahlian'=>$keahlian->id_keahlian,
+                'id_translator'=>$translator->id_translator
+            ]);
         }
+
+
         return redirect('/progress');
     }
     public function submitDocument(Request $request){
@@ -120,11 +147,11 @@ class CareerController extends Controller
 
         $dokumen = new Document;
         $dokumen->id = $request->id;
-        $dokumen->cv = $cv;
-        $dokumen->ijazah_terakhir = $ijazah_terakhir;
-        $dokumen->portofolio = $portofolio;
-        $dokumen->sk_sehat = $sk_sehat;
-        $dokumen->skck = $skck;
+        $dokumen->cv = $nm_cv;
+        $dokumen->ijazah_terakhir = $nm_ijazah;
+        $dokumen->portofolio = $nm_portofolio;
+        $dokumen->sk_sehat = $nm_sk;
+        $dokumen->skck = $nm_skck;
 
         $cv->move(public_path().'\img\dokumen', $nm_cv);
         $ijazah_terakhir->move(public_path().'\img\dokumen', $nm_ijazah);

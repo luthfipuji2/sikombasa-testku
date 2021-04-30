@@ -38,7 +38,8 @@ class Order extends Model
         'durasi_pengerjaan',
         'is_status',
         'status_at',
-        'status_by'
+        'status_by',
+        'harga',
     ];
 
     protected $dates = [
