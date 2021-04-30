@@ -1,241 +1,173 @@
-@extends('layouts/klien/sidebar')
+    @extends('layouts.klien.sidebar')
 
-@section('title', 'Dashboard')
-
-@section('container')
-    
-<div class="container">
-        
-        <div class="row justify-content-center">
+    @section('title', 'Order Dokumen')
+    @section('content')
+    <div class="container-fluid">
+            <div class="row">
+            <div class="container ">
+            {{-- status --}}
+        <div class="row">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Menu List</div>
-                        <div class="row"> 
-                        <!-- Card -->
-                        <div class="col-4 align-self-center">
-                        <!-- Card image -->
-                        <div class=card-body>
-                            <img class="card-img-top"  height="150px" src="https://mdbootstrap.com/img/Photos/Others/photo9.jpg" alt="Card image cap">
-                            <a>
-                            <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        
-                        <!-- Card content -->
-                        <div class="card text-center">
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title-center">Transkrip</h4>
-                            <hr>
-                            <!-- Text -->
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                            <a href="#" class=" text-center btn btn-primary">Order Here</a>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- Card -->
-
-                        <!-- Card -->
-                        <div class="col-4 align-self-center">
-                        <!-- Card image -->
-                        <div class=card-body>
-                            <img class="card-img-top"  height="150px" src="https://mdbootstrap.com/img/Photos/Others/photo9.jpg" alt="Card image cap">
-                            <a>
-                            <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card text-center">
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title-center">Interpreter</h4>
-                            <hr>
-                            <!-- Text -->
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                            <a href="#" class=" text-center btn btn-primary">Order Here</a>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- Card -->
-
-                        <!-- Card -->
-                        <div class="col-4 align-self-center">
-                        <!-- Card image -->
-                        <div class=card-body>
-                            <img class="card-img-top"  height="150px" src="https://mdbootstrap.com/img/Photos/Others/photo9.jpg" alt="Card image cap">
-                            <a>
-                            <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card text-center">
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title-center">Dubbing</h4>
-                            <hr>
-                            <!-- Text -->
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                            <a href="#" class=" text-center btn btn-primary">Order Here</a>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- Card -->
+                <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#certificate" data-toggle="tab">Order Menu</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="#certificate" data-toggle="tab">View Order</a></li>
+                    <li class="nav-item"><a class="nav-link disabled" href="#progress" data-toggle="tab">Transaksi</a></li>
+                    </ul>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                    <div class="tab-content">
+                    <div class="disabled tab-pane" id="progress">
+                        <!-- Tab Activity di sini -->
                     </div>
 
-                    <div class="row">
-                    <!-- Card -->
-                        <div class="col-4 align-self-center">
-                        <!-- Card image -->
-                        <div class=card-body>
-                            <img class="card-img-top"  height="150px" src="https://mdbootstrap.com/img/Photos/Others/photo9.jpg" alt="Card image cap">
-                            <a>
-                            <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card text-center">
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title-center">Teks</h4>
-                            <hr>
-                            <!-- Text -->
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kriteriaModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Order Here</button>
-                            <!-- <a href="/order-teks" class=" text-center btn btn-primary">Order Here</a> -->
-                        </div>
-                        </div>
-                        </div>
-                        <!-- Card -->
+                    <div class="disabled tab-pane" id="profile">
+                        <!-- Tab Profile di sini -->
+                    </div>
 
-                        <!-- Card -->
-                        <div class="col-4 align-self-center">
-                        <!-- Card image -->
-                        <div class=card-body>
-                            <img class="card-img-top"  height="150px" src="https://mdbootstrap.com/img/Photos/Others/photo9.jpg" alt="Card image cap">
-                            <a>
-                            <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card text-center">
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title-center">Dokumen</h4>
-                            <hr>
-                            <!-- Text -->
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                            <a href="#" class=" text-center btn btn-primary">Order Here</a>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- Card -->
+                    <div class="disabled tab-pane" id="document">
+                    <!-- Tab Document di sini -->
+                    </div>
 
-                        <!-- Card -->
-                        <div class="col-4 align-self-center">
-                        <!-- Card image -->
-                        <div class=card-body>
-                            <img class="card-img-top"  height="150px" src="https://mdbootstrap.com/img/Photos/Others/photo9.jpg" alt="Card image cap">
-                            <a>
-                            <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card text-center">
-                        <div class="card-body">
-                            <!-- Title -->
-                            <h4 class="card-title-center">Subtitle</h4>
-                            <hr>
-                            <!-- Text -->
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                            <a href="#" class=" text-center btn btn-primary">Order Here</a>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- Card -->
+                    <div class="active tab-pane" id="certificate">
+                    <form action="/order-dokumen" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <!-- layanan basic -->
+            <div class="card card-statistic-1">
+                    <div class="card-icon bg-info">
+                    <i class="nav-icon fas fa-star"></i>
+                    </div>
+                </a>
+                <div class="card-wrap">
+                    <div class="card-header">
+                    <div>
+                    <button onclick="layanan_basic()" class="btn btn-info">
+                        <label for="basic">Layanan Basic</label>
+                    </button>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                    <div id="basic"></div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="jenis_layanan" id="jenis_layanan" value="basic">
+                    <label class="form-check-label" for="jenis_layanan"><h5>Pilih Layanan Basic</label>
                     </div>
                     </div>
                 </div>
+                </div>
             </div>
+            <!--selesai layanan baisc -->
 
+                <!-- layanan premium -->
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-info">
+                    <i class="nav-icon fas fa-star"></i>
+                    <i class="nav-icon fas fa-star"></i>
+                    </div>
+                </a>
+                <div class="card-wrap">
+                    <div class="card-header">
+                    <div>
+                    <button onclick="layanan_premium()" class="btn btn-info">
+                        <label for="premium">Layanan Premium</label>
+                    </button>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                    <div id="premium"></div>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="jenis_layanan" value="premium" id="jenis_layanan">
+                    <label class="form-check-label" for="jenis_layanan"><h5>Pilih Layanan Premium</label>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- Selesai layanan premium -->
+            <br>
 
-            <!-- Modal Teks -->
-            <div class="modal fade" id="teksModal" tabindex="-1" aria-labelledby="teksModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="teksModalLabel">Tambah Order</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                        <form action="{{route('order-teks.store')}}" method="POST">
-                        @csrf
-                        <!-- <form action="{{ url('order-teks') }}" method="POST"> -->
-                        <input type="hidden" name="id">
-                            <div class="form-group">
-                            <label for="jenis_layanan">Jenis Layanan</label>
-                                <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
-                                id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
-                                    <option value="Basic">Basic</option>
-                                    <option value="Premium">Premium</option>
+            <div class="form-group">
+                            <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
+                                <select class="form-control @error('durasi_pengerjaan') is-invalid @enderror" 
+                                id="durasi_pengerjaan" placeholder="Durasi Pengerjaan" name="durasi_pengerjaan">
+                                    <option value="<=1 Day"><=1 Day</option>
+                                    <option value="1 - 3 Day">1 - 3 Day</option>
+                                    <option value="1 - 5 Day">1 - 5 Day</option>
+                                    <option value="1 - 7 Day">1 - 7 Day</option>
                                 </select>
-                                @error ('jenis_layanan')
+                                @error ('durasi_pengerjaan')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback">
                                         {{$message}}
                                     </div>
                                 @enderror
                             </div>
-                            
-                            <label for="text">Teks</label>
-                            <textarea rows="10" cols="70" form="usrform" type="text" class="form-control" placeholder="Masukkan Teks" 
-                                name="text" value="{{ old('text') }}" id="text">
-                            </textarea>
+
+            <br>
+                        <div class="control-group after-add-more">
+                        <label for="inputName" class="col-sm-2 col-form-label">Nama Dokumen</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="nama_dokumen" id="inputName" placeholder="Nama Dokumen">
+                        </div>
+                        <label for="inputName2" class="col-sm-2 col-form-label">Upload Dokumen</label>
+                            <div class="col-sm-10">
+                            <input type="file" name="upload_dokumen" class="form-input">
                             </div>
+                        <br>
                         
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <hr>
                         </div>
-                        </form>
+                        <div class="col-sm-2">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </form>
+
+                    
                     </div>
-                    </div>
+                    <!-- /.tab-content -->
                 </div>
-                
-                    <!-- Card content -->
+                <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    @endsection
 
-                        <div class="col-4 align-self-center">
-                        <!-- Card image -->
-                        <div class=card-body>
-                            <img class="card-img-top"  height="150px" src="https://mdbootstrap.com/img/Photos/Others/photo9.jpg" alt="Card image cap">
-                            <a>
-                            <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-                        <!-- Card content -->
-                        <div class="card text-center">
-                        <div class="card-body">
-                    <!-- Title -->
-                    <h4 class="card-title-center">Teks</h4>
-                    <hr>
-                    <!-- Text -->
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
-                    <div class="card shadow">
-                    <div class="card-header py-3">
-                        <div class="d-flex justify-content-between">
-                        <div class="float-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#teksModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Order Teks</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-</div>
+    @push('scripts')
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(".add-more").click(function(){ 
+            var html = $(".copy").html();
+            $(".after-add-more").after(html);
+        });
 
-@endsection
+        // saat tombol remove dklik control group akan dihapus 
+        $("body").on("click",".remove",function(){ 
+            $(this).parents(".control-group").remove();
+        });
+        });
+    </script>
+    @endpush
+
+    @push('scripts')
+    <script >		
+        // membuat function tampilkan_nama
+        function layanan_basic(){
+            document.getElementById("basic").innerHTML = "Mendapatkan Garansi Selama 3 Bulan Saat Pertama Kali Order<hr>";
+        }
+        
+    </script>
+ @endpush
+
+ @push('scripts')
+    <script >		
+        // membuat function tampilkan_nama
+        function layanan_premium(){
+            document.getElementById("premium").innerHTML = "<hr>* Free Video Editing <br> * Mendapatkan Garansi Selama 1 Tahun Saat Pertama Kali Order <hr> ";
+        }
+        
+    </script>
+ @endpush

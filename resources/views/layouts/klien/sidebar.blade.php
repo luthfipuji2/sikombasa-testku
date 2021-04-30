@@ -77,7 +77,7 @@
             </li>
 
                 <li class="nav-item has-treeview">
-                <a href="/biodata" class="nav-link">
+                <a href="/profile" class="nav-link">
                 <i class="nav-icon fas fa-user yellow"></i>
                 <p>
                     Profile
@@ -148,39 +148,41 @@
         <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-    @yield('container')
-        <router-view></router-view>
-        <vue-progress-bar></vue-progress-bar>
-
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">@yield('title')</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-wrapper -->
+    <!-- /.content-header -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-        <div class="p-3">
-        <h5>Title</h5>
-        <p>Sidebar content</p>
-        </div>
-    </aside>
-    <!-- /.control-sidebar -->
+    <!-- Main content -->
+    @yield('content')
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">
-        Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      Anything you want
     </div>
-    <!-- ./wrapper -->
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
 
-    <!-- REQUIRED SCRIPTS -->
-
-    <script src="js/app.js"></script>
-    </body>
-    </html>
+<script src="/js/app.js"></script>
+@stack('scripts')
+</body>
+</html>

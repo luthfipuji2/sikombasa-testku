@@ -28,10 +28,10 @@ class Klien extends Model
     ];
 
     public function order(){
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo('App\Models\Order', 'id_klien', 'id_klien');
     }
 
     public function user(){
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\Models\User');
     }
 }
