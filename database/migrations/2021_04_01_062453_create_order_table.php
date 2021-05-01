@@ -37,7 +37,7 @@ class CreateOrderTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('lokasi')->nullable();
             $table->date('tgl_order')->nullable();
-            $table->string('durasi_pengerjaan')->nullable();
+            $table->integer('durasi_pengerjaan')->nullable();
             $table->string('is_status')->nullable();
             $table->string('status_at')->nullable();
             $table->string('status_by')->nullable();

@@ -36,24 +36,67 @@ class OrderMenuController extends Controller
 
     public function submitDokumen(Request $request, Klien $id_klien){
         
+        // if($request->hasFile('upload_dokumen')){
+        //     $validate_data = $request->validate([
+        //         'jenis_layanan'=>'required',
+        //         'durasi_pengerjaan'=>'required',
+        //         'nama_dokumen'=>'required',
+        //         'upload_dokumen'=>'required|file|max:10000',
+        //     ]);
+
+        //     $jenis_layanan = $validate_data['jenis_layanan'];
+        //     $durasi = $validate_data['durasi_pengerjaan'];
+        //     $ext_template = $validate_data['upload_dokumen']->extension();
+        //     $size_template = $validate_data['upload_dokumen']->getSize();
+        //     $user=Auth::user();
+        //     $klien=Klien::where('id', $user->id)->first();
+        //     $nama_dokumen = $validate_data['nama_dokumen'] . "." . $ext_template;
+
+        //     $path_template = Storage::putFileAs('public/data_file/file_order_dokumen', $request->file('upload_dokumen'), $nama_dokumen);
+
+        //     $order_dokumen=Order::create([
+        //         'id_klien'=>$klien->id_klien,
+        //         'jenis_layanan'=>$jenis_layanan,
+        //         'durasi_pengerjaan'=>$durasi,
+        //         'nama_dokumen'=>$nama_dokumen,
+        //         'upload_dokumen'=>$path_template,
+        //         'ekstensi'=>$ext_template,
+        //         'size'=>$size_template,
+        //         'tgl_order'=>Carbon::now()->timestamp,
+        //         'is_status'=>'belum bayar',
+        //     ]);
+
+        //     return redirect('/show-order-dokumen')->with('success', 'Berhasil di upload!');
+        // } else {
+        //     return redirect('/show-order-dokumen')->with('warning', 'Form tidak valid!');
+        // }
+        
+
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
         $validateOrder=$request->validate([
             'jenis_layanan'=>'required',
             'durasi_pengerjaan'=>'required',
             'nama_dokumen'=>'required',
-            'upload_dokumen'=>'required',
+            'upload_dokumen'=>'required|file|max:10000',
         ]);
+
+        $ext_template = $validateOrder['upload_dokumen']->extension();
+        $size_template = $validateOrder['upload_dokumen']->getSize();
+        $nama_dokumen = $validateOrder['nama_dokumen'] . "." . $ext_template;
+        $path_template = Storage::putFileAs('public/data_file/file_order_dokumen', $request->file('upload_dokumen'), $nama_dokumen);
 
         Order::create([
             'id_klien'=>$klien->id_klien,
             'jenis_layanan'=>$validateOrder['jenis_layanan'],
             'durasi_pengerjaan'=>$validateOrder['durasi_pengerjaan'],
             'nama_dokumen'=>$validateOrder['nama_dokumen'],
-            'upload_dokumen'=>$validateOrder['upload_dokumen'],
+            'upload_dokumen'=>$path_template,
+            'ekstensi'=>$ext_template,
+            'size'=>$size_template,
             'tgl_order'=>Carbon::now()->timestamp,
         ]);
-        return redirect('/show-order-dokumen');
+        return redirect(route('menu-order.index'))->with('success', 'Data berhasil ditambahkan');
     }
 
     public function showOrderDokumen(Klien $id_klien, Order $order){

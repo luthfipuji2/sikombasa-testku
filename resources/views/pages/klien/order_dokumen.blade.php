@@ -91,10 +91,10 @@
                             <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
                                 <select class="form-control @error('durasi_pengerjaan') is-invalid @enderror" 
                                 id="durasi_pengerjaan" placeholder="Durasi Pengerjaan" name="durasi_pengerjaan">
-                                    <option value="<=1 Day"><=1 Day</option>
-                                    <option value="1 - 3 Day">1 - 3 Day</option>
-                                    <option value="1 - 5 Day">1 - 5 Day</option>
-                                    <option value="1 - 7 Day">1 - 7 Day</option>
+                                    <option value="1"><=1 Day</option>
+                                    <option value="2">3 Day</option>
+                                    <option value="3">3 Day</option>
+                                    <option value="4">4 Day</option>
                                 </select>
                                 @error ('durasi_pengerjaan')
                                     <div id="validationServerUsernameFeedback" class="invalid-feedback">
@@ -111,7 +111,7 @@
                         </div>
                         <label for="inputName2" class="col-sm-2 col-form-label">Upload Dokumen</label>
                             <div class="col-sm-10">
-                            <input type="file" name="upload_dokumen" class="form-input">
+                            <input type="file" name="path_file" class="form-input">
                             </div>
                         <br>
                         
