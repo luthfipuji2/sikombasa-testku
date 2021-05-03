@@ -1,6 +1,6 @@
 @extends('layouts/admin/template')
 
-@section('title', 'Daftar Harga Menu Teks')
+@section('title', 'Users & Permission List')
 
 @section('container')
 
@@ -19,7 +19,7 @@
 
       {{ csrf_field() }}
         <div class="modal-body">
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label for="jenis_layanan">Jenis Layanan</label>
                     <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
                     id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
@@ -32,21 +32,6 @@
                             {{$message}}
                         </div>
                     @enderror
-            </div> -->
-
-            <div class="form-group">
-                <label>Jenis Layanan</label>
-                <select type="text" name="jenis_layanan" class="form-control @error('jenis_layanan') is-invalid @enderror"
-                 placeholder="" value="{{ old('jenis_layanan') }}">
-                    <option value="{{old('jenis_layanan')}}" hidden selected>{{old('jenis_layanan')}}</option>
-                    <option value="Basic">Basic</option>
-                    <option value="Premium">Premium</option>
-                </select>
-                @error ('jenis_layanan')
-                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                      {{$message}}
-                  </div>
-                @enderror
             </div>
 
             <div class="form-group">
@@ -82,12 +67,13 @@
   </div>
 </div>
 
+
 <!-- Modal Edit -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Data Harga Teks</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -97,52 +83,28 @@
 
       {{ csrf_field() }}
       {{ method_field('PUT') }}
-      
+
         <div class="modal-body">
-        
-          <div class="form-group">
+     
+
+            <div class="form-group">
                 <label for="jenis_layanan">Jenis Layanan</label>
                     <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
-                     id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
-                    
-                      <option value="Basic">Basic</option>
-                      <option value="Premium">Premium</option>
-                    
+                    id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
+                       
+                        <option value="basic">Basic</option>
+                        <option value="premium">Premium</option>
                     </select>
                     @error ('jenis_layanan')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                             {{$message}}
                         </div>
                     @enderror
-            </div> 
-               
-            
-
-            <div class="form-group">
-                <label>Jumlah Karakter</label>
-                <input type="text" class="form-control @error('jumlah_karakter') is-invalid @enderror" 
-                name="jumlah_karakter" id="jumlah_karakter" placeholder="Masukkan Range Jumlah Karakter ex. 0-200">
-                @error ('jumlah_karakter')
-                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                      {{$message}}
-                  </div>
-                @enderror
             </div>
-
-            <div class="form-group">
-                <label>Harga</label>
-                <input type="text" class="form-control @error('harga') is-invalid @enderror" 
-                name="harga" id="harga" placeholder="Masukkan harga ex. 100000">
-                @error ('harga')
-                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                      {{$message}}
-                  </div>
-                @enderror
-            </div> 
-
+            
             
         </div>
-        
+      
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -162,10 +124,6 @@
               <div class="card-header">
                 <div class="card-tools">
               
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Harga
-                  </button>
 
                 </div>
               </div>
@@ -175,24 +133,22 @@
                   <thead>   
                   <tr>
                     <th>No</th>
-                    <th hidden>ID Harga</th>
+                    <th hidden>ID User</th>
                     <th>Jenis Layanan</th>
-                    <th>Jumlah Karakter</th>
-                    <th>Harga</th>
+              
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach($harga as $harga)
+                  @foreach($harga as $h)
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                    <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
-                    <td>{{$harga->jenis_layanan}}</td>
-                    <td>{{$harga->jumlah_karakter}}</td>
-                    <td>{{$harga->harga}}</td>
+                    <td scope="row" class="text-center" hidden>{{$h->id_parameter_order}}</td>
+                    <td>{{$h->jenis_layanan}}</td>
+            
                     <td>
-                      <button type="button" class="btn btn-sm btn-primary edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
-                      <a href="#" class="btn btn-sm btn-danger delete" harga-num="{{$loop->iteration}}" harga-id="{{$harga->id_parameter_order}}"><i class="fas fa-trash-alt"></i></a>
+                      <button type="button" class="btn btn-primary btn-sm edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
+                      <a href="#" class="btn btn-danger btn-sm delete" user-id="{{$h->id_parameter_order}}" user-num="{{$loop->iteration}}"><i class="fas fa-trash-alt"></i></a>
                     </td>
                   </tr>
                   @endforeach
@@ -215,16 +171,15 @@
 
 @push('addon-script')
 
-
 <script>
     $('.delete').click(function(){
 
-        var harga_id = $(this).attr('harga-id')
-        var harga_num = $(this).attr('harga-num')
+        var user_id = $(this).attr('user-id')
+        var user_num = $(this).attr('user-num')
 
         Swal.fire({
           title: "Apakah anda yakin?",
-          text: "Hapus data harga "+harga_num+"??",
+          text: "Hapus data user "+user_num+"??",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -232,7 +187,7 @@
           confirmButtonText: 'Ya, hapus!'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location = "/daftar-harga-teks/"+harga_id+"/delete";  
+            window.location = "/users/"+user_id+"/delete";  
             Swal.fire(
               'Berhasil!',
               'Data berhasil dihapus ',
@@ -244,6 +199,11 @@
 </script>
 
 <script>
+function GetSelectedValue(){
+                var e = document.getElementById("jenis_layanan");
+                var result = e.options[e.selectedIndex].value;
+}
+
 $(document).ready(function () {
 
   var table = $('#datatable').DataTable({
@@ -284,8 +244,8 @@ $(document).ready(function () {
     console.log(data);
 
     $('#jenis_layanan').val(data[2]);
-    $('#jumlah_karakter').val(data[3]);
-    $('#harga').val(data[4]); 
+    $('#email').val(data[3]);
+    $('#role').val(data[4]);
 
     $('#editForm').attr('action', '/daftar-harga-teks/'+data[1]);
     $('#editModal').modal('show');
@@ -294,6 +254,3 @@ $(document).ready(function () {
 });
 </script>
 @endpush
-
-
-

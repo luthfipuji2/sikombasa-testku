@@ -37,6 +37,14 @@ class User extends Authenticatable
         'profile_photo_path',
     ];
 
+    public function getAvatar()
+    {
+        if(!$this->profile_photo_path){
+            return asset('images/default.jpg');
+        }
+            return asset('images/'.$this->profile_photo_path);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -67,16 +75,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function getPhoto()
-    {
-        if(!$this->profile_photo_path){
-            return asset('images/default.jpg');
-        }
-        else{
-            return asset('images/'.$this->profile_photo_path);
-        }
-        
-    }
+    
 
     public function admin()
     {

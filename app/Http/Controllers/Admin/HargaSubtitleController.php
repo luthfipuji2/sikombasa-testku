@@ -41,7 +41,7 @@ class HargaSubtitleController extends Controller
         $this->validate($request,[
             'jenis_layanan' => 'required',
             'durasi_file' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         Harga::create([
@@ -87,7 +87,7 @@ class HargaSubtitleController extends Controller
         $this->validate($request,[
             'jenis_layanan' => 'required',
             'durasi_file' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         $harga = Harga::find($id_parameter_order);

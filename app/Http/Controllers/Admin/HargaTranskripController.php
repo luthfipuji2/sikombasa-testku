@@ -41,7 +41,7 @@ class HargaTranskripController extends Controller
     {
         $this->validate($request,[
             'durasi_pertemuan' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         Harga::create([
@@ -85,7 +85,7 @@ class HargaTranskripController extends Controller
     {
         $this->validate($request,[
             'durasi_pertemuan' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         $harga = Harga::find($id_parameter_order);

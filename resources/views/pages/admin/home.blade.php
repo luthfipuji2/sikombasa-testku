@@ -56,7 +56,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>{{$klien}}</h3>
-                <p>Client</p>
+                <p>Clients</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
