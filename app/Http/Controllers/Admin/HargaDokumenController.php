@@ -41,7 +41,7 @@ class HargaDokumenController extends Controller
         $this->validate($request,[
             'jenis_layanan' => 'required',
             'jumlah_halaman' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         Harga::create([
@@ -87,7 +87,7 @@ class HargaDokumenController extends Controller
         $this->validate($request,[
             'jenis_layanan' => 'required',
             'jumlah_halaman' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         $harga = Harga::find($id_parameter_order);

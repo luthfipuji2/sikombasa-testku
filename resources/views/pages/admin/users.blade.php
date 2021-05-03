@@ -9,7 +9,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -51,8 +51,8 @@
       
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
       </form>
     </div>
@@ -76,25 +76,30 @@
                 <table id="datatable" class="table table-bordered table-striped">
                   <thead>   
                   <tr>
-                    <th>ID User</th>
+                    <th>No</th>
+                    <th hidden>ID User</th>
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Role</th>
                     <th>Created At</th>
-                    <th>Edit Role</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
                   @foreach($users as $user)
                   <tr>
-                    <td scope="row" class="text-center">{{$user->id}}</td>
+                    <th scope="row" class="text-center">{{$loop->iteration}}</th>
+                    <td scope="row" class="text-center" hidden>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role}}</td>
                     <td>{{$user->created_at}}</td>
                     <td>
-                      <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#updateModal">Edit</i></button>
-                      <a href="#" class="btn btn-danger delete" user-id="{{$user->id}}">Delete</a>
+                      <button type="button" class="btn btn-primary btn-sm edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
+                      <a href="#" class="btn btn-danger btn-sm delete" user-id="{{$user->id}}" user-num="{{$loop->iteration}}"><i class="fas fa-trash-alt"></i></a>
+                      @if (!empty($user->profile_photo_path))
+                      <a href="{{ route('users.download', $user->id) }}" class="btn btn-secondary btn-sm" ><i class="fas fa-portrait"></i></a>
+                      @endif
                     </td>
                   </tr>
                   @endforeach
@@ -121,10 +126,11 @@
     $('.delete').click(function(){
 
         var user_id = $(this).attr('user-id')
+        var user_num = $(this).attr('user-num')
 
         Swal.fire({
           title: "Apakah anda yakin?",
-          text: "Hapus data user "+user_id+"??",
+          text: "Hapus data user "+user_num+"??",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -183,11 +189,11 @@ $(document).ready(function () {
     var data = table.row($tr).data();
     console.log(data);
 
-    $('#name').val(data[1]);
-    $('#email').val(data[2]);
-    $('#role').val(data[3]);
+    $('#name').val(data[2]);
+    $('#email').val(data[3]);
+    $('#role').val(data[4]);
 
-    $('#editForm').attr('action', '/users/'+data[0]);
+    $('#editForm').attr('action', '/users/'+data[1]);
     $('#editModal').modal('show');
     
   });

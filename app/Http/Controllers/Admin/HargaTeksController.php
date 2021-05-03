@@ -14,10 +14,10 @@ class HargaTeksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Harga $h)
     {
         $harga = DB::table('parameter_order')->whereNotNull('jumlah_karakter')->get();
-        return view('pages.admin.HargaTeks', ['harga' => $harga]);
+        return view('pages.admin.HargaTeks', compact('harga'));
     }
 
     /**
@@ -41,7 +41,7 @@ class HargaTeksController extends Controller
         $this->validate($request,[
             'jenis_layanan' => 'required',
             'jumlah_karakter' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         Harga::create([

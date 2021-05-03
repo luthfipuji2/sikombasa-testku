@@ -16,7 +16,7 @@ class HargaDubbingController extends Controller
      */
     public function index()
     {
-        $dubbing = DB::table('parameter_order')->whereNotNull('durasi_file')->orWhereNotNull('jumlah_dubber')
+        $dubbing = DB::table('parameter_order')->whereNotNull('jumlah_dubber')
         ->get();
         return view('pages.admin.HargaDubbing', ['dubbing' => $dubbing]);
     }
@@ -43,7 +43,7 @@ class HargaDubbingController extends Controller
             'jenis_layanan' => 'required',
             'durasi_file' => 'required',
             'jumlah_dubber' =>'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         Harga::create([
@@ -91,7 +91,7 @@ class HargaDubbingController extends Controller
             'jenis_layanan' => 'required',
             'durasi_file' => 'required',
             'jumlah_dubber' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         $harga = Harga::find($id_parameter_order);

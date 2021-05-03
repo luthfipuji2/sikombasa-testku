@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin');
         Route::resource('users', 'App\Http\Controllers\Admin\UsersController');
         Route::get('/users/{user}/delete', 'App\Http\Controllers\Admin\UsersController@destroy');
+        Route::get('/users/download/{id}', 'App\Http\Controllers\Admin\UsersController@download')->name('users.download');;
         Route::resource('bank', 'App\Http\Controllers\Admin\BankController');
         Route::get('/bank/{bank}/delete', 'App\Http\Controllers\Admin\BankController@destroy');
         

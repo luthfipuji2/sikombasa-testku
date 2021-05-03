@@ -137,9 +137,10 @@ class ProfileController extends Controller
         }
 
         if($request->hasFile('profile_photo_path')){
+            
             $request->file('profile_photo_path')->move('images/',
             $request->file('profile_photo_path')->getClientOriginalName()); //Memindahkan request photo ke folder image
-            
+
             $currentPhoto = $user->profile_photo_path;
 
             $userPhoto = public_path('images/').$currentPhoto;

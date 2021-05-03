@@ -9,7 +9,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Harga Dokumen</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -19,33 +19,48 @@
 
       {{ csrf_field() }}
         <div class="modal-body">
-            <div class="form-group">
-                <label for="jenis_layanan">Jenis Layanan</label>
-                    <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
-                    id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
-                        <option value="Basic">Basic</option>
-                        <option value="Premium">Premium</option>
-                    </select>
-                    @error ('jenis_layanan')
-                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-            </div>
+          <div class="form-group">
+                <label>Jenis Layanan</label>
+                <select type="text" name="jenis_layanan" class="form-control @error('jenis_layanan') is-invalid @enderror"
+                 placeholder="" value="{{ old('jenis_layanan') }}">
+                    <option value="{{old('jenis_layanan')}}" hidden selected>{{old('jenis_layanan')}}</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Premium">Premium</option>
+                </select>
+                @error ('jenis_layanan')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
+          </div>
+
             <div class="form-group">
                 <label>Jumlah Halaman</label>
-                <input type="text" name="jumlah_halaman" class="form-control" placeholder="Masukkan Range Jumlah Karakter ex. 0-200">
+                <input type="text" name="jumlah_halaman" class="form-control @error('jumlah_halaman') is-invalid @enderror"
+                 placeholder="Masukkan Range Jumlah Halaman ex. 0-200" value="{{ old('jumlah_halaman') }}">
+                @error ('jumlah_halaman')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
+            
             <div class="form-group">
                 <label>Harga</label>
-                <input type="text" name="harga" class="form-control" placeholder="Masukkan harga ex. 100000">
+                <input type="text" name="harga" class="form-control @error('harga') is-invalid @enderror"
+                 placeholder="Masukkan harga ex. 100000" value="{{ old('harga') }}">
+                @error ('harga')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
         </div>
       
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Tambah Data</button>
       </div>
       </form>
     </div>
@@ -57,7 +72,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data Harga Dokumen</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -82,19 +97,33 @@
                         </div>
                     @enderror
             </div>
+
             <div class="form-group">
                 <label>Jumlah Halaman</label>
-                <input type="text" name="jumlah_halaman" id="jumlah_halaman" class="form-control" placeholder="Masukkan Range Jumlah Karakter ex. 0-200">
+                <input type="text" name="jumlah_halaman" class="form-control @error('jumlah_halaman') is-invalid @enderror"
+                 placeholder="Masukkan Range Jumlah Halaman ex. 0-200" id="jumlah_halaman">
+                @error ('jumlah_halaman')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
+            
             <div class="form-group">
                 <label>Harga</label>
-                <input type="text" name="harga" id="harga" class="form-control" placeholder="Masukkan harga ex. 100000">
-            </div> 
+                <input type="text" name="harga" class="form-control @error('harga') is-invalid @enderror"
+                 placeholder="Masukkan harga ex. 100000" id="harga">
+                @error ('harga')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
+            </div>
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
       </form>
     </div>
@@ -139,8 +168,8 @@
                     <td>{{$harga->jumlah_halaman}}</td>
                     <td>{{$harga->harga}}</td>
                     <td>
-                      <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#updateModal">Edit</i></button>
-                      <a href="#" class="btn btn-danger delete" harga-id="{{$harga->id_parameter_order}}">Delete</a>
+                      <button type="button" class="btn btn-sm btn-primary edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
+                      <a href="#" class="btn btn-sm btn-danger delete" harga-num="{{$loop->iteration}}" harga-id="{{$harga->id_parameter_order}}"><i class="fas fa-trash-alt"></i></a>
                     </td>
                   </tr>
                   @endforeach
@@ -167,10 +196,11 @@
     $('.delete').click(function(){
 
         var harga_id = $(this).attr('harga-id')
+        var harga_num = $(this).attr('harga-num')
 
         Swal.fire({
           title: "Apakah anda yakin?",
-          text: "Hapus data harga "+harga_id+"??",
+          text: "Hapus data harga "+harga_num+"??",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
