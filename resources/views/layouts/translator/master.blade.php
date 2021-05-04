@@ -85,7 +85,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="/profile" class="nav-link">
+            <a href="/profile-translator" class="nav-link">
               <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 Profile
