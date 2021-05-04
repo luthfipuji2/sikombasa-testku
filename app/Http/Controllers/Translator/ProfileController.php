@@ -71,7 +71,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return redirect('/profile#profile')->with('success', 'Data Updated Successfully!');       
+        return redirect('/profile-translator#profile')->with('success', 'Data Updated Successfully!');       
     }
     public function createCertificate(Request $request){
 
@@ -103,7 +103,7 @@ class ProfileController extends Controller
             'id_translator'=>$translator->id_translator
         ]);
         
-        return redirect('/profile#certificate')->with('toast_success', 'Data Created Successfully!');
+        return redirect('/profile-translator#certificate')->with('toast_success', 'Data Created Successfully!');
     }
     public function updateCertificate(Request $request, $id_keahlian){
     
@@ -133,12 +133,12 @@ class ProfileController extends Controller
             ]);
         }
 
-        return redirect('/profile#certificate')->with('success', 'Data Updated Successfully!');
+        return redirect('/profile-translator#certificate')->with('success', 'Data Updated Successfully!');
 
     }
     public function deleteCertificate($id_keahlian){
         DB::table('keahlian')->where('id_keahlian', $id_keahlian)->delete();
-        return redirect('/profile#certificate')->with('info', 'Data Deleted Successfully!'); 
+        return redirect('/profile-translator#certificate')->with('info', 'Data Deleted Successfully!'); 
     }
 
 }
