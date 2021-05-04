@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 
-
-class OrderMenuController extends Controller
+class OrderDokumenController extends Controller
 {
 
     public function dashboard()
@@ -31,11 +30,27 @@ class OrderMenuController extends Controller
 
     public function indexDokumen(){
         $menu=Order::all();
-        return view('pages.klien.order_dokumen', compact('menu'));
+        return view('pages.klien.order.order_dokumen.index', compact('menu'));
     }
 
-    public function submitDokumen(Request $request, Klien $id_klien){
-        
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Klien $klien)
+    {
         if($request->hasFile('path_file')){
             $validate_data = $request->validate([
                 'jenis_layanan'=>'required',
@@ -70,71 +85,8 @@ class OrderMenuController extends Controller
         } else {
             return redirect('/show-order-dokumen')->with('warning', 'Form tidak valid!');
         }
-    }
-
-    public function showOrderDokumen(Klien $id_klien, Order $order){
-        $user=Auth::user();
-        $klien=Klien::where('id', $user->id)->first();
-        $order=Order::all();
-        //return ($klien);
-        return view('pages.klien.ShowOrderDokumen', compact('order', 'user', 'klien'));
-    }
-
-    public function updateDokumen(Request $request, Order $id_order){
-        $this->validate($request, [
-            'jenis_layanan'=>'required',
-            'durasi_pengerjaan'=>'required',
-            'nama_dokumen'=>'required',
-            'path_file'=>'required|file|max:10000',
-        ]);
-
-        //$order=Order::find($id_order);
-        Order::where('id_order', $id_order->id_order)
-            ->update([
-                'jenis_layanan'=>$request->jenis_layanan, 
-                'durasi_pengerjaan'=>$request->durasi_pengerjaan,
-                'nama_dokumen'=>$request->nama_dokumen,
-                'path_file'=>$request->path_file,
-            ]);
-            
-            return redirect('/show-order-dokumen')->with('success', 'Berhasil di update!');
-        }
+        } 
     
-
-    public function deleteOrderDokumen(Order $order){
-        Order::destroy($order->id_order);
-        return redirect('/order-dokumen')->with('success', 'Data harga berhasil dihapus');
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $user=Auth::user();
-        $klien=Klien::where('id_klien', $user->id)->first();
-        Order::create([
-            'id_klien'=>$klien->id_klien,
-            'jenis_layanan'=>$request->jenis_layanan, 
-            'text'=>$request->text
-        ]);
-        return redirect(route('menu-order.index'))->with('success', 'Data berhasil ditambahkan');
-    }
-    }
 
     /**
      * Display the specified resource.
@@ -142,9 +94,13 @@ class OrderMenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function show($id)
+    public function showOrderDokumen(Klien $id_klien, Order $order)
     {
-        //
+        $user=Auth::user();
+        $klien=Klien::where('id', $user->id)->first();
+        $order=Order::all();
+        //return ($klien);
+        return view('pages.klien.order.order_dokumen.show', compact('order', 'user', 'klien'));
     }
 
     /**
@@ -180,4 +136,4 @@ class OrderMenuController extends Controller
     {
         //
     }
-
+}

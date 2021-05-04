@@ -1,6 +1,6 @@
 @extends('layouts.klien.sidebar')
 
-@section('title', 'Show Order Dokumen')
+@section('title', 'Show Order Dubbing')
 @section('content')
 
 
@@ -61,6 +61,10 @@
                                 <tr>
                                     <td>Durasi Pengerjaan</td>
                                     <td>{{$klien->order->durasi_pengerjaan}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Jumlah Dubber</td>
+                                    <td>{{$klien->order->jumlah_dubber}}</td>
                                 </tr>
                                 <tr>
                                     <td>Nama Dokumen</td>
@@ -149,7 +153,7 @@
     $('#nama_rekening').val(data[2]);
     $('#no_rekening').val(data[3]); 
 
-    $('#editForm').attr('action', '/order-dokumen/'+data[0]);
+    $('#editForm').attr('action', '/order-dubbing/'+data[0]);
     $('#editModal').modal('show');
 
     });

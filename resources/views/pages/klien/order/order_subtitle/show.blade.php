@@ -1,6 +1,6 @@
 @extends('layouts.klien.sidebar')
 
-@section('title', 'Show Order Dokumen')
+@section('title', 'Show Order Subtitle')
 @section('content')
 
 
@@ -149,7 +149,7 @@
     $('#nama_rekening').val(data[2]);
     $('#no_rekening').val(data[3]); 
 
-    $('#editForm').attr('action', '/order-dokumen/'+data[0]);
+    $('#editForm').attr('action', '/order-subtitle/'+data[0]);
     $('#editModal').modal('show');
 
     });

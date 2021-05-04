@@ -1,9 +1,7 @@
 @extends('layouts.klien.sidebar')
 
-@section('title', 'Show Order Dokumen')
+@section('title', 'Show Order Teks')
 @section('content')
-
-
 <div class="container-fluid">
         <div class="row">
         <div class="container ">
@@ -46,7 +44,7 @@
                                 @method('Delete')
                                 @csrf
                                 <button class="btn btn-danger mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-trash-alt"></i>  Batalkan Order</button>
-                                <button class="btn btn-primary mx-1 btn-icon" type="button" data-toggle="modal" data-target="#lampiranUpdateModal" class="text-right" style="float: right;"><i class="fas fa-pencil-alt"></i>  Update Order</button>
+                                <button class="btn btn-primary mx-1 btn-icon" type="button" data-toggle="modal" data-target="#lampiranUpdateModal"  class="text-right" style="float: right;"><i class="fas fa-pencil-alt"></i>  Update Order</button>
                                 <br>
                                 <br>
                                 </form>
@@ -63,12 +61,8 @@
                                     <td>{{$klien->order->durasi_pengerjaan}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Nama Dokumen</td>
-                                    <td>{{$klien->order->nama_dokumen}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Dokumen</td>
-                                    <td>{{$klien->order->path_file}}</td>
+                                    <td>Teks</td>
+                                    <td>{{$klien->order->text}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -149,7 +143,7 @@
     $('#nama_rekening').val(data[2]);
     $('#no_rekening').val(data[3]); 
 
-    $('#editForm').attr('action', '/order-dokumen/'+data[0]);
+    $('#editForm').attr('action', '/order-teks/'+data[0]);
     $('#editModal').modal('show');
 
     });
