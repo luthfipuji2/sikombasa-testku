@@ -23,7 +23,7 @@
                   </div>
 
                   <div class="tab-pane" id="profile">
-                    <form class="form-horizontal" action="/profile" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="/profile-translator" method="POST" enctype="multipart/form-data">
                     @method('patch')
                     @csrf
                       <div class="form-group row">
