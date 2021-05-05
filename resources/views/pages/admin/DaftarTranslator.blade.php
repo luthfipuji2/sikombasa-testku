@@ -80,7 +80,12 @@
             </div>
             <div class="form-group">
                 <label>KTP</label>
-                <input type="text" name="foto_ktp" id="foto_ktp" class="form-control" readonly>
+                <br>
+                @foreach($trans as $t)
+                <button type="button" class="btn btn-success" 
+                href="{{ route('translator.download', $t->id_translator) }}"> 
+                <i class="fas fa-download"></i></button>
+                @endforeach
             </div>
             <div class="form-group">
                 <label>Alamat</label>
@@ -178,7 +183,7 @@
                     <td hidden>{{$trans->provinsi}}</td>
                     <td hidden>{{$trans->kode_pos}}</td> 
                     <td>
-                      <button type="button" class="btn btn-primary detail" data-toggle="modal" data-target="#detailModal">Detail</i></button>
+                    <button type="button" class="btn btn-sm btn-primary detail" data-toggle="modal" data-target="#detailModal"><i class="fas fa-info"></i></button>
                     </td>
                   </tr>
                   @endforeach
