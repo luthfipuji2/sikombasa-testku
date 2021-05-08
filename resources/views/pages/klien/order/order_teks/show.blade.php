@@ -86,31 +86,31 @@
         </div>
             
         <div class="modal-body">
-        <form action="{{route('order-teks.update', $order->id_order)}}" method="post">
+        <form action="{{route('update_order_teks', $order->id_order)}}" method="post">
             @csrf
             @method('PUT')
             <input type="text" name="idLampiran" value="{{$order->id_order}}" hidden></td>
             <div class="form-group">
-                <label for="kriteria">Jenis Layanan</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="jenis_layanan" value="{{$order->jenis_layanan}}" readonly>
+                <label for="jenis_layanan">Jenis Layanan</label>
+                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="jenis_layanan" id="jenis_layanan" value="{{$order->jenis_layanan}}" readonly>
             </div>
 
             <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="jenis_layanan" name="jenis_layanan" value="basic">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" id="jenis_layanan" name="jenis_layanan" value="basic">
+            <label class="form-check-label" for="jenis_layanan">
                 Basic
             </label>
             </div>
             <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="jenis_layanan"  name="jenis_layanan" value="premium">
-            <label class="form-check-label" for="flexRadioDefault2">
+            <input class="form-check-input" type="radio" id="jenis_layanan"  name="jenis_layanan" value="premium">
+            <label class="form-check-label" for="jenis_layanan">
                 Premium
             </label>
             </div>
             <br>
             <div class="form-group">
-                <label for="kriteria">Durasi Pengerjaan</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="nama_kriteria" value="{{$order->durasi_pengerjaan}}">
+                <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
+                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}">
             </div>
             <label for="durasi_pengerjaan">Text</label>
             <div class="form-group">

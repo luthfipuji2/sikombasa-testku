@@ -106,40 +106,29 @@ class OrderTeksController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    // protected function validator(array $data){
-    //     return Validator::make($data, [
-    //         'jenis_layanan'=>['required', 'string', 'max:255'],
-    //         'durasi_pengerjaan'=>['required', 'integer', 'max:11'],
-    //         'text'=>['required', 'string', 'max:255'],
-    //     ]);
-    // }
-
-    function update(Request $request, $id_order)
+    public function update(Request $request, $id_order)
     {
-        $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'durasi_pengerjaan' => 'required',
-            'text' => 'required',
-        ]);
-
-        $order=Order::find($id_order);
+        //dd($order);
         
-        Order::where('id_order', $order->id_order)
+        // $this->validate($request, [
+        //     'jenis_layanan' => 'required',
+        //     'durasi_pengerjaan' => 'required',
+        //     'text' => 'required',
+        // ]);
+
+        // $order=Order::find($id_order);
+        $order=Order::findOrFail($id_order);
+
+        Order::where('id_order', $id_order)
             ->update([
                 'jenis_layanan'=>$request->jenis_layanan,
                 'durasi_pengerjaan'=>$request->durasi_pengerjaan,
                 'text'=>$request->text,
             ]);
+        //return($order);
+        //dd($order);
 
-            return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di update!');
+        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di upload!');
     }
 
     /**
