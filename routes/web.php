@@ -85,23 +85,22 @@ Route::middleware(['auth'])->group(function () {
  
     Route::middleware(['klien'])->group(function () {
         Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
-        Route::resource('profile', 'App\Http\Controllers\Klien\BiodataKlienController');
-        Route::patch('/biodata/{user}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
+        Route::resource('profile-klien', 'App\Http\Controllers\Klien\BiodataKlienController');
+        Route::patch('/biodata-klien/{users}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
         Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
 
         //order menu dokumen
         Route::resource('order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController');
         Route::get('/order-dokumen', [App\Http\Controllers\Klien\OrderDokumenController::class, 'indexDokumen'])->name('order-dokumen');
         //Route::post('/order-dokumen', [App\Http\Controllers\Klien\OrderDokumenController::class, 'submitDokumen'])->name('order-dokumen');
-        Route::get('/show-order-dokumen', [App\Http\Controllers\Klien\OrderDokumenController::class, 'showOrderDokumen'])->name('show-order-dokumen');
+        //Route::get('/show-order-dokumen/{id_order}', [App\Http\Controllers\Klien\OrderDokumenController::class, 'showOrderDokumen'])->name('show-order-dokumen');
+        //Route::get('/order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController@destroy')->name('destroy_dokumen');
 
         //order teks
+        Route::get('/order-teks', [App\Http\Controllers\Klien\OrderTeksController::class, 'menuOrder'])->name('menu-order');
         Route::resource('order-teks', 'App\Http\Controllers\Klien\OrderTeksController');
-        Route::get('/order-teks', [App\Http\Controllers\Klien\OrderTeksController::class, 'indexTeks'])->name('order-teks');
-        //Route::post('/order-teks', [App\Http\Controllers\Klien\OrderTeksController::class, 'submitTeks'])->name('order-teks');
-        Route::get('/show-order-teks', [App\Http\Controllers\Klien\OrderTeksController::class, 'showOrderTeks'])->name('show-order-teks');
-        
 
+        
         //order dubbing
         Route::resource('order-dubbing', 'App\Http\Controllers\Klien\OrderDubbingController');
         Route::get('/order-dubbing', [App\Http\Controllers\Klien\OrderDubbingController::class, 'indexDubbing'])->name('order-dubbing');

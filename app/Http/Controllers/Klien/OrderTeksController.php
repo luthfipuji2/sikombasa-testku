@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class OrderTeksController extends Controller
 {
@@ -22,13 +23,13 @@ class OrderTeksController extends Controller
         return view('pages.klien.home', compact('user'));
     }
     
-    public function index()
+    public function menuOrder()
     {
         $menu=Order::all();
         return view('pages.klien.menu_order', compact('menu'));
     }
 
-    public function indexTeks(){
+    public function index(){
         $menu=Order::all();
         return view('pages.klien.order.order_teks.index', compact('menu'));
     }
@@ -49,7 +50,7 @@ class OrderTeksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Klien $klien)
+    public function store(Request $request, Order $order_teks)
     {
         $validate_data=$request->validate([
             'jenis_layanan'=>'required',
@@ -72,8 +73,9 @@ class OrderTeksController extends Controller
             'tgl_order'=>$tgl_order,
             'is_status'=>'belum dibayar',
         ]);
-        //return redirect(route('order-teks.show', $order_teks))->with('success', 'Berhasil di upload!');
-        return redirect('/show-order-teks')->with('success', 'Berhasil di upload!');
+
+        $id_order=$order_teks->id_order;
+        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di upload!');
         } 
     
 
@@ -83,12 +85,13 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showOrderTeks(Klien $id_klien, Order $order)
+    public function show($id_order)
     {
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
-        $order=Order::all();
-        //return ($klien);
+
+        $order=Order::findOrFail($id_order);
+       // return ($order);
         return view('pages.klien.order.order_teks.show', compact('order', 'user', 'klien'));
     }
 
@@ -110,9 +113,33 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function update(Request $request, $id)
+
+    // protected function validator(array $data){
+    //     return Validator::make($data, [
+    //         'jenis_layanan'=>['required', 'string', 'max:255'],
+    //         'durasi_pengerjaan'=>['required', 'integer', 'max:11'],
+    //         'text'=>['required', 'string', 'max:255'],
+    //     ]);
+    // }
+
+    function update(Request $request, $id_order)
     {
-        //
+        $this->validate($request,[
+            'jenis_layanan' => 'required',
+            'durasi_pengerjaan' => 'required',
+            'text' => 'required',
+        ]);
+
+        $order=Order::find($id_order);
+        
+        Order::where('id_order', $order->id_order)
+            ->update([
+                'jenis_layanan'=>$request->jenis_layanan,
+                'durasi_pengerjaan'=>$request->durasi_pengerjaan,
+                'text'=>$request->text,
+            ]);
+
+            return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di update!');
     }
 
     /**
@@ -121,8 +148,10 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function destroy($id)
+    function destroy($id_order)
     {
-        //
+        Order::destroy($id_order);
+        return redirect(route('order-teks.index'))->with('success','data berhasil di hapus');
+
     }
 }

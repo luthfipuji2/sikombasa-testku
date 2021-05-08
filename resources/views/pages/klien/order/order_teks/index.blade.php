@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="active tab-pane" id="certificate">
-                <form action="/order-teks" method="POST" enctype="multipart/form-data">
+                <form action="{{route('order-teks.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- layanan basic -->
         <div class="card card-statistic-1">

@@ -42,7 +42,7 @@
                         <table class="table table-bordered table-striped">
                             <tbody>
                             <div>
-                            <form action="" method="POST" class="d-inline">
+                            <form action="/order-dokumen" method="POST" class="d-inline">
                                 @method('Delete')
                                 @csrf
                                 <button class="btn btn-danger mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-trash-alt"></i>  Batalkan Order</button>
@@ -56,19 +56,19 @@
                             <br>
                                 <tr>
                                     <td>Jenis Layanan</td>
-                                    <td>{{$klien->order->jenis_layanan}}</td>
+                                    <td>{{$order->jenis_layanan}}</td>
                                 </tr>
                                 <tr>
                                     <td>Durasi Pengerjaan</td>
-                                    <td>{{$klien->order->durasi_pengerjaan}}</td>
+                                    <td>{{$order->durasi_pengerjaan}}</td>
                                 </tr>
                                 <tr>
                                     <td>Nama Dokumen</td>
-                                    <td>{{$klien->order->nama_dokumen}}</td>
+                                    <td>{{$order->nama_dokumen}}</td>
                                 </tr>
                                 <tr>
                                     <td>Dokumen</td>
-                                    <td>{{$klien->order->path_file}}</td>
+                                    <td>{{$order->path_file}}</td>
                                 </tr>
                             </tbody>
                         </table>

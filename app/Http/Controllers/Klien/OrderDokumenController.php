@@ -81,10 +81,14 @@ class OrderDokumenController extends Controller
                 'is_status'=>'belum dibayar',
             ]);
 
-            return redirect('/show-order-dokumen')->with('success', 'Berhasil di upload!');
-        } else {
-            return redirect('/show-order-dokumen')->with('warning', 'Form tidak valid!');
+            $id=$order_dokumen->id_order;
+            return redirect(route('show_orderTeks', $id))->with('success', 'Berhasil di upload!');
+
+        //     return redirect('/show-order-dokumen')->with('success', 'Berhasil di upload!');
+        // } else {
+        //     return redirect('/show-order-dokumen')->with('warning', 'Form tidak valid!');
         }
+
         } 
     
 
@@ -94,11 +98,11 @@ class OrderDokumenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showOrderDokumen(Klien $id_klien, Order $order)
+    public function show($id_order, Klien $id_klien)
     {
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
-        $order=Order::all();
+        $order=Order::findOrFail($id_order);
         //return ($klien);
         return view('pages.klien.order.order_dokumen.show', compact('order', 'user', 'klien'));
     }
@@ -132,8 +136,9 @@ class OrderDokumenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function destroy($id)
+    function destroy(Order $id_order)
     {
-        //
+        Order::destroy($id_order);
+        return redirect('/order-dokumen')->with('success','data berhasil di hapus');
     }
 }
