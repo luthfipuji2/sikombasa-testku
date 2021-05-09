@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin');
         Route::resource('users', 'App\Http\Controllers\Admin\UsersController');
         Route::get('/users/{user}/delete', 'App\Http\Controllers\Admin\UsersController@destroy');
+        Route::get('/users/download/{id}', 'App\Http\Controllers\Admin\UsersController@download')->name('users.download');;
         Route::resource('bank', 'App\Http\Controllers\Admin\BankController');
         Route::get('/bank/{bank}/delete', 'App\Http\Controllers\Admin\BankController@destroy');
         
@@ -66,8 +67,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['translator'])->group(function () {
         Route::get('/translator', [App\Http\Controllers\Translator\TranslatorController::class, 'index']);
-        Route::get('/profile', [App\Http\Controllers\Translator\ProfileController::class, 'index']);
-        Route::patch('/profile', [App\Http\Controllers\Translator\ProfileController::class, 'update']);  
+        Route::get('/profile-translator', [App\Http\Controllers\Translator\ProfileController::class, 'index']);
+        Route::patch('/profile-translator', [App\Http\Controllers\Translator\ProfileController::class, 'update']);  
         Route::get('/find-a-job', [App\Http\Controllers\Translator\TranslatorController::class, 'find']);
         Route::get('/to-do-list', [App\Http\Controllers\Translator\TranslatorController::class, 'todo']);
         Route::get('/review', [App\Http\Controllers\Translator\TranslatorController::class, 'review']);

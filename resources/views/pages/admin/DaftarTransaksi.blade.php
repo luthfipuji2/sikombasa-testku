@@ -21,24 +21,11 @@
       {{ method_field('PUT') }}
 
         <div class="modal-body">
-        @foreach($transaksi as $t)
-          <div class="form-group">
-                <label for="status_transaksi">Status Transaksi</label>
-                    <select class="form-control @error('status_transaksi') is-invalid @enderror" 
-                    id="status_transaksi" placeholder="Status Transaksi" name="status_transaksi">
-                        <option value="{{$t->status_transaksi}}" hidden selected>{{$t->status_transaksi}}</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Diterima">Diterima</option>
-                        <option value="Ditolak">Ditolak</option>
-                    </select>
-                    @error ('status_transaksi')
-                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-            </div>
+        
+          
+                
         </div>
-        @endforeach
+       
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -74,14 +61,14 @@
               <!-- left column -->              
               <div class="col-md-6">
               
-              <div class="form-group">
-                  <label>Tanggal Order</label>
-                  <input type="text" name="tgl_order" id="tgl_order" class="form-control" readonly>
-              </div>
-                
+                <div class="form-group">
+                    <label>Tanggal Order</label>
+                    <input type="text" name="tgl_order" id="tgl_order" class="form-control" readonly>
+                </div>
+              
               <!--/.col (right) -->
             </div>
-            <!-- /.row -->
+            </div><!-- /.row -->
           </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

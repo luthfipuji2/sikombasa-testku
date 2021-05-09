@@ -9,7 +9,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Bank</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,24 +21,39 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>Nama Bank</label>
-                <input type="text" name="nama_bank" class="form-control" placeholder="Masukkan Nama Bank">
+                <input type="text" class="form-control @error('nama_bank') is-invalid @enderror" 
+                name="nama_bank" class="form-control" placeholder="Masukkan Nama Bank">
+                @error ('nama_bank')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Nama Rekening</label>
-                <input type="text" name="nama_rekening" class="form-control" placeholder="Masukkan Nama Rekening">
+                <input type="text" class="form-control @error('nama_rekening') is-invalid @enderror"
+                name="nama_rekening" class="form-control" placeholder="Masukkan Nama Rekening">
+                @error ('nama_rekening')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Nomor Rekening</label>
-                <input type="text" name="no_rekening" class="form-control" placeholder="Masukkan Nomor Rekening">
+                <input type="text" class="form-control @error('no_rekening') is-invalid @enderror"
+                name="no_rekening" class="form-control" placeholder="Masukkan Nomor Rekening">
+                @error ('no_rekening')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
-            
-            
         </div>
       
-
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Tambah Data</button>
       </div>
       </form>
     </div>
@@ -50,7 +65,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data Bank</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -80,8 +95,8 @@
       
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
       </form>
     </div>
@@ -109,7 +124,8 @@
                 <table id="datatable" class="table table-bordered table-striped">
                   <thead>   
                   <tr>
-                    <th>ID Bank</th>
+                    <th>No</th>
+                    <th hidden>ID Bank</th>
                     <th>Nama Bank</th>
                     <th>Nama Rekening</th>
                     <th>No Rekening</th>
@@ -119,13 +135,14 @@
                   <tbody>
                   @foreach($bank as $bank)
                   <tr>
-                    <td scope="row" class="text-center">{{$bank->id_bank}}</td>
+                    <th scope="row" class="text-center">{{$loop->iteration}}</th>
+                    <td scope="row" class="text-center" hidden>{{$bank->id_bank}}</td>
                     <td>{{$bank->nama_bank}}</td>
                     <td>{{$bank->nama_rekening}}</td>
                     <td>{{$bank->no_rekening}}</td>
                     <td>
-                      <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#updateModal">Edit</i></button>
-                      <a href="#" class="btn btn-danger delete" bank-id="{{$bank->id_bank}}">Delete</a>
+                      <button type="button" class="btn btn-primary btn-sm edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
+                      <a href="#" class="btn btn-danger btn-sm delete" bank-id="{{$bank->id_bank}}" bank-num="{{$loop->iteration}}"><i class="fas fa-trash-alt"></i></a>
                     </td>
                   </tr>
                   @endforeach
@@ -152,10 +169,11 @@
     $('.delete').click(function(){
 
         var bank_id = $(this).attr('bank-id')
+        var bank_num = $(this).attr('bank-num')
 
         Swal.fire({
           title: "Apakah anda yakin?",
-          text: "Hapus data bank "+bank_id+"??",
+          text: "Hapus data bank "+bank_num+"??",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -214,11 +232,11 @@ $(document).ready(function () {
     var data = table.row($tr).data();
     console.log(data);
 
-    $('#nama_bank').val(data[1]);
-    $('#nama_rekening').val(data[2]);
-    $('#no_rekening').val(data[3]); 
+    $('#nama_bank').val(data[2]);
+    $('#nama_rekening').val(data[3]);
+    $('#no_rekening').val(data[4]); 
 
-    $('#editForm').attr('action', '/bank/'+data[0]);
+    $('#editForm').attr('action', '/bank/'+data[1]);
     $('#editModal').modal('show');
     
   });
