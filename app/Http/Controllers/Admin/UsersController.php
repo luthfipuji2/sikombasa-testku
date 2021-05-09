@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -50,7 +51,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -96,5 +97,16 @@ class UsersController extends Controller
     {
         User::destroy($user->id);
         return redirect('/users')->with('success', 'Data user berhasil dihapus');
+    }
+
+    public function download($id)
+    {
+        $dl = User::find($id);
+
+        $currentPhoto = $dl->profile_photo_path;
+
+        $pathToFile = public_path('images/').$currentPhoto;
+        
+        return  response()->download($pathToFile);
     }
 }

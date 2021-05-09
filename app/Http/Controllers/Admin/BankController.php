@@ -45,7 +45,7 @@ class BankController extends Controller
         $this->validate($request,[
             'nama_bank' => 'required',
             'nama_rekening' => 'required',
-            'no_rekening' => 'required',
+            'no_rekening' => 'required|integer',
         ]);
 
         Bank::create([
@@ -91,7 +91,7 @@ class BankController extends Controller
         $this->validate($request,[
             'nama_bank' => 'required',
             'nama_rekening' => 'required',
-            'no_rekening' => 'required',
+            'no_rekening' => 'required|integer',
         ]);
 
         $bank = Bank::find($id_bank);

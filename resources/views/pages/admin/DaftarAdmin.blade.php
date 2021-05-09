@@ -9,7 +9,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail data Admin</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -66,7 +66,7 @@
                 <input type="text" name="kecamatan" id="kecamatan" class="form-control" readonly>
             </div>
             <div class="form-group">
-                <label>Kabupaten</label>
+                <label>Kota/Kabupaten</label>
                 <input type="text" name="kabupaten" id="kabupaten" class="form-control" readonly>
             </div>
             <div class="form-group">
@@ -125,7 +125,7 @@
                     <th hidden>Nomor Telepon</th>
                     <th hidden>Alamat</th>
                     <th hidden>Kecamatan</th>
-                    <th hidden>Kabupaten</th>
+                    <th hidden>Kota/Kabupaten</th>
                     <th hidden>Provinsi</th>
                     <th hidden>Kode Pos</th>
                     <th>Action</th>
@@ -148,7 +148,7 @@
                     <td hidden>{{$admin->provinsi}}</td>
                     <td hidden>{{$admin->kode_pos}}</td> 
                     <td>
-                      <button type="button" class="btn btn-primary detail" data-toggle="modal" data-target="#detailModal">Detail</i></button>
+                      <button type="button" class="btn btn-sm btn-primary detail" data-toggle="modal" data-target="#detailModal"><i class="fas fa-info"></i></button>
                     </td>
                   </tr>
                   @endforeach
