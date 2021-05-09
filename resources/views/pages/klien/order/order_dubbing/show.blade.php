@@ -67,7 +67,7 @@
                                     <td>{{$order->jumlah_dubber}} Orang</td>
                                 </tr>
                                 <tr>
-                                    <td>Nama Dokumen</td>
+                                    <td>Nama Video</td>
                                     <td>{{$order->nama_dokumen}}</td>
                                 </tr>
                                 <tr>
@@ -142,7 +142,7 @@
                         <label for="nama_dokumen" class="col-form-label">Nama Video</label>
                         <h6 for="durasi_pengerjaan"> * Video Anda = {{$order->path_file}}</h6>
                     <br>
-                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen">
+                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen" value="{{$order->nama_dokumen}}">
                     </div>
                     <div class="form-group">
                         <label for="path_file" class="col-form-label" value="{{$order->durasi_pengerjaan}}">Upload Video</label>
