@@ -7,6 +7,9 @@ use App\Http\Controllers\Translator\CareerController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Klien\BiodataKlienController;
 use App\Http\Controllers\Klien\OrderMenuController;
+use App\Http\Controllers\Klien\OrderTeksController;
+use App\Http\Controllers\Klien\OrderDubbingController;
+use App\Http\Controllers\Klien\OrderSubtitleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -83,18 +86,30 @@ Route::middleware(['auth'])->group(function () {
  
     Route::middleware(['klien'])->group(function () {
         Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
-        Route::resource('profile', 'App\Http\Controllers\Klien\BiodataKlienController');
-        Route::patch('/biodata/{user}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
+        Route::resource('profile-klien', 'App\Http\Controllers\Klien\BiodataKlienController');
+        Route::patch('/biodata-klien/{users}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
         Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
 
         //order menu dokumen
-        Route::get('/order-dokumen', [App\Http\Controllers\Klien\OrderMenuController::class, 'indexDokumen'])->name('order-dokumen');
-        Route::post('/order-dokumen', [App\Http\Controllers\Klien\OrderMenuController::class, 'submitDokumen'])->name('order-dokumen');
-        Route::get('/show-order-dokumen', [App\Http\Controllers\Klien\OrderMenuController::class, 'showOrderDokumen'])->name('show-order-dokumen');
+        Route::get('/order-dokumen', [App\Http\Controllers\Klien\OrderDokumenController::class, 'menuOrder'])->name('menu-order');
+        Route::resource('order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController');
+        Route::put('/order-dokumen/{id_order}', 'App\Http\Controllers\Klien\OrderDokumenController@update')->name('update_order_dokumen');
 
-        
+        //order teks
+        Route::get('/order-teks', [App\Http\Controllers\Klien\OrderTeksController::class, 'menuOrder'])->name('menu-order');
         Route::resource('order-teks', 'App\Http\Controllers\Klien\OrderTeksController');
+        Route::put('/order-teks/{id_order}', 'App\Http\Controllers\Klien\OrderTeksController@update')->name('update_order_teks');
+
+        //order dubbing
+        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
+        Route::resource('order-dubbing', 'App\Http\Controllers\Klien\OrderDubbingController');
+        Route::put('/order-dubbing/{id_order}', 'App\Http\Controllers\Klien\OrderDubbingController@update')->name('update_order_dubbing');
         
+        //order subtitle
+        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
+        Route::resource('order-subtitle', 'App\Http\Controllers\Klien\OrderSubtitleController');
+        Route::put('/order-subtitle/{id_order}', 'App\Http\Controllers\Klien\OrderSubtitleController@update')->name('update_order_subtitle');
+
         Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
         Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
         Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');

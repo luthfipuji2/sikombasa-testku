@@ -24,7 +24,7 @@ class Order extends Model
         'jumlah_halaman',
         'text',
         'nama_file',
-        'nama_upload',
+        'nama_dokumen',
         'path_file',
         'size',
         'ekstensi',

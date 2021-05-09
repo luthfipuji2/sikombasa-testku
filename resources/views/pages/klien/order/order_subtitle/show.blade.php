@@ -1,6 +1,6 @@
 @extends('layouts.klien.sidebar')
 
-@section('title', 'Show Order Dokumen')
+@section('title', 'Show Order Subtitle')
 @section('content')
 
 
@@ -46,7 +46,7 @@
                                 @method('Delete')
                                 @csrf
                                 <button class="btn btn-danger mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-trash-alt"></i>  Batalkan Order</button>
-                                <button class="btn btn-primary mx-1 btn-icon" type="button" data-toggle="modal" data-target="#lampiranUpdateModal" class="text-right" style="float: right;"><i class="fas fa-pencil-alt"></i>  Update Order</button>
+                                <button type="button" class="btn btn-primary mx-1 btn-icon" data-toggle="modal" data-target="#exampleModal{{$order->id_order}}" class="text-right" style="float: right;"><i class="fas fa-pencil-alt"></i>    Update Order</button>
                                 <br>
                                 <br>
                                 </form>
@@ -56,19 +56,19 @@
                             <br>
                                 <tr>
                                     <td>Jenis Layanan</td>
-                                    <td>{{$klien->order->jenis_layanan}}</td>
+                                    <td>{{$order->jenis_layanan}}</td>
                                 </tr>
                                 <tr>
                                     <td>Durasi Pengerjaan</td>
-                                    <td>{{$klien->order->durasi_pengerjaan}}</td>
+                                    <td>{{$order->durasi_pengerjaan}} Hari</td>
                                 </tr>
                                 <tr>
-                                    <td>Nama Dokumen</td>
-                                    <td>{{$klien->order->nama_dokumen}}</td>
+                                    <td>Nama Video</td>
+                                    <td>{{$order->nama_dokumen}}</td>
                                 </tr>
                                 <tr>
                                     <td>Dokumen</td>
-                                    <td>{{$klien->order->path_file}}</td>
+                                    <td>{{$order->path_file}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -87,76 +87,84 @@
         </div>
         <!-- /.row -->
     </div><!-- /.container-fluid -->
-@endsection
 
-
-
-@section('modal')
-      
-    <div class="modal fade" id="lampiranUpdateModal" tabindex="-1" aria-labelledby="lampiranModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
+<!-- Modal Edit -->
+<div class="modal fade" id="exampleModal{{$order->id_order}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="lampiranModalLabel">Edit lampiran</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="modal-title" id="exampleModalLabel">Update Order</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-        </button>
+            </button>
         </div>
+            
         <div class="modal-body">
-        <form action="" method="post">
+        <form action="{{route('update_order_subtitle', $order->id_order)}}" method="post">
             @csrf
             @method('PUT')
-            <input type="text" name="idLampiran" value="" hidden></td>
+            <input type="text" name="idLampiran" value="{{$order->id_order}}" hidden></td>
             <div class="form-group">
-                <label for="kriteria">Id Jenis Kriteria</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="id_jenis_kriteria" value="">
+                <label for="jenis_layanan">Jenis Layanan</label>
+                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="jenis_layanan" id="jenis_layanan" value="{{$order->jenis_layanan}}" readonly>
             </div>
+
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_layanan" name="jenis_layanan" value="basic">
+            <label class="form-check-label" for="jenis_layanan">
+                Basic
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_layanan"  name="jenis_layanan" value="premium">
+            <label class="form-check-label" for="jenis_layanan">
+                Premium
+            </label>
+            </div>
+            <br>
             <div class="form-group">
-                <label for="kriteria">Nama Kriteria</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="nama_kriteria" value="">
+                <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
+                <input type="number" class="form-control" placeholder="Masukkan nama lampiran" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}">
             </div>
-            
+            {{ csrf_field() }}
+                    <div class="form-group">
+                        <label for="nama_dokumen" class="col-form-label">Nama Video</label>
+                        <h6 for="durasi_pengerjaan"> * Video Anda = {{$order->path_file}}</h6>
+                    <br>
+                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen">
+                    </div>
+                    <div class="form-group">
+                        <label for="path_file" class="col-form-label" value="{{$order->durasi_pengerjaan}}">Upload Video</label>
+                        <div class="modal-body" value="{{$order->durasi_pengerjaan}}">
+                                {{ csrf_field() }}
+                                <div class="form-group">
+                                    <input type="file" name="path_file" required="required" value="{{$order->durasi_pengerjaan}}">
+                                </div>
+                            </div>
+                    </div>
+                    <br>
         </div>
+
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
-        </form>
-    </div>
-    </div>
-    </div>
+        </div>
+
+    </form>
     
+    </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
 @endsection
-
-
-
-
-@push('addon-script')
-
-<script>
-    $(document).ready(function () {
-    table.on('click', '.edit', function(){
-
-    $tr = $(this).closest('tr');
-    if($($tr).hasClass('child')) {
-    $tr = $tr.prev('.parent');
-    }
-
-    var data = table.row($tr).data();
-    console.log(data);
-
-    $('#nama_bank').val(data[1]);
-    $('#nama_rekening').val(data[2]);
-    $('#no_rekening').val(data[3]); 
-
-    $('#editForm').attr('action', '/order-dokumen/'+data[0]);
-    $('#editModal').modal('show');
-
-    });
-    });
-</script>
-@endpush
-
 
 @push('addon-script')
     <script>

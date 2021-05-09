@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Klien;
-use App\Models\User;
-use App\Models\Order;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Klien;
 
+use App\Http\Controllers\Controller;
+use App\User;
+use App\Models\Order;
+use App\Models\Klien;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class OrderTeksController extends Controller
 {
@@ -18,10 +23,15 @@ class OrderTeksController extends Controller
         return view('pages.klien.home', compact('user'));
     }
     
-    public function index()
+    public function menuOrder()
     {
         $menu=Order::all();
-        return view('pages.klien.order_teks', compact('menu'));
+        return view('pages.klien.menu_order', compact('menu'));
+    }
+
+    public function index(){
+        $menu=Order::all();
+        return view('pages.klien.order.order_teks.index', compact('menu'));
     }
 
     /**
@@ -40,18 +50,34 @@ class OrderTeksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Order $order_teks)
     {
+        $validate_data=$request->validate([
+            'jenis_layanan'=>'required',
+            'durasi_pengerjaan'=>'required',
+            'text'=>'required',
+        ]);
+
+        $jenis_layanan = $validate_data['jenis_layanan'];
+        $durasi = $validate_data['durasi_pengerjaan'];
+        $text = $validate_data['text'];
+        $tgl_order=Carbon::now()->timestamp;
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
-        Order::create([
+
+        $order_teks=Order::create([
             'id_klien'=>$klien->id_klien,
-            'jenis_layanan'=>$request->jenis_layanan, 
-            'text'=>$request->text
+            'jenis_layanan'=>$jenis_layanan, 
+            'text'=>$text,
+            'durasi_pengerjaan'=>$durasi,
+            'tgl_order'=>$tgl_order,
+            'is_status'=>'belum dibayar',
         ]);
-        return redirect(route('menu-pembayaran.index'))->with('success', 'Data berhasil ditambahkan');
-    }
-    }
+
+        $id_order=$order_teks->id_order;
+        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di upload!');
+        } 
+    
 
     /**
      * Display the specified resource.
@@ -59,9 +85,14 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function show($id)
+    public function show($id_order)
     {
-        //
+        $user=Auth::user();
+        $klien=Klien::where('id', $user->id)->first();
+
+        $order=Order::findOrFail($id_order);
+       // return ($order);
+        return view('pages.klien.order.order_teks.show', compact('order', 'user', 'klien'));
     }
 
     /**
@@ -75,16 +106,29 @@ class OrderTeksController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    function update(Request $request, $id)
+    public function update(Request $request, $id_order)
     {
-        //
+        //dd($order);
+        
+        // $this->validate($request, [
+        //     'jenis_layanan' => 'required',
+        //     'durasi_pengerjaan' => 'required',
+        //     'text' => 'required',
+        // ]);
+
+        // $order=Order::find($id_order);
+        $order=Order::findOrFail($id_order);
+
+        Order::where('id_order', $id_order)
+            ->update([
+                'jenis_layanan'=>$request->jenis_layanan,
+                'durasi_pengerjaan'=>$request->durasi_pengerjaan,
+                'text'=>$request->text,
+            ]);
+        //return($order);
+        //dd($order);
+
+        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di upload!');
     }
 
     /**
@@ -93,7 +137,10 @@ class OrderTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function destroy($id)
+    function destroy($id_order)
     {
-        //
+        Order::destroy($id_order);
+        return redirect(route('order-teks.index'))->with('success','data berhasil di hapus');
+
     }
+}
