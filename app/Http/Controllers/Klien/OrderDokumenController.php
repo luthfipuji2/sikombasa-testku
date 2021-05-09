@@ -22,13 +22,13 @@ class OrderDokumenController extends Controller
         return view('pages.klien.home', compact('user'));
     }
     
-    public function index()
+    public function menuOrder()
     {
         $menu=Order::all();
         return view('pages.klien.menu_order', compact('menu'));
     }
 
-    public function indexDokumen(){
+    public function index(){
         $menu=Order::all();
         return view('pages.klien.order.order_dokumen.index', compact('menu'));
     }
@@ -81,12 +81,8 @@ class OrderDokumenController extends Controller
                 'is_status'=>'belum dibayar',
             ]);
 
-            $id=$order_dokumen->id_order;
-            return redirect(route('show_orderTeks', $id))->with('success', 'Berhasil di upload!');
-
-        //     return redirect('/show-order-dokumen')->with('success', 'Berhasil di upload!');
-        // } else {
-        //     return redirect('/show-order-dokumen')->with('warning', 'Form tidak valid!');
+            $id_order=$order_dokumen->id_order;
+            return redirect(route('order-dokumen.show', $id_order))->with('success', 'Berhasil di upload!');
         }
 
         } 
@@ -98,7 +94,7 @@ class OrderDokumenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_order, Klien $id_klien)
+    public function show($id_order)
     {
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
@@ -125,9 +121,21 @@ class OrderDokumenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function update(Request $request, $id)
+    public function update(Request $request, $id_order)
     {
-        //
+        $order=Order::findOrFail($id_order);
+
+        Order::where('id_order', $id_order)
+            ->update([
+                'jenis_layanan'=>$request->jenis_layanan,
+                'durasi_pengerjaan'=>$request->durasi_pengerjaan,
+                'nama_dokumen'=>$request->nama_dokumen,
+                'path_file'=>$request->path_file,
+            ]);
+        //return($order);
+        //dd($order);
+
+        return redirect(route('order-dokumen.show', $id_order))->with('success', 'Berhasil di upload!');
     }
 
     /**
@@ -136,9 +144,9 @@ class OrderDokumenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function destroy(Order $id_order)
+    function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect('/order-dokumen')->with('success','data berhasil di hapus');
+        return redirect(route('order-dokumen.index'))->with('success','data berhasil di hapus');
     }
 }

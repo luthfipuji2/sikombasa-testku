@@ -118,16 +118,13 @@
                                 </div>
                             </div>
                     </div>
-                    <br>
-                    
                     <hr>
-                    </div>
+                    
                     <div class="col-sm-2">
                     <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
-                </form>
-
-                
+                    <br>
+                </form> 
                 </div>
                 <!-- /.tab-content -->
             </div>

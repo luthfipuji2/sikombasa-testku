@@ -40,7 +40,7 @@
                         <table class="table table-bordered table-striped">
                             <tbody>
                             <div>
-                            <form action="/order-dokumen" method="POST" class="d-inline">
+                            <form action="/order-teks" method="POST" class="d-inline">
                                 @method('Delete')
                                 @csrf
                                 <button class="btn btn-danger mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-trash-alt"></i>  Batalkan Order</button>
@@ -110,7 +110,7 @@
             <br>
             <div class="form-group">
                 <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}">
+                <input type="number" class="form-control" placeholder="Masukkan nama lampiran" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}">
             </div>
             <label for="durasi_pengerjaan">Text</label>
             <div class="form-group">

@@ -16,23 +16,22 @@ use Illuminate\Http\Request;
 class OrderSubtitleController extends Controller
 {
 
-    public function dashboard()
+     public function dashboard()
     {
         $user = Auth::user();
         return view('pages.klien.home', compact('user'));
     }
     
-    public function index()
+    public function menuOrder()
     {
         $menu=Order::all();
         return view('pages.klien.menu_order', compact('menu'));
     }
 
-    public function indexSubtitle(){
+    public function index(){
         $menu=Order::all();
         return view('pages.klien.order.order_subtitle.index', compact('menu'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +48,7 @@ class OrderSubtitleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Klien $klien)
+    public function store(Request $request, Order $order_subtitle)
     {
         if($request->hasFile('path_file')){
             $validate_data = $request->validate([
@@ -69,7 +68,7 @@ class OrderSubtitleController extends Controller
 
             $path_template = Storage::putFileAs('public/data_video/file_order_video', $request->file('path_file'), $nama_dokumen);
 
-            $order_dokumen=Order::create([
+            $order_subtitle=Order::create([
                 'id_klien'=>$klien->id_klien,
                 'jenis_layanan'=>$jenis_layanan,
                 'durasi_pengerjaan'=>$durasi,
@@ -81,9 +80,9 @@ class OrderSubtitleController extends Controller
                 'is_status'=>'belum dibayar',
             ]);
 
-            return redirect('/show-order-subtitle')->with('success', 'Berhasil di upload!');
-        } else {
-            return redirect('/show-order-subtitle')->with('warning', 'Form tidak valid!');
+
+            $id_order=$order_subtitle->id_order;
+            return redirect(route('order-subtitle.show', $id_order))->with('success', 'Berhasil di upload!');
         }
         } 
     
@@ -94,12 +93,13 @@ class OrderSubtitleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showOrderSubtitle(Klien $id_klien, Order $order)
+    public function show($id_order)
     {
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
-        $order=Order::all();
-        //return ($klien);
+
+        $order=Order::findOrFail($id_order);
+       // return ($order);
         return view('pages.klien.order.order_subtitle.show', compact('order', 'user', 'klien'));
     }
 
@@ -121,9 +121,21 @@ class OrderSubtitleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function update(Request $request, $id)
+    public function update(Request $request, $id_order)
     {
-        //
+        $order=Order::findOrFail($id_order);
+
+        Order::where('id_order', $id_order)
+            ->update([
+                'jenis_layanan'=>$request->jenis_layanan,
+                'durasi_pengerjaan'=>$request->durasi_pengerjaan,
+                'nama_dokumen'=>$request->nama_dokumen,
+                'path_file'=>$request->path_file,
+            ]);
+        //return($order);
+        //dd($order);
+
+        return redirect(route('order-subtitle.show', $id_order))->with('success', 'Berhasil di upload!');
     }
 
     /**
@@ -132,8 +144,9 @@ class OrderSubtitleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    function destroy($id)
+    function destroy($id_order)
     {
-        //
+        Order::destroy($id_order);
+        return redirect(route('order-subtitle.index'))->with('success','data berhasil di hapus');
     }
 }
