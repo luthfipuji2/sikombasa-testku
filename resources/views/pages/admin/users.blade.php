@@ -45,11 +45,8 @@
                         </div>
                     @enderror
             </div>
-            
-            
         </div>
       
-
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
@@ -97,9 +94,7 @@
                     <td>
                       <button type="button" class="btn btn-primary btn-sm edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
                       <a href="#" class="btn btn-danger btn-sm delete" user-id="{{$user->id}}" user-num="{{$loop->iteration}}"><i class="fas fa-trash-alt"></i></a>
-                      @if (!empty($user->profile_photo_path))
-                      <a href="{{ route('users.download', $user->id) }}" class="btn btn-secondary btn-sm" ><i class="fas fa-portrait"></i></a>
-                      @endif
+                      
                     </td>
                   </tr>
                   @endforeach
