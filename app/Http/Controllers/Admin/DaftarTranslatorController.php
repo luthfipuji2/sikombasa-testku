@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Admin;
+use App\Models\Translator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,10 @@ class DaftarTranslatorController extends Controller
         $trans = DB::table('translator')
             ->join('users', 'translator.id', '=', 'users.id')
             ->get();
-        return view('pages.admin.DaftarTranslator',  ['trans' => $trans]);
+
+       
+
+        return view('pages.admin.DaftarTranslator',  compact('trans'));
     }
 
     /**
@@ -88,5 +92,16 @@ class DaftarTranslatorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function download($id_translator)
+    {
+        $dl = Translator::find($id_translator);
+
+        $foto_ktp = $dl->foto_ktp;
+
+        $pathToFile = public_path('img/biodata/').$foto_ktp;
+        
+        return response()->download($pathToFile);
     }
 }

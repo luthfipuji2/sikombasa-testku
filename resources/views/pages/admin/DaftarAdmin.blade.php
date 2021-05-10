@@ -5,7 +5,8 @@
 @section('container')
 
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($admin as $a)
+<div class="modal fade" id="detailModal{{$a->id_admin}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,67 +16,74 @@
         </button>
       </div>
 
-      <form action="/bank" method="POST" id="detailForm">
+      <form  method="POST" id="detailForm">
 
       {{ csrf_field() }}
       {{ method_field('PUT') }}
 
         <div class="modal-body">
 
-        <!-- Main content -->
+  <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
           <div class="col-md-6">
-          <div class="form-group">
+            <div class="form-group">
                 <label>Nama Admin</label>
-                <input type="text" name="name" id="name" class="form-control" readonly>
+                <input type="text" value="{{$a->name}}" class="form-control" readonly>
             </div>
             <div class="form-group">
-                <label>Email</label>
-                <input type="text" name="email" id="email" class="form-control" readonly>
+                <label>Foto Profile</label>
+                <br>
+                @if (!empty($a->profile_photo_path))
+                  <a href="{{ route('users.download', $a->id) }}" class="btn btn-success btn-sm" ><i class="fas fa-download"></i></a>
+                @endif            
+            </div>
+            <div class="form-group">
+                <label>Email </label>
+                <input type="text" value="{{$a->email}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Role</label>
-                <input type="text" name="role" id="role" class="form-control" readonly>
+                <input type="text" value="{{$a->role}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Jenis Kelamin</label>
-                <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" readonly>
+                <input type="text" value="{{$a->jenis_kelamin}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Tanggal Lahir</label>
-                <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control" readonly>
+                <input type="text" value="{{$a->tgl_lahir}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Handphone</label>
-                <input type="text" name="no_telp" id="no_telp" class="form-control" readonly>
+                <input type="text" value="{{$a->no_telp}}" class="form-control" readonly>
             </div>
           </div>
           
           <!--/.col (left) -->
           <!-- right column -->
           <div class="col-md-6">
-          <div class="form-group">
+            <div class="form-group">
                 <label>Alamat</label>
-                <input type="text" name="alamat" id="alamat" class="form-control" readonly>
+                <textarea type="text" class="form-control" readonly>{{$a->alamat}}</textarea>
             </div>
             <div class="form-group">
                 <label>Kecamatan</label>
-                <input type="text" name="kecamatan" id="kecamatan" class="form-control" readonly>
+                <input type="text" value="{{$a->kecamatan}}" class="form-control" readonly>
             </div>
             <div class="form-group">
-                <label>Kota/Kabupaten</label>
-                <input type="text" name="kabupaten" id="kabupaten" class="form-control" readonly>
+                <label>Kabupaten</label>
+                <input type="text" value="{{$a->kabupaten}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Provinsi</label>
-                <input type="text" name="provinsi" id="provinsi" class="form-control" readonly>
+                <input type="text" value="{{$a->provinsi}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Kode Pos</label>
-                <input type="text" name="kode_pos" id="kode_pos" class="form-control" readonly>
+                <input type="text" value="{{$a->kode_pos}}" class="form-control" readonly>
             </div>
           </div>
           <!--/.col (right) -->
@@ -100,6 +108,7 @@
     </div>
   </div>
 </div>
+@endforeach
 
 <!-- Main content -->
 <section class="content">
@@ -148,7 +157,7 @@
                     <td hidden>{{$admin->provinsi}}</td>
                     <td hidden>{{$admin->kode_pos}}</td> 
                     <td>
-                      <button type="button" class="btn btn-sm btn-primary detail" data-toggle="modal" data-target="#detailModal"><i class="fas fa-info"></i></button>
+                      <button type="button" class="btn btn-sm btn-primary detail" data-toggle="modal" data-target="#detailModal{{$admin->id_admin}}"><i class="fas fa-info"></i></button>
                     </td>
                   </tr>
                   @endforeach

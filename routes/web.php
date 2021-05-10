@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin');
         Route::resource('users', 'App\Http\Controllers\Admin\UsersController');
         Route::get('/users/{user}/delete', 'App\Http\Controllers\Admin\UsersController@destroy');
-        Route::get('/users/download/{id}', 'App\Http\Controllers\Admin\UsersController@download')->name('users.download');;
+        Route::get('/users/download/{id}', 'App\Http\Controllers\Admin\UsersController@download')->name('users.download');
         Route::resource('bank', 'App\Http\Controllers\Admin\BankController');
         Route::get('/bank/{bank}/delete', 'App\Http\Controllers\Admin\BankController@destroy');
         
@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('daftar-admin', 'App\Http\Controllers\Admin\AdminController');
         Route::resource('daftar-klien', 'App\Http\Controllers\Admin\DaftarKlienController');
         Route::resource('daftar-translator', 'App\Http\Controllers\Admin\DaftarTranslatorController');
+        Route::get('/translator/download/{id_translator}', 'App\Http\Controllers\Admin\DaftarTranslatorController@download')->name('translator.download');
         Route::resource('profile-admin', 'App\Http\Controllers\Admin\ProfileController');
         Route::patch('biodata-admin/{users}', 'App\Http\Controllers\Admin\ProfileController@updateBiodata');
         Route::resource('daftar-transaksi', 'App\Http\Controllers\Admin\DaftarTransaksiController');
