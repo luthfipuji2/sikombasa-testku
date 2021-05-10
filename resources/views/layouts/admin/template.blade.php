@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper" id="app">
+<div class="wrapper">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
@@ -177,10 +177,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             </ul>
           </li>
-
-
-          
-
           
           <li class="nav-item has-treeview">
             <a href="/profile-admin" class="nav-link">
@@ -211,10 +207,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  @yield('container')
-    <router-view></router-view>
-    <vue-progress-bar></vue-progress-bar>
-
+    @yield('container')
   </div>
   <!-- /.content-wrapper -->
 

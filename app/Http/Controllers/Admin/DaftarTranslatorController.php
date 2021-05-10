@@ -22,7 +22,10 @@ class DaftarTranslatorController extends Controller
         $trans = DB::table('translator')
             ->join('users', 'translator.id', '=', 'users.id')
             ->get();
-        return view('pages.admin.DaftarTranslator',  ['trans' => $trans]);
+
+       
+
+        return view('pages.admin.DaftarTranslator',  compact('trans'));
     }
 
     /**
@@ -99,6 +102,6 @@ class DaftarTranslatorController extends Controller
 
         $pathToFile = public_path('img/biodata/').$foto_ktp;
         
-        return  response()->download($pathToFile);
+        return response()->download($pathToFile);
     }
 }

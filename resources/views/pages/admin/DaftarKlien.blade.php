@@ -5,53 +5,62 @@
 @section('container')
 
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+@foreach ($klien as $k)
+<div class="modal fade" id="detailModal{{$k->id_klien}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail data Translator </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
-      <form action="/bank" method="POST" id="detailForm">
+      <form  method="POST" id="detailForm">
 
       {{ csrf_field() }}
       {{ method_field('PUT') }}
 
         <div class="modal-body">
 
-        <!-- Main content -->
+
+  <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
           <div class="col-md-6">
-          <div class="form-group">
+            <div class="form-group">
                 <label>Nama Klien</label>
-                <input type="text" name="name" id="name" class="form-control" readonly>
+                <input type="text" value="{{$k->name}}" class="form-control" readonly>
             </div>
             <div class="form-group">
-                <label>Email</label>
-                <input type="text" name="email" id="email" class="form-control" readonly>
+                <label>Foto Profile</label>
+                <br>
+                @if (!empty($k->profile_photo_path))
+                  <a href="{{ route('users.download', $k->id) }}" class="btn btn-success btn-sm" ><i class="fas fa-download"></i></a>
+                @endif            
+            </div>
+            <div class="form-group">
+                <label>Email </label>
+                <input type="text" value="{{$k->email}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Role</label>
-                <input type="text" name="role" id="role" class="form-control" readonly>
+                <input type="text" value="{{$k->role}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Jenis Kelamin</label>
-                <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" readonly>
+                <input type="text" value="{{$k->jenis_kelamin}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Tanggal Lahir</label>
-                <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control" readonly>
+                <input type="text" value="{{$k->tgl_lahir}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Handphone</label>
-                <input type="text" name="no_telp" id="no_telp" class="form-control" readonly>
-            </div>
+                <input type="text" value="{{$k->no_telp}}" class="form-control" readonly>
+            </div>            
           </div>
           
           <!--/.col (left) -->
@@ -59,31 +68,34 @@
           <div class="col-md-6">
             <div class="form-group">
                 <label>NIK</label>
-                <input type="text" name="nik" id="nik" class="form-control" readonly>
+                <input type="text" value="{{$k->nik}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>KTP</label>
-                <input type="text" name="foto_ktp" id="foto_ktp" class="form-control" readonly>
+                <br>
+                @if (!empty($k->foto_ktp))
+                <a href="{{ route('translator.download', $k->id_klien) }}" class="btn btn-success btn-sm" ><i class="fas fa-download"></i></a>
+                @endif            
             </div>
             <div class="form-group">
                 <label>Alamat</label>
-                <textarea name="alamat" id="alamat" class="form-control" readonly></textarea>
+                <textarea type="text" class="form-control" readonly>{{$k->alamat}}</textarea>
             </div>
             <div class="form-group">
                 <label>Kecamatan</label>
-                <input type="text" name="kecamatan" id="kecamatan" class="form-control" readonly>
+                <input type="text" value="{{$k->kecamatan}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Kabupaten</label>
-                <input type="text" name="kabupaten" id="kabupaten" class="form-control" readonly>
+                <input type="text" value="{{$k->kabupaten}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Provinsi</label>
-                <input type="text" name="provinsi" id="provinsi" class="form-control" readonly>
+                <input type="text" value="{{$k->provinsi}}" class="form-control" readonly>
             </div>
             <div class="form-group">
                 <label>Kode Pos</label>
-                <input type="text" name="kode_pos" id="kode_pos" class="form-control" readonly>
+                <input type="text" value="{{$k->kode_pos}}" class="form-control" readonly>
             </div>
           </div>
           <!--/.col (right) -->
@@ -91,15 +103,9 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-        
-            
-        
-        
-            
-            
+
+  <!-- /.content -->            
         </div>
-      
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -108,6 +114,7 @@
     </div>
   </div>
 </div>
+@endforeach
 
 <!-- Main content -->
 <section class="content">
@@ -124,10 +131,10 @@
                   <thead>   
                   <tr>
                     <th>No</th>
-                    <th hidden>ID Klien</th>
+                    
                     <th>Nama Klien</th>
                     <th hidden>Email</th>
-                    <th hidden>Role</th>
+                    
                     <th hidden>Jenis Kelamin</th>
                     <th hidden>Tanggal Lahir</th>
                     <th hidden>NIK</th>
@@ -145,10 +152,10 @@
                   @foreach($klien as $klien)
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
-                    <td scope="row" class="text-center" hidden>{{$klien->id_klien}}</td>
+                    
                     <td>{{$klien->name}}</td>
                     <td hidden>{{$klien->email}}</td>
-                    <td hidden>{{$klien->role}}</td>
+                    
                     <td hidden>{{$klien->jenis_kelamin}}</td>
                     <td hidden>{{$klien->tgl_lahir}}</td>
                     <td hidden>{{$klien->nik}}</td>
@@ -160,7 +167,7 @@
                     <td hidden>{{$klien->provinsi}}</td>
                     <td hidden>{{$klien->kode_pos}}</td> 
                     <td>
-                      <button type="button" class="btn btn-primary detail" data-toggle="modal" data-target="#detailModal">Detail</i></button>
+                      <button type="button" class="btn btn-sm btn-primary detail" data-toggle="modal" data-target="#detailModal{{$klien->id_klien}}"><i class="fas fa-info"></i></button>
                     </td>
                   </tr>
                   @endforeach
