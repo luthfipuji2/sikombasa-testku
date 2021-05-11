@@ -128,7 +128,7 @@ class OrderTeksController extends Controller
         //return($order);
         //dd($order);
 
-        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di upload!');
+        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di update!');
     }
 
     /**
@@ -140,7 +140,7 @@ class OrderTeksController extends Controller
     function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect(route('order-teks.index'))->with('success','data berhasil di hapus');
+        return redirect(route('order-teks.index'))->with('success','Order berhasil di batalkan');
 
     }
 }
