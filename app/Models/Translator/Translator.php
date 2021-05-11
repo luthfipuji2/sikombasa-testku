@@ -7,6 +7,7 @@ class Translator extends Model{
     protected $table = 'translator';
     protected $primaryKey = 'id_translator';
     protected $fillable = ['id',
+                           'nama',
                            'nik', 
                            'keahlian', 
                            'alamat', 

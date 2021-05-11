@@ -36,6 +36,17 @@
                         </div>
                       </div>
                       <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" placeholder="Nama Lengkap">
+                          @error('nama')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
+                        </div>
+                      </div>
+                      <div class="form-group row">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Keahlian</label>
                         <div class="col-sm-10">
                           <input type="text" class="form-control @error('keahlian') is-invalid @enderror" name="keahlian" value="{{ old('keahlian') }}" placeholder="Keahlian">

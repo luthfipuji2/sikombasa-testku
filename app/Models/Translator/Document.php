@@ -7,6 +7,7 @@ class Document extends Model{
     protected $table = 'lamaran_kerja';
     protected $primaryKey = 'id_lamaran_kerja';
     protected $fillable = ['id', 
+                           'id_translator',
                            'cv', 
                            'ijazah_terakhir', 
                            'portofolio', 
