@@ -147,6 +147,6 @@ class OrderSubtitleController extends Controller
     function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect(route('order-subtitle.index'))->with('success','data berhasil di hapus');
+        return redirect(route('order-subtitle.index'))->with('success','Order berhasil di batalkan');
     }
 }
