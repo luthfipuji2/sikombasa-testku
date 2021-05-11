@@ -26,6 +26,7 @@ class CareerController extends Controller
 
         $this->validate($request, [
             'nik'           => 'required|size:16|unique:translator',
+            'nama'      => 'required',
             'keahlian'      => 'required',
             'alamat'        => 'required|string|max:255',
             'provinsi'      => 'required|string|max:255',
@@ -48,6 +49,7 @@ class CareerController extends Controller
         $translator = new Translator;
         $translator->id = $id;
         $translator->nik = $request->nik;
+        $translator->nama = $request->nama;
         $translator->keahlian = $request->keahlian;
         $translator->alamat = $request->alamat;
         $translator->provinsi = $request->provinsi;
@@ -132,6 +134,10 @@ class CareerController extends Controller
             'skck'                 => 'required|image'
         ]);
 
+        $user = Auth::user();
+
+        $translator = Translator::where('id', $user->id)->first();
+
         $cv = $request->cv;
         $ijazah_terakhir = $request->ijazah_terakhir;
         $portofolio = $request->portofolio;
@@ -147,7 +153,8 @@ class CareerController extends Controller
         // Document::create($request->all());
 
         $dokumen = new Document;
-        $dokumen->id = $request->id;
+        $dokumen->id_translator = $translator->id_translator;
+        $dokumen->id = $user->id;
         $dokumen->cv = $nm_cv;
         $dokumen->ijazah_terakhir = $nm_ijazah;
         $dokumen->portofolio = $nm_portofolio;

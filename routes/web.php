@@ -83,6 +83,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/certificate-update/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'updateCertificate']); 
         Route::get('/certificate/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'deleteCertificate']); 
         Route::get('/progress', [App\Http\Controllers\Translator\CareerController::class, 'indexProgress']);
+        Route::get('/hire', [App\Http\Controllers\Admin\HiringController::class, 'index']);
+        Route::get('/{id_translator}', [App\Http\Controllers\Admin\HiringController::class, 'show'])->name('hire.show');
     });
  
     Route::middleware(['klien'])->group(function () {

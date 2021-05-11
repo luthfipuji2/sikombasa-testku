@@ -27,7 +27,6 @@
                   <div class="active tab-pane" id="document">
                     <form class="form-horizontal" method="POST" action="/document" enctype="multipart/form-data">
                     @csrf
-                      <input type="hidden" name="id" value={{ Auth::user()->id }}>
                       <div class="form-group row">
                           <label for="inputName2" class="col-sm-3 col-form-label">Curriculum Vitae</label>
                             <div class="col-sm-5">
