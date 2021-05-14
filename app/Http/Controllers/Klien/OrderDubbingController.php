@@ -151,6 +151,6 @@ class OrderDubbingController extends Controller
     function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect(route('order-dubbing.index'))->with('success','Order berhasil di batalkan');
+        return redirect(route('order-dubbing.index'))->with('success','data berhasil di hapus');
     }
 }
