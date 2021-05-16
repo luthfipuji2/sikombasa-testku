@@ -26,6 +26,17 @@
                     <form class="form-horizontal" action="/profile-translator" method="POST" enctype="multipart/form-data">
                     @method('patch')
                     @csrf
+                    <div class="form-group row">
+                        <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" id="nama" placeholder="Nomor Induk Kependudukan" value="{{$data->nama}}">
+                          @error('nama')
+                          <div id="validationServer03Feedback" class="invalid-feedback">
+                            {{$message}}
+                          </div>
+                          @enderror
+                        </div>
+                      </div>
                       <div class="form-group row">
                         <label for="nik" class="col-sm-2 col-form-label">NIK</label>
                         <div class="col-sm-10">
@@ -191,7 +202,7 @@
                               </br>
                               </br>
                                 <div>
-                                    <img src="{{asset('/img/sertifikat/'.$data->foto_ktp)}}" height="90" width="150" alt="" srcset="">
+                                    <img src="{{asset('/img/biodata/'.$data->foto_ktp)}}" height="90" width="150" alt="" srcset="">
                                 </div>
                             </div>
                       </div>

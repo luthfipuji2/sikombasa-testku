@@ -38,6 +38,7 @@ class ProfileController extends Controller
         $id_user = $user->id; //id user yang login
 
         Translator::where('id', $id_user)->update([
+            'nama' => $request->nama,
             'nik' => $request->nik,
             'keahlian' => $request->keahlian,
             'alamat' => $request->alamat,
