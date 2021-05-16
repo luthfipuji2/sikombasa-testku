@@ -19,10 +19,10 @@ class AlterTableTransaksi extends Migration
             $table->foreign('id_order')->references('id_order')->on('order')->onDelete('cascade');
             $table->unsignedBigInteger('id_bank');
             $table->foreign('id_bank')->references('id_bank')->on('bank')->onDelete('cascade');
-            $table->date('tgl_transaksi');
-            $table->integer('nominal_transaksi');
-            $table->string('bukti_transaksi');
-            $table->string('status_transaksi');
+            $table->date('tgl_transaksi')->nullable();
+            $table->integer('nominal_transaksi')->nullable();
+            $table->string('bukti_transaksi')->nullable();
+            $table->string('status_transaksi')->default('Pending');
             $table->timestamps();
         });
     }
