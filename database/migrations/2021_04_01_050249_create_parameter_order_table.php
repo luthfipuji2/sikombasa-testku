@@ -15,12 +15,12 @@ class CreateParameterOrderTable extends Migration
     {
         Schema::create('parameter_order', function (Blueprint $table) {
             $table->bigIncrements('id_parameter_order');
-            $table->string('durasi_file')->nullable();
-            $table->string('jumlah_dubber')->nullable();
-            $table->string('durasi_pertemuan')->nullable();
-            $table->string('jumlah_karakter')->nullable();
-            $table->string('jumlah_halaman')->nullable();
-            $table->string('jenis_layanan')->nullable();
+            $table->string('p_durasi_file')->nullable();
+            $table->string('p_jumlah_dubber')->nullable();
+            $table->string('p_durasi_pertemuan')->nullable();
+            $table->string('p_jumlah_karakter')->nullable();
+            $table->string('p_jumlah_halaman')->nullable();
+            $table->string('p_jenis_layanan')->nullable();
             $table->integer('harga');
             $table->timestamps();   
         });
