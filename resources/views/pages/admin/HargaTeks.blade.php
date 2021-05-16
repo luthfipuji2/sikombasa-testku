@@ -20,14 +20,14 @@
       {{ csrf_field() }}
         <div class="modal-body">
             <!-- <div class="form-group">
-                <label for="jenis_layanan">Jenis Layanan</label>
-                    <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
-                    id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
-                        <option value="{{old('jenis_layanan')}}" hidden selected>{{old('jenis_layanan')}}</option>
+                <label for="p_jenis_layanan">Jenis Layanan</label>
+                    <select class="form-control @error('p_jenis_layanan') is-invalid @enderror" 
+                    id="p_jenis_layanan" placeholder="Jenis Layanan" name="p_jenis_layanan">
+                        <option value="{{old('p_jenis_layanan')}}" hidden selected>{{old('p_jenis_layanan')}}</option>
                         <option value="Basic">Basic</option>
                         <option value="Premium">Premium</option>
                     </select>
-                    @error ('jenis_layanan')
+                    @error ('p_jenis_layanan')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                             {{$message}}
                         </div>
@@ -36,13 +36,13 @@
 
             <div class="form-group">
                 <label>Jenis Layanan</label>
-                <select type="text" name="jenis_layanan" class="form-control @error('jenis_layanan') is-invalid @enderror"
-                 placeholder="" value="{{ old('jenis_layanan') }}">
-                    <option value="{{old('jenis_layanan')}}" hidden selected>{{old('jenis_layanan')}}</option>
+                <select type="text" name="p_jenis_layanan" class="form-control @error('p_jenis_layanan') is-invalid @enderror"
+                 placeholder="" value="{{ old('p_jenis_layanan') }}">
+                    <option value="{{old('p_jenis_layanan')}}" hidden selected>{{old('p_jenis_layanan')}}</option>
                     <option value="Basic">Basic</option>
                     <option value="Premium">Premium</option>
                 </select>
-                @error ('jenis_layanan')
+                @error ('p_jenis_layanan')
                   <div id="validationServerUsernameFeedback" class="invalid-feedback">
                       {{$message}}
                   </div>
@@ -51,9 +51,9 @@
 
             <div class="form-group">
                 <label>Jumlah Karakter</label>
-                <input type="text" name="jumlah_karakter" class="form-control @error('jumlah_karakter') is-invalid @enderror"
-                 placeholder="Masukkan Range Jumlah Karakter ex. 0-200" value="{{ old('jumlah_karakter') }}">
-                @error ('jumlah_karakter')
+                <input type="text" name="p_jumlah_karakter" class="form-control @error('p_jumlah_karakter') is-invalid @enderror"
+                 placeholder="Masukkan Range Jumlah Karakter ex. 0-200" value="{{ old('p_jumlah_karakter') }}">
+                @error ('p_jumlah_karakter')
                   <div id="validationServerUsernameFeedback" class="invalid-feedback">
                       {{$message}}
                   </div>
@@ -101,15 +101,15 @@
         <div class="modal-body">
         
           <div class="form-group">
-                <label for="jenis_layanan">Jenis Layanan</label>
-                    <select class="form-control @error('jenis_layanan') is-invalid @enderror" 
-                     id="jenis_layanan" placeholder="Jenis Layanan" name="jenis_layanan">
+                <label for="p_jenis_layanan">Jenis Layanan</label>
+                    <select class="form-control @error('p_jenis_layanan') is-invalid @enderror" 
+                     id="p_jenis_layanan" placeholder="Jenis Layanan" name="p_jenis_layanan">
                     
                       <option value="Basic">Basic</option>
                       <option value="Premium">Premium</option>
                     
                     </select>
-                    @error ('jenis_layanan')
+                    @error ('p_jenis_layanan')
                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                             {{$message}}
                         </div>
@@ -120,9 +120,9 @@
 
             <div class="form-group">
                 <label>Jumlah Karakter</label>
-                <input type="text" class="form-control @error('jumlah_karakter') is-invalid @enderror" 
-                name="jumlah_karakter" id="jumlah_karakter" placeholder="Masukkan Range Jumlah Karakter ex. 0-200">
-                @error ('jumlah_karakter')
+                <input type="text" class="form-control @error('p_jumlah_karakter') is-invalid @enderror" 
+                name="p_jumlah_karakter" id="p_jumlah_karakter" placeholder="Masukkan Range Jumlah Karakter ex. 0-200">
+                @error ('p_jumlah_karakter')
                   <div id="validationServerUsernameFeedback" class="invalid-feedback">
                       {{$message}}
                   </div>
@@ -187,8 +187,8 @@
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
                     <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
-                    <td>{{$harga->jenis_layanan}}</td>
-                    <td>{{$harga->jumlah_karakter}}</td>
+                    <td>{{$harga->p_jenis_layanan}}</td>
+                    <td>{{$harga->p_jumlah_karakter}}</td>
                     <td>{{$harga->harga}}</td>
                     <td>
                       <button type="button" class="btn btn-sm btn-primary edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
@@ -283,8 +283,8 @@ $(document).ready(function () {
     var data = table.row($tr).data();
     console.log(data);
 
-    $('#jenis_layanan').val(data[2]);
-    $('#jumlah_karakter').val(data[3]);
+    $('#p_jenis_layanan').val(data[2]);
+    $('#p_jumlah_karakter').val(data[3]);
     $('#harga').val(data[4]); 
 
     $('#editForm').attr('action', '/daftar-harga-teks/'+data[1]);

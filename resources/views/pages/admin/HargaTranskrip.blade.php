@@ -21,9 +21,9 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>Durasi Pertemuan (hari)</label>
-                <input type="text" name="durasi_pertemuan" class="form-control @error('durasi_pertemuan') is-invalid @enderror"
-                 placeholder="Masukkan Range Durasi Pertemuan (hari) ex. 1-2" value="{{ old('durasi_pertemuan') }}">
-                @error ('durasi_pertemuan')
+                <input type="text" name="p_durasi_pertemuan" class="form-control @error('p_durasi_pertemuan') is-invalid @enderror"
+                 placeholder="Masukkan Range Durasi Pertemuan (hari) ex. 1-2" value="{{ old('p_durasi_pertemuan') }}">
+                @error ('p_durasi_pertemuan')
                   <div id="validationServerUsernameFeedback" class="invalid-feedback">
                       {{$message}}
                   </div>
@@ -71,9 +71,9 @@
       <div class="modal-body">
           <div class="form-group">
                 <label>Durasi Pertemuan (hari)</label>
-                <input type="text" name="durasi_pertemuan" class="form-control @error('durasi_pertemuan') is-invalid @enderror"
-                 placeholder="Masukkan Range Durasi Pertemuan (hari) ex. 1-2" id="durasi_pertemuan">
-                @error ('durasi_pertemuan')
+                <input type="text" name="p_durasi_pertemuan" class="form-control @error('p_durasi_pertemuan') is-invalid @enderror"
+                 placeholder="Masukkan Range Durasi Pertemuan (hari) ex. 1-2" id="p_durasi_pertemuan">
+                @error ('p_durasi_pertemuan')
                   <div id="validationServerUsernameFeedback" class="invalid-feedback">
                       {{$message}}
                   </div>
@@ -134,7 +134,7 @@
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
                     <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
-                    <td>{{$harga->durasi_pertemuan}}</td>
+                    <td>{{$harga->p_durasi_pertemuan}}</td>
                     <td>{{$harga->harga}}</td>
                     <td>
                       <button type="button" class="btn btn-sm btn-primary edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
@@ -228,7 +228,7 @@ $(document).ready(function () {
     var data = table.row($tr).data();
     console.log(data);
 
-    $('#durasi_pertemuan').val(data[2]);
+    $('#p_durasi_pertemuan').val(data[2]);
     $('#harga').val(data[3]); 
 
     $('#editForm').attr('action', '/daftar-harga-transkrip/'+data[1]);
