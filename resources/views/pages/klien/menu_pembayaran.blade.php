@@ -342,7 +342,7 @@
                       @foreach($riwayat as $trans)
                         <tr>
                           
-                          <td>{{$trans->created_at}}</td>
+                          <td>{{$trans->tgl_transaksi}}</td>
                           <td>{{$trans->nominal_transaksi}}</td>
                           <td><a href="{{route('bukti.download', $trans->id_transaksi)}}">{{$trans->bukti_transaksi}}</a></td>
                           <td>{{$trans->status_transaksi}}</td>

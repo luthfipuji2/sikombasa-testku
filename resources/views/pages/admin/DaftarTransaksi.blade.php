@@ -9,7 +9,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Status Transaksi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,15 +21,42 @@
       {{ method_field('PUT') }}
 
         <div class="modal-body">
-        
-          
-                
+            <div class="form-group">
+                <label>Tanggal Order</label>
+                <input type="text" name="tgl_order" id="tgl_order" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label>Tanggal Transaksi</label>
+                <input type="text" name="tgl_transaksi" id="tgl_transaksi" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label>Nominal Transaksi</label>
+                <input type="text" name="nominal_transaksi" id="nominal_transaksi" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="status_transaksi">Status Transaksi</label>
+                    <select class="form-control @error('status_transaksi') is-invalid @enderror" 
+                     id="status_transaksi" name="status_transaksi">
+                    
+                      <option value="Pending">Pending</option>
+                      <option value="Berhasil">Berhasil</option>
+                      <option value="Gagal">Gagal</option>
+                    
+                    </select>
+                    @error ('status_transaksi')
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+            </div> 
+            
+            
         </div>
-       
+      
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
       </form>
     </div>
@@ -37,57 +64,217 @@
 </div>
 
 <!-- Modal Detail -->
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+@foreach ($transaksi as $r)
+<div class="modal fade" id="detailModal{{$r->id_transaksi}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detail Transaksi</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detail Transaksi {{$loop->iteration}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
 
-      <form action="/daftar-transaksi" method="POST" id="detailForm">
+      <form method="POST" id="detailForm">
 
       {{ csrf_field() }}
       {{ method_field('PUT') }}
 
         <div class="modal-body">
 
-        <!-- Main content -->
-        <section class="content">
-          <div class="container-fluid">
-            <div class="row">
-              <!-- left column -->              
-              <div class="col-md-6">
-              
-                <div class="form-group">
-                    <label>Tanggal Order</label>
-                    <input type="text" name="tgl_order" id="tgl_order" class="form-control" readonly>
+          <!-- Main content -->
+            <section class="content">
+
+              <!-- Default box -->
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+                      <div class="row">
+                        <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                            <div class="info-box-content">
+                              <span class="info-box-text text-center text-muted">Tanggal Order</span>
+                              <span class="info-box-number text-center text-muted mb-0">{{$r->tgl_order}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                            <div class="info-box-content">
+                              <span class="info-box-text text-center text-muted">Tanggal Transaksi</span>
+                              <span class="info-box-number text-center text-muted mb-0">{{$r->tgl_transaksi}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                          <div class="info-box bg-light">
+                            <div class="info-box-content">
+                              <span class="info-box-text text-center text-muted">Total Order</span>
+                              <span class="info-box-number text-center text-muted mb-0">{{$r->harga}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                        <div class="col-12">
+
+                            <div class="post">
+
+                              @if (!empty($r->jenis_layanan))
+                              <div class="user-block">
+                                  <b>Jenis Layanan</b>
+                                  <p class="text-muted">
+                                    {{$r->jenis_layanan}}
+                                  </p>
+                              </div>
+                              @endif
+                            
+                  
+                              @if (!empty($r->text))
+                              <div class="user-block">
+                                  <b>Text</b>
+                                  <p class="text-muted">
+                                    {{ substr($r->text, 0,  500) }}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->jumlah_karakter))
+                              <div class="user-block">
+                                  <b>Jumlah Karakter</b>
+                                  <p class="text-muted">
+                                    {{$r->jumlah_karakter}}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->jumlah_halaman))
+                              <div class="user-block">
+                                  <b>Jumlah Halaman</b>
+                                  <p class="text-muted">
+                                    {{$r->jumlah_halaman}}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->durasi_video))
+                              <div class="user-block">
+                                  <b>Durasi Video</b>
+                                  <p class="text-muted">
+                                    {{$r->durasi_video}}
+                                  </p>
+                              </div>
+                              @endif
+
+
+                              @if (!empty($r->jumlah_dubber))
+                              <div class="user-block">
+                                  <b>Jumlah Dubber</b>
+                                  <p class="text-muted">
+                                    {{$r->jumlah_dubber}}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->durasi_pertemuan))
+                              <div class="user-block">
+                                  <b>Durasi Pertemuan</b>
+                                  <p class="text-muted">
+                                    {{$r->durasi_pertemuan}}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->durasi_pengerjaan))
+                              <div class="user-block">
+                                  <b>Durasi Pengerjaan</b>
+                                  <p class="text-muted">
+                                    {{$r->durasi_pengerjaan}} Hari
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->latitude))
+                              <div class="user-block">
+                                  <b>Latitude</b>
+                                  <p class="text-muted">
+                                    {{$r->latitude}}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->longitude))
+                              <div class="user-block">
+                                  <b>Longitude</b>
+                                  <p class="text-muted">
+                                    {{$r->longitude}}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->lokasi))
+                              <div class="user-block">
+                                  <b>Lokasi</b>
+                                  <p class="text-muted">
+                                    {{$r->lokasi}}
+                                  </p>
+                              </div>
+                              @endif
+
+                              @if (!empty($r->nama_dokumen))
+                              <b>Project files</b>
+                              <ul class="list-unstyled">
+                                <li>
+                                  <a><i class="fas fa-file-upload"></i> {{$r->nama_dokumen}}</a>
+                                </li>
+                              </ul>
+                              @endif
+                              <!-- /.user-block -->     
+                            </div>         
+                        </div>
+                      
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+                      <h3 class="text-primary"><i class="fas fa-globe"></i> SIKOMBASA</h3>
+                      <p class="text-muted">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
+                      <br>
+                      <div class="text-muted">
+                        <p class="text-sm">Nama
+                          <b class="d-block">{{$r->name}}</b>
+                        </p>
+                        <p class="text-sm">Email
+                          <b class="d-block">{{$r->email}}</b>
+                        </p>
+                      </div>
+
+                      <h5 class="mt-5 text-muted">Status Transaksi</h5>
+                      <ul class="list-unstyled">
+                        <li>
+                          <a class="btn-link text-secondary"><b>{{$r->status_transaksi}}</b></a>
+                        </li>
+                      </ul>
+                      
+                    </div>
+                  </div>
                 </div>
+                <!-- /.card-body -->
               
-              <!--/.col (right) -->
-            </div>
-            </div><!-- /.row -->
-          </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-            
-            
-        
-        
-            
-            
+              <!-- /.card -->
+
+            </section>
+          <!-- /.content -->
+      
         </div>
       
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+        </div>
       </form>
     </div>
   </div>
 </div>
+@endforeach
 
 <!-- Main content -->
 <section class="content">
@@ -102,7 +289,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="datatable" class="table table-bordered table-striped">
+                <table id="datatable" class="table table-bordered">
                   <thead>   
                   <tr>
                     <th>No</th>
@@ -123,11 +310,11 @@
                     <td>{{$t->tgl_order}}</td>
                     <td>{{$t->tgl_transaksi}}</td>
                     <td>{{$t->nominal_transaksi}}</td>
-                    <td>{{$t->bukti_transaksi}}</td>
+                    <td><a href="{{route('bukti.download', $t->id_transaksi)}}">{{$t->bukti_transaksi}}</a></td>
                     <td>{{$t->status_transaksi}}</td>
                     <td>
-                      <button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#updateModal">Edit Status</i></button>
-                      <button type="button" class="btn btn-primary detail" data-toggle="modal" data-target="#updateModal">Detail</i></button>
+                      <button type="button" class="btn btn-success btn-sm edit" data-toggle="modal" data-target="#updateModal">Edit Status</button>
+                      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailModal{{$t->id_transaksi}}"><i class="fas fa-info"></i></button>
                     </td>
                   </tr>
                   @endforeach

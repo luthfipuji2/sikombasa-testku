@@ -16,7 +16,7 @@ class HargaDokumenController extends Controller
      */
     public function index()
     {
-        $dokumen = DB::table('parameter_order')->whereNotNull('jumlah_halaman')->get();
+        $dokumen = DB::table('parameter_order')->whereNotNull('p_jumlah_halaman')->get();
         return view('pages.admin.HargaDokumen', ['dokumen' => $dokumen]);
     }
 
@@ -39,14 +39,14 @@ class HargaDokumenController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'jumlah_halaman' => 'required',
+            'p_jenis_layanan' => 'required',
+            'p_jumlah_halaman' => 'required',
             'harga' => 'required|integer'
         ]);
 
         Harga::create([
-            'jenis_layanan' => $request->jenis_layanan,
-            'jumlah_halaman' => $request->jumlah_halaman,
+            'p_jenis_layanan' => $request->p_jenis_layanan,
+            'p_jumlah_halaman' => $request->p_jumlah_halaman,
             'harga' => $request->harga
         ]);
 
@@ -85,8 +85,8 @@ class HargaDokumenController extends Controller
     public function update(Request $request, $id_parameter_order)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'jumlah_halaman' => 'required',
+            'p_jenis_layanan' => 'required',
+            'p_jumlah_halaman' => 'required',
             'harga' => 'required|integer'
         ]);
 
@@ -94,8 +94,8 @@ class HargaDokumenController extends Controller
         
         Harga::where('id_parameter_order', $harga->id_parameter_order)
                     ->update([
-                        'jenis_layanan' => $request->jenis_layanan,
-                        'jumlah_halaman' => $request->jumlah_halaman,
+                        'p_jenis_layanan' => $request->p_jenis_layanan,
+                        'p_jumlah_halaman' => $request->p_jumlah_halaman,
                         'harga' => $request->harga
                     ]);
         return redirect('/daftar-harga-dokumen')->with('success', 'Data harga berhasil diubah');

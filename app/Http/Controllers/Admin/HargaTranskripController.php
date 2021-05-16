@@ -16,7 +16,7 @@ class HargaTranskripController extends Controller
      */
     public function index()
     {
-        $transkrip = DB::table('parameter_order')->whereNotNull('durasi_pertemuan')
+        $transkrip = DB::table('parameter_order')->whereNotNull('p_durasi_pertemuan')
         ->get();
         return view('pages.admin.HargaTranskrip', ['transkrip' => $transkrip]);
     }
@@ -40,12 +40,12 @@ class HargaTranskripController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'durasi_pertemuan' => 'required',
+            'p_durasi_pertemuan' => 'required',
             'harga' => 'required|integer'
         ]);
 
         Harga::create([
-            'durasi_pertemuan' => $request->durasi_pertemuan,
+            'p_durasi_pertemuan' => $request->p_durasi_pertemuan,
             'harga' => $request->harga
         ]);
 
@@ -84,7 +84,7 @@ class HargaTranskripController extends Controller
     public function update(Request $request, $id_parameter_order)
     {
         $this->validate($request,[
-            'durasi_pertemuan' => 'required',
+            'p_durasi_pertemuan' => 'required',
             'harga' => 'required|integer'
         ]);
 
@@ -92,7 +92,7 @@ class HargaTranskripController extends Controller
         
         Harga::where('id_parameter_order', $harga->id_parameter_order)
                     ->update([
-                        'durasi_pertemuan' => $request->durasi_pertemuan,
+                        'p_durasi_pertemuan' => $request->p_durasi_pertemuan,
                         'harga' => $request->harga
                     ]);
         return redirect('/daftar-harga-transkrip')->with('success', 'Data harga berhasil diubah');

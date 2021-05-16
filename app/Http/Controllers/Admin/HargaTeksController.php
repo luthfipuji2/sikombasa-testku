@@ -16,7 +16,7 @@ class HargaTeksController extends Controller
      */
     public function index(Harga $h)
     {
-        $harga = DB::table('parameter_order')->whereNotNull('jumlah_karakter')->get();
+        $harga = DB::table('parameter_order')->whereNotNull('p_jumlah_karakter')->get();
         return view('pages.admin.HargaTeks', compact('harga'));
     }
 
@@ -39,14 +39,14 @@ class HargaTeksController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'jumlah_karakter' => 'required',
+            'p_jenis_layanan' => 'required',
+            'p_jumlah_karakter' => 'required',
             'harga' => 'required|integer'
         ]);
 
         Harga::create([
-            'jenis_layanan' => $request->jenis_layanan,
-            'jumlah_karakter' => $request->jumlah_karakter,
+            'p_jenis_layanan' => $request->p_jenis_layanan,
+            'p_jumlah_karakter' => $request->p_jumlah_karakter,
             'harga' => $request->harga
         ]);
 
@@ -85,8 +85,8 @@ class HargaTeksController extends Controller
     public function update(Request $request, $id_parameter_order)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'jumlah_karakter' => 'required',
+            'p_jenis_layanan' => 'required',
+            'p_jumlah_karakter' => 'required',
             'harga' => 'required'
         ]);
 
@@ -94,8 +94,8 @@ class HargaTeksController extends Controller
         
         Harga::where('id_parameter_order', $harga->id_parameter_order)
                     ->update([
-                        'jenis_layanan' => $request->jenis_layanan,
-                        'jumlah_karakter' => $request->jumlah_karakter,
+                        'p_jenis_layanan' => $request->p_jenis_layanan,
+                        'p_jumlah_karakter' => $request->p_jumlah_karakter,
                         'harga' => $request->harga
                     ]);
         return redirect('/daftar-harga-teks')->with('success', 'Data harga berhasil diubah');

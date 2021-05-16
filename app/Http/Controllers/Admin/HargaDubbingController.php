@@ -16,7 +16,7 @@ class HargaDubbingController extends Controller
      */
     public function index()
     {
-        $dubbing = DB::table('parameter_order')->whereNotNull('jumlah_dubber')
+        $dubbing = DB::table('parameter_order')->whereNotNull('p_jumlah_dubber')
         ->get();
         return view('pages.admin.HargaDubbing', ['dubbing' => $dubbing]);
     }
@@ -40,16 +40,16 @@ class HargaDubbingController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'durasi_file' => 'required',
-            'jumlah_dubber' =>'required',
+            'p_jenis_layanan' => 'required',
+            'p_durasi_file' => 'required',
+            'p_jumlah_dubber' =>'required',
             'harga' => 'required|integer'
         ]);
 
         Harga::create([
-            'jenis_layanan' => $request->jenis_layanan,
-            'durasi_file' => $request->durasi_file,
-            'jumlah_dubber' => $request->jumlah_dubber,
+            'p_jenis_layanan' => $request->p_jenis_layanan,
+            'p_durasi_file' => $request->p_durasi_file,
+            'p_jumlah_dubber' => $request->p_jumlah_dubber,
             'harga' => $request->harga
         ]);
 
@@ -88,9 +88,9 @@ class HargaDubbingController extends Controller
     public function update(Request $request, $id_parameter_order)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'durasi_file' => 'required',
-            'jumlah_dubber' => 'required',
+            'p_jenis_layanan' => 'required',
+            'p_durasi_file' => 'required',
+            'p_jumlah_dubber' => 'required',
             'harga' => 'required|integer'
         ]);
 
@@ -98,9 +98,9 @@ class HargaDubbingController extends Controller
         
         Harga::where('id_parameter_order', $harga->id_parameter_order)
                     ->update([
-                        'jenis_layanan' => $request->jenis_layanan,
-                        'durasi_file' => $request->durasi_file,
-                        'jumlah_dubber' => $request->jumlah_dubber,
+                        'p_jenis_layanan' => $request->p_jenis_layanan,
+                        'p_durasi_file' => $request->p_durasi_file,
+                        'p_jumlah_dubber' => $request->p_jumlah_dubber,
                         'harga' => $request->harga
                     ]);
         return redirect('/daftar-harga-dubbing')->with('success', 'Data harga berhasil diubah');
