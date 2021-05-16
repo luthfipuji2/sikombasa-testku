@@ -154,4 +154,3 @@ Route::middleware(['auth'])->group(function () {
         redirect('/');
     });
  
-});
