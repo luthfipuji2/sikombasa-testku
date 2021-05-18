@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('profile-admin', 'App\Http\Controllers\Admin\ProfileController');
         Route::patch('biodata-admin/{users}', 'App\Http\Controllers\Admin\ProfileController@updateBiodata');
         Route::resource('daftar-transaksi', 'App\Http\Controllers\Admin\DaftarTransaksiController');
+        Route::resource('distribusi-fee', 'App\Http\Controllers\Admin\DistribusiFeeController');
         
         
 
