@@ -21,7 +21,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>Durasi Pertemuan</label>
-                <input type="text" name="durasi_pertemuan" class="form-control" placeholder="Masukkan range durasi pertemuan dalam menit ex. 0-60">
+                <input type="text" name="p_durasi_pertemuan" class="form-control" placeholder="Masukkan range durasi pertemuan dalam menit ex. 0-60">
             </div>
             <div class="form-group">
                 <label>Harga</label>
@@ -58,7 +58,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label>Durasi Pertemuan</label>
-                <input type="text" name="durasi_pertemuan" id="durasi_pertemuan" class="form-control" placeholder="Masukkan range durasi pertemuan dalam menit ex. 0-60">
+                <input type="text" name="p_durasi_pertemuan" id="p_durasi_pertemuan" class="form-control" placeholder="Masukkan range durasi pertemuan dalam menit ex. 0-60">
             </div>
             <div class="form-group">
                 <label>Harga</label>
@@ -108,7 +108,7 @@
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
                     <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
-                    <td>{{$harga->durasi_pertemuan}}</td>
+                    <td>{{$harga->p_durasi_pertemuan}}</td>
                     <td>{{$harga->harga}}</td>
                     <td>
                       <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#updateModal">Edit</i></button>
@@ -201,7 +201,7 @@ $(document).ready(function () {
     var data = table.row($tr).data();
     console.log(data);
 
-    $('#durasi_pertemuan').val(data[2]);
+    $('#p_durasi_pertemuan').val(data[2]);
     $('#harga').val(data[3]); 
 
     $('#editForm').attr('action', '/daftar-harga-interpreter/'+data[1]);

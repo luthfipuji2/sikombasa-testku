@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <!-- Modal Detail -->
 @foreach ($order_pembayaran as $o)
 <div class="modal fade" id="detailModal{{$o->id_order}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,9 +55,9 @@
                           </div>
                         </div>
                       </div>
-                      
+                      <div class="row">
                         <div class="col-12">
-                  
+                          
                             <div class="post">
                               @if (!empty($o->text))
                               <div class="user-block">
@@ -117,7 +118,7 @@
                               <div class="user-block">
                                   <b>Durasi Pengerjaan</b>
                                   <p class="text-muted">
-                                    {{$o->durasi_pengerjaan}} Hari
+                                    {{$o->durasi_pengerjaan}}
                                   </p>
                               </div>
                               @endif
@@ -148,19 +149,10 @@
                                   </p>
                               </div>
                               @endif
-
-                              @if (!empty($o->nama_dokumen))
-                              <b>Project files</b>
-                              <ul class="list-unstyled">
-                                <li>
-                                  <a><i class="fas fa-file-upload"></i> {{$o->nama_dokumen}}</a>
-                                </li>
-                              </ul>
-                              @endif
                               <!-- /.user-block -->     
                             </div>         
                         </div>
-                      
+                      </div>
                     </div>
                     <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
                       <h3 class="text-primary"><i class="fas fa-globe"></i> SIKOMBASA</h3>
@@ -175,7 +167,14 @@
                         </p>
                       </div>
 
-                      
+                      @if (!empty($o->nama_upload))
+                      <h5 class="mt-5 text-muted">Project files</h5>
+                      <ul class="list-unstyled">
+                        <li>
+                          <a><i class="fas fa-file-upload"></i>{{$o->nama_dokumen}}</a>
+                        </li>
+                      </ul>
+                      @endif
                       
                     </div>
                   </div>
@@ -199,61 +198,7 @@
 </div>
 @endforeach
 
-<!-- Modal Unggah -->
-@foreach ($order_pembayaran as $p)
-<div class="modal fade" id="unggahModal{{$p->id_order}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Unggah Bukti Transaksi {{$loop->iteration}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
 
-      <form action="{{route('menu-pembayaran.store')}}" method="POST" enctype="multipart/form-data">
-
-      {{ csrf_field() }}
-        <div class="modal-body">
-            <input type="text" name="id_order" value="{{$p->id_order}}" hidden>
-
-            <div class="form-group">
-                <label>Pilih Bank</label>
-                <select class="form-control @error('id_bank') is-invalid @enderror" 
-                id="id_bank" name="id_bank">
-                  <option value="">--Pilih Bank--</option>
-                @foreach ($bank as $b)
-                  <option value="{{$b->id_bank}}">{{$b->nama_bank}}-{{$b->no_rekening}} 
-                  ({{$b->nama_rekening}})</option>
-                @endforeach
-                </select>
-                @error ('id_bank')
-                <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                  {{$message}}
-                </div>
-                @enderror
-            </div>
-
-            <input type="text" name="nominal_transaksi" value="{{$p->harga}}" hidden>
-
-            <div class="form-group">
-              <label for="profile_photo_path">Bukti Transaksi</label>
-                <input type="file" name="bukti_transaksi" class="form-control">
-            </div> 
-            
-
-        </div>
-      
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-success">Unggah</button>
-      </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-@endforeach
     
 <div class="container">
 
@@ -274,11 +219,12 @@
               <div class="card-body">
                 <div class="tab-content">
                   <div class="active tab-pane" id="belum_bayar">
-                  
                     <table class="table projects">
                       <thead>
                           <tr>
-                              
+                              <th style="width: 1%">
+                                  Order
+                              </th>
                               <th style="width: 20%">
                                   Tanggal Order
                               </th>
@@ -294,9 +240,9 @@
                           </tr>
                       </thead>
                       <tbody>
-                      
                       @foreach($order_pembayaran as $bayar)
-                        <tr>            
+                        <tr>
+                          <th scope="row" class="text-center">{{$loop->iteration}}</th>
                           <td scope="row" class="text-center" hidden>{{$bayar->id_order}}</td>
                           <td>{{$bayar->tgl_order}}</td>
                           <td>{{$bayar->jenis_layanan}}</td>
@@ -307,55 +253,12 @@
                           </td>
                         </tr>
                       @endforeach
-                   
-                      </tbody>
-                      
-                    </table>
-                  </div>
-
-
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="riwayat">
-
-                  <table class="table projects">
-                      <thead>
-                          <tr>
-                              
-                              <th style="width: 20%">
-                                  Tanggal Transaksi
-                              </th>
-                              <th style="width: 20%">
-                                  Nominal Transaksi
-                              </th>
-                              <th>
-                                  Bukti Transaksi
-                              </th>
-                              <th>
-                                  Status Transaksi
-                              </th>
-                              <th>
-                                  Cetak Transaksi
-                              </th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                      @foreach($riwayat as $trans)
-                        <tr>
-                          
-                          <td>{{$trans->tgl_transaksi}}</td>
-                          <td>{{$trans->nominal_transaksi}}</td>
-                          <td><a href="{{route('bukti.download', $trans->id_transaksi)}}">{{$trans->bukti_transaksi}}</a></td>
-                          <td>{{$trans->status_transaksi}}</td>
-                          <td class="text-center">
-                          <a href="{{route('pdf.download', $trans->id_transaksi)}}"><i class="fas fa-print"></i></a>
-                          </td>
-
-                        </tr>
-                      @endforeach
                       </tbody>
                     </table>
                   </div>
-                  <!-- /.tab-pane -->
+
+
+                  
 
                   
                 </div>

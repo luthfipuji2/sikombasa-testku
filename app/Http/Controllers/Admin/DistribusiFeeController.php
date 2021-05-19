@@ -3,21 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Harga;
+use App\Models\Admin\DistribusiFee;
+use App\Models\Admin\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class HargaTeksController extends Controller
+class DistribusiFeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Harga $h)
+    public function index()
     {
-        $harga = DB::table('parameter_order')->whereNotNull('p_jumlah_karakter')->get();
-        return view('pages.admin.HargaTeks', compact('harga'));
+        $fee = Transaksi::where('status_transaksi', 'Berhasil')
+            ->leftJoin('distribusi_fee', 'transaksi.id_transaksi', '=', 'distribusi_fee.id__transaksi')
+            ->get();
+
+        // $fee = DB::table('distribusi_fee')
+            
+        //     ->first();
+
+        return view('pages.admin.DistribusiFee',  compact('fee'));
     }
 
     /**
@@ -39,18 +47,17 @@ class HargaTeksController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'p_jenis_layanan' => 'required',
-            'p_jumlah_karakter' => 'required',
-            'harga' => 'required|integer'
+            'fee_translator' => 'required|integer',
+            'fee_sistem' => 'required|integer'
         ]);
 
-        Harga::create([
-            'p_jenis_layanan' => $request->p_jenis_layanan,
-            'p_jumlah_karakter' => $request->p_jumlah_karakter,
-            'harga' => $request->harga
+        DistribusiFee::create([
+            'id__transaksi'     => $request->id_transaksi,
+            'fee_translator'    => $request->fee_translator,
+            'fee_sistem'        => $request->fee_sistem,
         ]);
 
-        return redirect('/daftar-harga-teks')->with('success', 'Harga baru berhasil ditambahkan');
+        return redirect('/distribusi-fee')->with('success', 'Nominal fee berhasil ditambahkan');
     }
 
     /**
@@ -82,23 +89,22 @@ class HargaTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_parameter_order)
+    public function update(Request $request, $id_transaksi)
     {
         $this->validate($request,[
-            'p_jenis_layanan' => 'required',
-            'p_jumlah_karakter' => 'required',
-            'harga' => 'required'
+            'fee_translator' => 'required|integer',
+            'fee_sistem' => 'required|integer'
         ]);
 
-        $harga = Harga::find($id_parameter_order);
+        $t = Transaksi::find($id_transaksi);
         
-        Harga::where('id_parameter_order', $harga->id_parameter_order)
+        DistribusiFee::where('id__transaksi', $t->id_transaksi)
                     ->update([
-                        'p_jenis_layanan' => $request->p_jenis_layanan,
-                        'p_jumlah_karakter' => $request->p_jumlah_karakter,
-                        'harga' => $request->harga
+                        'fee_translator'    => $request->fee_translator,
+                        'fee_sistem'        => $request->fee_sistem,
                     ]);
-        return redirect('/daftar-harga-teks')->with('success', 'Data harga berhasil diubah');
+
+        return redirect('/distribusi-fee')->with('success', 'Nominal fee berhasil diubah');
     }
 
     /**
@@ -107,9 +113,8 @@ class HargaTeksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Harga $harga)
+    public function destroy($id)
     {
-        Harga::destroy($harga->id_parameter_order);
-        return redirect('/daftar-harga-teks')->with('success', 'Data harga berhasil dihapus');
+        //
     }
 }

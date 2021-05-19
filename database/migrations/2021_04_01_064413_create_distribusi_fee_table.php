@@ -15,8 +15,8 @@ class CreateDistribusiFeeTable extends Migration
     {
         Schema::create('distribusi_fee', function (Blueprint $table) {
             $table->bigIncrements('id_fee');
-            $table->unsignedBigInteger('id_transaksi');
-            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi')->onDelete('cascade');
+            $table->unsignedBigInteger('id__transaksi');
+            $table->foreign('id__transaksi')->references('id_transaksi')->on('transaksi')->onDelete('cascade');
             $table->integer('fee_translator');
             $table->integer('fee_sistem');
             $table->timestamps();

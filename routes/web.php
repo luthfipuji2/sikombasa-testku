@@ -96,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('profile-admin', 'App\Http\Controllers\Admin\ProfileController');
         Route::patch('biodata-admin/{users}', 'App\Http\Controllers\Admin\ProfileController@updateBiodata');
         Route::resource('daftar-transaksi', 'App\Http\Controllers\Admin\DaftarTransaksiController');
+        Route::resource('distribusi-fee', 'App\Http\Controllers\Admin\DistribusiFeeController');
         
         
 
@@ -128,6 +129,29 @@ Route::middleware(['auth'])->group(function () {
     });
  
 
+
+        //order dubbing
+        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
+        Route::resource('order-dubbing', 'App\Http\Controllers\Klien\OrderDubbingController');
+        Route::put('/order-dubbing/{id_order}', 'App\Http\Controllers\Klien\OrderDubbingController@update')->name('update_order_dubbing');
+        
+        //order subtitle
+        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
+        Route::resource('order-subtitle', 'App\Http\Controllers\Klien\OrderSubtitleController');
+        Route::put('/order-subtitle/{id_order}', 'App\Http\Controllers\Klien\OrderSubtitleController@update')->name('update_order_subtitle');
+
+        Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
+       
+        Route::get('/bukti/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@download')->name('bukti.download');
+        Route::get('/invoice/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@invoice')->name('pdf.download');
+
+
+        Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
+        Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
+
+
+    });
+
     
  
     Route::get('/logout', function() {
@@ -135,4 +159,3 @@ Route::middleware(['auth'])->group(function () {
         redirect('/');
     });
  
-});

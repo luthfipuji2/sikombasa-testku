@@ -16,7 +16,7 @@ class HargaSubtitleController extends Controller
      */
     public function index()
     {
-        $subtitle = DB::table('parameter_order')->whereNotNull('durasi_file')->get();
+        $subtitle = DB::table('parameter_order')->whereNotNull('p_durasi_file')->get();
         return view('pages.admin.HargaSubtitle', ['subtitle' => $subtitle]);
     }
 
@@ -39,14 +39,14 @@ class HargaSubtitleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'durasi_file' => 'required',
+            'p_jenis_layanan' => 'required',
+            'p_durasi_file' => 'required',
             'harga' => 'required|integer'
         ]);
 
         Harga::create([
-            'jenis_layanan' => $request->jenis_layanan,
-            'durasi_file' => $request->durasi_file,
+            'p_jenis_layanan' => $request->p_jenis_layanan,
+            'p_durasi_file' => $request->p_durasi_file,
             'harga' => $request->harga
         ]);
 
@@ -85,8 +85,8 @@ class HargaSubtitleController extends Controller
     public function update(Request $request, $id_parameter_order)
     {
         $this->validate($request,[
-            'jenis_layanan' => 'required',
-            'durasi_file' => 'required',
+            'p_jenis_layanan' => 'required',
+            'p_durasi_file' => 'required',
             'harga' => 'required|integer'
         ]);
 
@@ -94,8 +94,8 @@ class HargaSubtitleController extends Controller
         
         Harga::where('id_parameter_order', $harga->id_parameter_order)
                     ->update([
-                        'jenis_layanan' => $request->jenis_layanan,
-                        'durasi_file' => $request->durasi_file,
+                        'p_jenis_layanan' => $request->p_jenis_layanan,
+                        'p_durasi_file' => $request->p_durasi_file,
                         'harga' => $request->harga
                     ]);
         return redirect('/daftar-harga-subtitle')->with('success', 'Data harga berhasil diubah');
