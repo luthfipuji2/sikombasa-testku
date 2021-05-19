@@ -24,7 +24,9 @@ class MenuPembayaranController extends Controller
     {
         $user = Auth::user();
 
-        $order_pembayaran = DB::table('order') //join table users and table user_details base from matched id;
+        $order_pembayaran = DB::table('transaksi') //join table users and table user_details base from matched id;
+                ->rightJoin('order', 'transaksi.id_order', '=', 'order.id_order')
+                ->whereNull('id_transaksi')
                 ->join('klien', 'order.id_klien', '=', 'klien.id_klien')
                 ->join('users', 'klien.id', '=', 'users.id')
                 ->join('parameter_order', 'order.id_parameter_order', '=', 
@@ -87,8 +89,6 @@ class MenuPembayaranController extends Controller
             'nominal_transaksi' => $request->nominal_transaksi,
             'bukti_transaksi'    => $request->file('bukti_transaksi')->getClientOriginalName()
         ]);
-
-        
 
         return redirect('/menu-pembayaran');
     }

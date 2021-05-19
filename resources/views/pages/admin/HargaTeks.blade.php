@@ -19,20 +19,6 @@
 
       {{ csrf_field() }}
         <div class="modal-body">
-            <!-- <div class="form-group">
-                <label for="p_jenis_layanan">Jenis Layanan</label>
-                    <select class="form-control @error('p_jenis_layanan') is-invalid @enderror" 
-                    id="p_jenis_layanan" placeholder="Jenis Layanan" name="p_jenis_layanan">
-                        <option value="{{old('p_jenis_layanan')}}" hidden selected>{{old('p_jenis_layanan')}}</option>
-                        <option value="Basic">Basic</option>
-                        <option value="Premium">Premium</option>
-                    </select>
-                    @error ('p_jenis_layanan')
-                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-            </div> -->
 
             <div class="form-group">
                 <label>Jenis Layanan</label>
@@ -171,7 +157,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="datatable" class="table table-bordered table-striped">
+                <table id="datatable" class="table table-bordered">
                   <thead>   
                   <tr>
                     <th>No</th>

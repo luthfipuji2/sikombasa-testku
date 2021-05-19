@@ -26,9 +26,15 @@
                 <h3 class="widget-user-username text-right">{{$users->name}}</h3>
                 <h5 class="widget-user-desc text-right">{{$users->role}}</h5>
               </div>
+              @if (empty($users->profile_photo_path))
+              <div class="widget-user-image">
+                <img src="./img/profile.png" class="img-circle profile-user-img img-fluid img-responsive" alt="User Avatar">
+              </div>
+              @else
               <div class="widget-user-image">
                 <img src="{{asset('images/'.$users->profile_photo_path)}}" class="img-circle profile-user-img img-fluid img-responsive" alt="User Avatar">
               </div>
+              @endif
             </div>
 
             <div class="card">
