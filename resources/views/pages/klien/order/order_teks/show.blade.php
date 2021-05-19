@@ -64,6 +64,10 @@
                                     <td>Text</td>
                                     <td>{{$order->text}}</td>
                                 </tr>
+
+                                <p> Word Count:
+                                <span id="show">0</span>
+                                </p>
                             </tbody>
                         </table>
                         <button class="btn btn-success mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-sign-in-alt"></i>   Transaksi</button>
@@ -119,6 +123,7 @@
                     <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>
+
         </div>
 
         <div class="modal-footer">
@@ -149,3 +154,37 @@
         } );
     </script>
 @endpush
+
+@push('scripts')
+<script>
+        function submit() {
+  
+            // Get the input text value
+            var text = document
+                .getElementById("text").value;
+  
+            // Initialize the word counter
+            var numWords = 0;
+  
+            // Loop through the text
+            // and count spaces in it 
+            for (var i = 0; i < text.length; i++) {
+                var currentCharacter = text[i];
+  
+                // Check if the character is a space
+                if (currentCharacter == " ") {
+                    numWords += 1;
+                }
+            }
+  
+            // Add 1 to make the count equal to
+            // the number of words 
+            // (count of words = count of spaces + 1)
+            numWords += 1;
+  
+            // Display it as output
+            document.getElementById("show")
+                .innerHTML = numWords;
+        }
+    </script>
+    @endpush

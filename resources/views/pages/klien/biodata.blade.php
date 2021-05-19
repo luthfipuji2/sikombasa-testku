@@ -130,6 +130,18 @@
                                 <input type="text" id="id" placeholder="Masukkan Tanggal Lahir" name="id" value="{{ $users->id }}">
                             </div>
                         <div class="form-group">
+
+                        <div class="form-group">
+                                <label for="name">NIK</label>
+                                <input type="text" class="form-control @error('nik') is-invalid @enderror" 
+                                id="nik" placeholder="Masukkan NIK" name="nik" value="{{ $users->nik }}">
+                                @error ('nik')
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+
                     
                         <div class="form-group">
                             <label for="jenis_kelamin">Jenis Kelamin</label>
