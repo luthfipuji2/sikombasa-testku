@@ -57,6 +57,10 @@
                                     <td>{{$order->jenis_layanan}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Jenis Teks</td>
+                                    <td>{{$order->jenis_teks}}</td>
+                                </tr>
+                                <tr>
                                     <td>Durasi Pengerjaan</td>
                                     <td>{{$order->durasi_pengerjaan}} Hari</td>
                                 </tr>
@@ -96,7 +100,7 @@
             <input type="text" name="idLampiran" value="{{$order->id_order}}" hidden></td>
             <div class="form-group">
                 <label for="jenis_layanan">Jenis Layanan</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="jenis_layanan" id="jenis_layanan" value="{{$order->jenis_layanan}}" readonly>
+                <input type="text" class="form-control" placeholder="Masukkan jenis layanan" name="jenis_layanan" id="jenis_layanan" value="{{$order->jenis_layanan}}" readonly>
             </div>
 
             <div class="form-check">
@@ -111,6 +115,26 @@
                 Premium
             </label>
             </div>
+            <br>
+
+            <div class="form-group">
+                <label for="jenis_teks">Jenis Teks</label>
+                <input type="text" class="form-control" placeholder="Masukkan jenis teks" name="jenis_teks" id="jenis_teks" value="{{$order->jenis_teks}}" readonly>
+            </div>
+
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_teks" name="jenis_teks" value="umum">
+            <label class="form-check-label" for="jenis_teks">
+                Umum
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_teks"  name="jenis_teks" value="khusus">
+            <label class="form-check-label" for="jenis_teks">
+                Khusus
+            </label>
+            </div>
+
             <br>
             <div class="form-group">
                 <label for="durasi_pengerjaan">Durasi Pengerjaan</label>

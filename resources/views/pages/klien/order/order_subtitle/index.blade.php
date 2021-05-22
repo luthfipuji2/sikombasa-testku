@@ -42,9 +42,9 @@
             <div class="card-wrap">
                 <div class="card-header">
                 <div>
-                <button onclick="layanan_basic()" class="btn btn-info">
+                <a onclick="layanan_basic()" class="btn btn-info">
                     <label for="basic">Layanan Basic</label>
-                </button>
+                </a>
                 </div>
                 <div class="card-body">
                 </div>
@@ -69,9 +69,9 @@
             <div class="card-wrap">
                 <div class="card-header">
                 <div>
-                <button onclick="layanan_premium()" class="btn btn-info">
+                <a onclick="layanan_premium()" class="btn btn-info">
                     <label for="premium">Layanan Premium</label>
-                </button>
+                </a>
                 </div>
                 <div class="card-body">
                 </div>
@@ -161,7 +161,7 @@ $(document).ready(function() {
 <script >		
     // membuat function tampilkan_nama
     function layanan_basic(){
-        document.getElementById("basic").innerHTML = "Mendapatkan Garansi Selama 3 Bulan Saat Pertama Kali Order<hr>";
+        document.getElementById("basic").innerHTML = " * Klien Dapat Memilih Penerjemah <br> * Tidak Terdapat Editor <br> * Tidak ada Garansi <hr>";
     }
     
 </script>
@@ -171,7 +171,7 @@ $(document).ready(function() {
 <script >		
     // membuat function tampilkan_nama
     function layanan_premium(){
-        document.getElementById("premium").innerHTML = "<hr>* Free Video Editing <br> * Mendapatkan Garansi Selama 1 Tahun Saat Pertama Kali Order <hr> ";
+        document.getElementById("premium").innerHTML = " * Translator Ditentukan <br> * Terdapat Proses Editing <br> *  Bergaransi <hr>";
     }
     
 </script>

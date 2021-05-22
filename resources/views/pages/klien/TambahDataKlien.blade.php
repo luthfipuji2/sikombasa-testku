@@ -14,13 +14,13 @@
             </button>
         </div>
 
-        <form action="{{route('profile-klien.store')}}" method="POST">
+        <form action="{{route('profile-klien.store')}}" method="post">
 
-        {{ csrf_field() }}
+        @csrf
             <div class="modal-body">
                         <div class="form-group" hidden>
                                 <label for="name">ID</label>
-                                <input type="text" id="id" placeholder="Masukkan Tanggal Lahir" name="id" value="{{ $users->id }}">
+                                <input type="text" id="id" placeholder="Masukkan ID" name="id" value="{{ $users->id }}">
                         </div>
 
                         <div class="form-group">
