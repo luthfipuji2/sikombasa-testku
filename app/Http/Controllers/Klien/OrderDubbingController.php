@@ -139,7 +139,7 @@ class OrderDubbingController extends Controller
         //return($order);
         //dd($order);
 
-        return redirect(route('order-dubbing.show', $id_order))->with('success', 'Berhasil di upload!');
+        return redirect(route('order-dubbing.show', $id_order))->with('success', 'Berhasil di update!');
     }
 
     /**
@@ -151,6 +151,6 @@ class OrderDubbingController extends Controller
     function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect(route('order-dubbing.index'))->with('success','data berhasil di hapus');
+        return redirect(route('order-dubbing.index'))->with('success','Order berhasil di hapus');
     }
 }

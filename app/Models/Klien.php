@@ -1,15 +1,16 @@
 <?php
 
+
 namespace App\Models;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\User;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\Order as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 
 class Klien extends Model
 {
+    use HasFactory;
     protected $table = 'klien';
     protected $primaryKey = 'id_klien';
 

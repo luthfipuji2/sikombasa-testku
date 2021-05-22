@@ -54,12 +54,14 @@ class OrderDokumenController extends Controller
         if($request->hasFile('path_file')){
             $validate_data = $request->validate([
                 'jenis_layanan'=>'required',
+                'jenis_teks'=>'required',
                 'durasi_pengerjaan'=>'required',
                 'nama_dokumen'=>'required',
                 'path_file'=>'required|file|max:10000',
             ]);
 
             $jenis_layanan = $validate_data['jenis_layanan'];
+            $jenis_teks = $validate_data['jenis_teks'];
             $durasi = $validate_data['durasi_pengerjaan'];
             $ext_template = $validate_data['path_file']->extension();
             $size_template = $validate_data['path_file']->getSize();
@@ -72,6 +74,7 @@ class OrderDokumenController extends Controller
             $order_dokumen=Order::create([
                 'id_klien'=>$klien->id_klien,
                 'jenis_layanan'=>$jenis_layanan,
+                'jenis_teks'=>$jenis_teks,
                 'durasi_pengerjaan'=>$durasi,
                 'nama_dokumen'=>$nama_dokumen,
                 'path_file'=>$path_template,
@@ -128,6 +131,7 @@ class OrderDokumenController extends Controller
         Order::where('id_order', $id_order)
             ->update([
                 'jenis_layanan'=>$request->jenis_layanan,
+                'jenis_teks'=>$request->jenis_teks,
                 'durasi_pengerjaan'=>$request->durasi_pengerjaan,
                 'nama_dokumen'=>$request->nama_dokumen,
                 'path_file'=>$request->path_file,
@@ -135,7 +139,7 @@ class OrderDokumenController extends Controller
         //return($order);
         //dd($order);
 
-        return redirect(route('order-dokumen.show', $id_order))->with('success', 'Berhasil di upload!');
+        return redirect(route('order-dokumen.show', $id_order))->with('success', 'Berhasil di update!');
     }
 
     /**
@@ -147,6 +151,6 @@ class OrderDokumenController extends Controller
     function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect(route('order-dokumen.index'))->with('success','data berhasil di hapus');
+        return redirect(route('order-dokumen.index'))->with('success','Order berhasil di hapus');
     }
 }
