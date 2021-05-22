@@ -200,7 +200,7 @@
                         </div>
                       </div>
 
-                      <div class="form-group row">
+                      <!-- <div class="form-group row">
                         <label for="profile_photo_path" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
                           <input type="file" name="profile_photo_path" value="{{ old('profile_photo_path') }}" class="form-input @error('foto_ktp') is-invalid @enderror">
@@ -210,7 +210,7 @@
                           </div>
                           @enderror
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group row">
                         <div class="col-sm-10">
