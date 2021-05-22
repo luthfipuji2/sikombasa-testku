@@ -47,9 +47,9 @@ class CareerController extends Controller
         $id = $request->id;
         $nm_ktp=$foto_ktp->getClientOriginalName();
 
-        $profile_photo_path = $request->profile_photo_path;
-        $nm_pp = $profile_photo_path->getClientOriginalName();
-        $path = $profile_photo_path->storeAs('public/img/profile', $nm_pp);
+        // $profile_photo_path = $request->profile_photo_path;
+        // $nm_pp = $profile_photo_path->getClientOriginalName();
+        // $path = $profile_photo_path->storeAs('public/img/profile', $nm_pp);
 
         $translator = new Translator;
         $translator->id = $id;
@@ -70,7 +70,7 @@ class CareerController extends Controller
         $translator->foto_ktp = $nm_ktp;
 
         $foto_ktp->move(public_path().'\img\biodata', $nm_ktp);
-        $profile_photo_path->move(public_path().'\img\profile', $nm_pp);
+        // $profile_photo_path->move(public_path().'\img\profile', $nm_pp);
 
         $translator->save();
         return redirect('/document')->with('toast_success', 'Data Created Successfully!');
