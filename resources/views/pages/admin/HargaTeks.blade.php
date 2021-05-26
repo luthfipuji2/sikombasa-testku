@@ -160,12 +160,12 @@
                 <table id="datatable" class="table table-bordered">
                   <thead>   
                   <tr>
-                    <th>No</th>
+                    <th scope="row" class="text-center">No</th>
                     <th hidden>ID Harga</th>
-                    <th>Jenis Layanan</th>
-                    <th>Jumlah Karakter</th>
-                    <th>Harga</th>
-                    <th>Action</th>
+                    <th scope="row" class="text-center">Jenis Layanan</th>
+                    <th scope="row" class="text-center">Jumlah Karakter</th>
+                    <th scope="row" class="text-center">Harga</th>
+                    <th scope="row" class="text-center">Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -173,10 +173,10 @@
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
                     <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
-                    <td>{{$harga->p_jenis_layanan}}</td>
-                    <td>{{$harga->p_jumlah_karakter}}</td>
-                    <td>{{$harga->harga}}</td>
-                    <td>
+                    <td scope="row" class="text-center">{{$harga->p_jenis_layanan}}</td>
+                    <td scope="row" class="text-center">{{$harga->p_jumlah_karakter}}</td>
+                    <td scope="row" class="text-center">{{$harga->harga}}</td>
+                    <td scope="row" class="text-center">
                       <button type="button" class="btn btn-sm btn-primary edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
                       <a href="#" class="btn btn-sm btn-danger delete" harga-num="{{$loop->iteration}}" harga-id="{{$harga->id_parameter_order}}"><i class="fas fa-trash-alt"></i></a>
                     </td>
