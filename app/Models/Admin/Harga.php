@@ -17,6 +17,7 @@ class Harga extends Model
         'p_jumlah_karakter',
         'p_jumlah_halaman',
         'p_jenis_layanan',
-        'harga'
+        'harga',
+        'p_tipe_transkrip'
     ];
 }
