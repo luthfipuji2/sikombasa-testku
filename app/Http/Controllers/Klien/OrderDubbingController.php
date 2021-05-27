@@ -51,6 +51,7 @@ class OrderDubbingController extends Controller
      */
     public function store(Request $request, Order $order_dubbing)
     {
+        return($request);
         if($request->hasFile('path_file')){
             $validate_data = $request->validate([
                 'jenis_layanan'=>'required',

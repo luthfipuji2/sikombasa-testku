@@ -161,14 +161,20 @@
                     {{-- text --}}
                     <label for="durasi_pengerjaan">Text</label>
                     <div class="form-group">
-                        <textarea type="text" class="form-control" id="text" placeholder="Tulis text Disini" rows="20"
+                        <textarea type="text" class="form-control" id="text" oninput="countWord()" placeholder="Tulis text Disini" rows="20"
                             name="text" height="20">{{old('text')}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jml_karakter" class="col-form-label">Word Count : </label>
+                        <input type="hidden" name="jumlah_karakter" id="jumlah_karakter">
+                        <span type="text"  id="jml_karakter" name="jml_karakter">
                     </div>
 
                     <hr>
                     </div>
                     <div class="col-sm-2">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <input type="submit" class="btn btn-primary" onclick="countWords()" ></input>
                     </div>
                     <br>
                 </form>
@@ -249,34 +255,22 @@ $(document).ready(function() {
 
 @push('scripts')
 <script>
-        function submit() {
-  
-            // Get the input text value
-            var text = document
-                .getElementById("text").value;
-  
-            // Initialize the word counter
-            var numWords = 0;
-  
-            // Loop through the text
-            // and count spaces in it 
-            for (var i = 0; i < text.length; i++) {
-                var currentCharacter = text[i];
-  
-                // Check if the character is a space
-                if (currentCharacter == " ") {
-                    numWords += 1;
-                }
-            }
-  
-            // Add 1 to make the count equal to
-            // the number of words 
-            // (count of words = count of spaces + 1)
-            numWords += 1;
-  
-            // Display it as output
-            document.getElementById("show")
-                .innerHTML = numWords;
-        }
-    </script>
+		function countWord() {
+			var words = document
+				.getElementById("text").value;
+			var count = 0;
+
+			var split = words.split(' ');
+
+			for (var i = 0; i < split.length; i++) {
+				if (split[i] != "") {
+					count += 1;
+				}
+			}
+
+            $('#jumlah_karakter').val(count)
+			document.getElementById("jml_karakter")
+				.innerHTML = count;
+		}
+	</script>
     @endpush
