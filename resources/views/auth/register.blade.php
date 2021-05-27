@@ -1,4 +1,10 @@
 <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+<link rel="stylesheet" href="{{ asset('css/particle.css') }}">
+
+<!-- particles.js container --> 
+<div id="particles-js"></div> 
+<!-- stats - count particles --> 
+<div class="count-particles"> 
 
 <div class="wrap">
 <div class="container">
@@ -6,14 +12,9 @@
     <div class="col-md-8">
         <div class="card">
 
-<div class="flip-container" id='flippr'>
-    <div class="flipper">
-    <div class="front"></div>
-    <div class="back"></div>
-    </div>
-</div>
 
 <h1 class="text" id="welcome">Welcome. <span>please Register.</span></h1>
+<br>
 
 <form method='post' id="theForm" action="{{ route('register') }}">
 @csrf
@@ -71,4 +72,9 @@
 
 </div><!-- /wrap -->
 
+</div> 
+    <!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> 
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> 
+
 <script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/particle.js') }}"></script>

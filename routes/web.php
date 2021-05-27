@@ -29,12 +29,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['klien'])->group(function () {
         
+        //biodata
         Route::resource('profile-klien', 'App\Http\Controllers\Klien\BiodataKlienController');
         Route::patch('biodata-klien/{users}', 'App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien');
-
         Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
-        // Route::resource('profile-klien', 'App\Http\Controllers\Klien\BiodataKlienController');
-        // Route::patch('/biodata-klien/{users}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
 
         Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
 
@@ -127,18 +125,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/hire', [App\Http\Controllers\Admin\HiringController::class, 'index']);
         Route::get('/{id_translator}', [App\Http\Controllers\Admin\HiringController::class, 'show'])->name('hire.show');
     });
- 
-
-
-        //order dubbing
-        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
-        Route::resource('order-dubbing', 'App\Http\Controllers\Klien\OrderDubbingController');
-        Route::put('/order-dubbing/{id_order}', 'App\Http\Controllers\Klien\OrderDubbingController@update')->name('update_order_dubbing');
-        
-        //order subtitle
-        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
-        Route::resource('order-subtitle', 'App\Http\Controllers\Klien\OrderSubtitleController');
-        Route::put('/order-subtitle/{id_order}', 'App\Http\Controllers\Klien\OrderSubtitleController@update')->name('update_order_subtitle');
 
         Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
        

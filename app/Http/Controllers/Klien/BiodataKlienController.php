@@ -72,8 +72,8 @@ class BiodataKlienController extends Controller
 
         $user = Auth::user();
         $id = $user->id;
-        $path_template = Storage::putFileAs('public/img/biodata', $request->file('foto_ktp'));
-        
+        //$path_template = Storage::putFileAs('public/img/biodata', $request->file('foto_ktp'));
+
         $profile = new Klien;
         $profile->id = $id;
         $profile->nik = $request->nik;
