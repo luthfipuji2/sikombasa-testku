@@ -59,8 +59,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
         Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
         Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
-
-
+    
+        Route::get('/bukti/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@download')->name('bukti.download');
+        Route::get('/invoice/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@invoice')->name('pdf.download');
     });
  
     //Route Admin
@@ -126,22 +127,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id_translator}', [App\Http\Controllers\Admin\HiringController::class, 'show'])->name('hire.show');
     });
 
-        Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
-       
-        Route::get('/bukti/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@download')->name('bukti.download');
-        Route::get('/invoice/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@invoice')->name('pdf.download');
-
-
-        Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
-        Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
-
-
-    });
-
-    
- 
     Route::get('/logout', function() {
         Auth::logout();
         redirect('/');
     });
- 
+
+    });
