@@ -57,6 +57,10 @@
                                     <td>{{$order->jenis_layanan}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Jenis Teks</td>
+                                    <td>{{$order->jenis_teks}}</td>
+                                </tr>
+                                <tr>
                                     <td>Durasi Pengerjaan</td>
                                     <td>{{$order->durasi_pengerjaan}} Hari</td>
                                 </tr>
@@ -64,6 +68,10 @@
                                     <td>Text</td>
                                     <td>{{$order->text}}</td>
                                 </tr>
+
+                                <p> Word Count:
+                                <span id="show">0</span>
+                                </p>
                             </tbody>
                         </table>
                         <button class="btn btn-success mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-sign-in-alt"></i>   Transaksi</button>
@@ -92,7 +100,7 @@
             <input type="text" name="idLampiran" value="{{$order->id_order}}" hidden></td>
             <div class="form-group">
                 <label for="jenis_layanan">Jenis Layanan</label>
-                <input type="text" class="form-control" placeholder="Masukkan nama lampiran" name="jenis_layanan" id="jenis_layanan" value="{{$order->jenis_layanan}}" readonly>
+                <input type="text" class="form-control" placeholder="Masukkan jenis layanan" name="jenis_layanan" id="jenis_layanan" value="{{$order->jenis_layanan}}" readonly>
             </div>
 
             <div class="form-check">
@@ -108,6 +116,26 @@
             </label>
             </div>
             <br>
+
+            <div class="form-group">
+                <label for="jenis_teks">Jenis Teks</label>
+                <input type="text" class="form-control" placeholder="Masukkan jenis teks" name="jenis_teks" id="jenis_teks" value="{{$order->jenis_teks}}" readonly>
+            </div>
+
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_teks" name="jenis_teks" value="umum">
+            <label class="form-check-label" for="jenis_teks">
+                Umum
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_teks"  name="jenis_teks" value="khusus">
+            <label class="form-check-label" for="jenis_teks">
+                Khusus
+            </label>
+            </div>
+
+            <br>
             <div class="form-group">
                 <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
                 <input type="number" class="form-control" placeholder="Masukkan nama lampiran" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}">
@@ -119,6 +147,7 @@
                     <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>
+
         </div>
 
         <div class="modal-footer">
@@ -149,3 +178,37 @@
         } );
     </script>
 @endpush
+
+@push('scripts')
+<script>
+        function submit() {
+  
+            // Get the input text value
+            var text = document
+                .getElementById("text").value;
+  
+            // Initialize the word counter
+            var numWords = 0;
+  
+            // Loop through the text
+            // and count spaces in it 
+            for (var i = 0; i < text.length; i++) {
+                var currentCharacter = text[i];
+  
+                // Check if the character is a space
+                if (currentCharacter == " ") {
+                    numWords += 1;
+                }
+            }
+  
+            // Add 1 to make the count equal to
+            // the number of words 
+            // (count of words = count of spaces + 1)
+            numWords += 1;
+  
+            // Display it as output
+            document.getElementById("show")
+                .innerHTML = numWords;
+        }
+    </script>
+    @endpush

@@ -52,27 +52,38 @@ class OrderTeksController extends Controller
      */
     public function store(Request $request, Order $order_teks)
     {
+        // return($request);
+        
         $validate_data=$request->validate([
             'jenis_layanan'=>'required',
+            'jenis_teks'=>'required',
             'durasi_pengerjaan'=>'required',
             'text'=>'required',
+            'jumlah_karakter'=>'required',
         ]);
-
+        
+        
         $jenis_layanan = $validate_data['jenis_layanan'];
+        $jenis_teks = $validate_data['jenis_teks'];
         $durasi = $validate_data['durasi_pengerjaan'];
         $text = $validate_data['text'];
+        $jumlah_karakter = $validate_data['jumlah_karakter'];
         $tgl_order=Carbon::now()->timestamp;
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
+        
 
         $order_teks=Order::create([
             'id_klien'=>$klien->id_klien,
             'jenis_layanan'=>$jenis_layanan, 
+            'jenis_teks'=>$jenis_teks,
             'text'=>$text,
+            'jumlah_karakter'=>$jumlah_karakter,
             'durasi_pengerjaan'=>$durasi,
             'tgl_order'=>$tgl_order,
             'is_status'=>'belum dibayar',
         ]);
+        
 
         $id_order=$order_teks->id_order;
         return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di upload!');
@@ -122,13 +133,14 @@ class OrderTeksController extends Controller
         Order::where('id_order', $id_order)
             ->update([
                 'jenis_layanan'=>$request->jenis_layanan,
+                'jenis_teks'=>$request->jenis_teks,
                 'durasi_pengerjaan'=>$request->durasi_pengerjaan,
                 'text'=>$request->text,
             ]);
         //return($order);
         //dd($order);
 
-        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di upload!');
+        return redirect(route('order-teks.show', $id_order))->with('success', 'Berhasil di update!');
     }
 
     /**
@@ -140,7 +152,7 @@ class OrderTeksController extends Controller
     function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect(route('order-teks.index'))->with('success','data berhasil di hapus');
+        return redirect(route('order-teks.index'))->with('success','Order berhasil di hapus');
 
     }
 }

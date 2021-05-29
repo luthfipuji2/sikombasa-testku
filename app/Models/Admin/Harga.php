@@ -11,12 +11,13 @@ class Harga extends Model
     protected $table = 'parameter_order';
     protected $primaryKey = 'id_parameter_order';
     protected $fillable = [
-        'durasi_file',
-        'jumlah_dubber',
-        'durasi_pertemuan',
-        'jumlah_karakter',
-        'jumlah_halaman',
-        'jenis_layanan',
-        'harga'
+        'p_durasi_file',
+        'p_jumlah_dubber',
+        'p_durasi_pertemuan',
+        'p_jumlah_karakter',
+        'p_jumlah_halaman',
+        'p_jenis_layanan',
+        'harga',
+        'p_tipe_transkrip'
     ];
 }

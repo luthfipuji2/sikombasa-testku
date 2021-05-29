@@ -22,6 +22,7 @@ class CreateOrderTable extends Migration
             $table->unsignedBigInteger('id_parameter_order')->nullable();
             $table->foreign('id_parameter_order')->references('id_parameter_order')->on('parameter_order')->onDelete('cascade');
             $table->string('jenis_layanan')->nullable();
+            $table->string('jenis_teks')->nullable();
             $table->string('jumlah_halaman')->nullable();
             $table->string('text')->nullable();
             $table->string('nama_dokumen')->nullable();

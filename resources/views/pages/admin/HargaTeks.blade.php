@@ -19,20 +19,6 @@
 
       {{ csrf_field() }}
         <div class="modal-body">
-            <!-- <div class="form-group">
-                <label for="p_jenis_layanan">Jenis Layanan</label>
-                    <select class="form-control @error('p_jenis_layanan') is-invalid @enderror" 
-                    id="p_jenis_layanan" placeholder="Jenis Layanan" name="p_jenis_layanan">
-                        <option value="{{old('p_jenis_layanan')}}" hidden selected>{{old('p_jenis_layanan')}}</option>
-                        <option value="Basic">Basic</option>
-                        <option value="Premium">Premium</option>
-                    </select>
-                    @error ('p_jenis_layanan')
-                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                    @enderror
-            </div> -->
 
             <div class="form-group">
                 <label>Jenis Layanan</label>
@@ -171,15 +157,15 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="datatable" class="table table-bordered table-striped">
+                <table id="datatable" class="table table-bordered">
                   <thead>   
                   <tr>
-                    <th>No</th>
+                    <th scope="row" class="text-center">No</th>
                     <th hidden>ID Harga</th>
-                    <th>Jenis Layanan</th>
-                    <th>Jumlah Karakter</th>
-                    <th>Harga</th>
-                    <th>Action</th>
+                    <th scope="row" class="text-center">Jenis Layanan</th>
+                    <th scope="row" class="text-center">Jumlah Karakter</th>
+                    <th scope="row" class="text-center">Harga</th>
+                    <th scope="row" class="text-center">Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -187,10 +173,10 @@
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
                     <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
-                    <td>{{$harga->p_jenis_layanan}}</td>
-                    <td>{{$harga->p_jumlah_karakter}}</td>
-                    <td>{{$harga->harga}}</td>
-                    <td>
+                    <td scope="row" class="text-center">{{$harga->p_jenis_layanan}}</td>
+                    <td scope="row" class="text-center">{{$harga->p_jumlah_karakter}}</td>
+                    <td scope="row" class="text-center">{{$harga->harga}}</td>
+                    <td scope="row" class="text-center">
                       <button type="button" class="btn btn-sm btn-primary edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
                       <a href="#" class="btn btn-sm btn-danger delete" harga-num="{{$loop->iteration}}" harga-id="{{$harga->id_parameter_order}}"><i class="fas fa-trash-alt"></i></a>
                     </td>

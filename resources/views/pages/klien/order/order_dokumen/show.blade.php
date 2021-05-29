@@ -59,6 +59,10 @@
                                     <td>{{$order->jenis_layanan}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Jenis Dokumen</td>
+                                    <td>{{$order->jenis_teks}}</td>
+                                </tr>
+                                <tr>
                                     <td>Durasi Pengerjaan</td>
                                     <td>{{$order->durasi_pengerjaan}}</td>
                                 </tr>
@@ -122,6 +126,27 @@
                 Premium
             </label>
             </div>
+
+            <br>
+            <div class="form-group">
+                <label for="jenis_teks">Jenis Dokumen</label>
+                <input type="text" class="form-control" placeholder="Masukkan jenis dokumen" name="jenis_teks" id="jenis_teks" value="{{$order->jenis_teks}}" readonly>
+            </div>
+
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_teks" name="jenis_teks" value="umum">
+            <label class="form-check-label" for="jenis_teks">
+                Umum
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="jenis_teks"  name="jenis_teks" value="khusus">
+            <label class="form-check-label" for="jenis_teks">
+                Khusus
+            </label>
+            </div>
+
+
             <br>
             <div class="form-group">
                 <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
@@ -136,7 +161,7 @@
                         <div class="modal-body">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                <h6 for="durasi_pengerjaan"> * Dokumen Anda = {{$order->path_file}}</h6>
+                                <h6 for="path_file"> * Dokumen Anda = {{$order->path_file}}</h6>
                                 <br>
                                     <input type="file" name="path_file" required="required" value="{{$order->path_file}}">
                                 </div>

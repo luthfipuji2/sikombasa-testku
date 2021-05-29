@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="active tab-pane" id="certificate">
-                <form action="/order-subtitle" method="POST" enctype="multipart/form-data">
+                <form action="{{route('order-subtitle.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- layanan basic -->
         <div class="card card-statistic-1">
@@ -42,9 +42,9 @@
             <div class="card-wrap">
                 <div class="card-header">
                 <div>
-                <button onclick="layanan_basic()" class="btn btn-info">
+                <a onclick="layanan_basic()" class="btn btn-info">
                     <label for="basic">Layanan Basic</label>
-                </button>
+                </a>
                 </div>
                 <div class="card-body">
                 </div>
@@ -69,9 +69,9 @@
             <div class="card-wrap">
                 <div class="card-header">
                 <div>
-                <button onclick="layanan_premium()" class="btn btn-info">
+                <a onclick="layanan_premium()" class="btn btn-info">
                     <label for="premium">Layanan Premium</label>
-                </button>
+                </a>
                 </div>
                 <div class="card-body">
                 </div>
@@ -114,9 +114,16 @@
                         <div class="modal-body">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <input type="file" name="path_file" required="required">
+                                    <input type="file" id="path_file"  name="path_file" id="path_file" required="required">
                                 </div>
+                            
                             </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dr_video" class="col-form-label">Count : </label>
+                        <input type="hidden" name="durasi_video" id="durasi_video">
+                        <span type="text"  id="dr_video" name="dr_video">
                     </div>
                     <hr>
                     
@@ -161,7 +168,7 @@ $(document).ready(function() {
 <script >		
     // membuat function tampilkan_nama
     function layanan_basic(){
-        document.getElementById("basic").innerHTML = "Mendapatkan Garansi Selama 3 Bulan Saat Pertama Kali Order<hr>";
+        document.getElementById("basic").innerHTML = " * Klien Dapat Memilih Penerjemah <br> * Tidak Terdapat Editor <br> * Tidak ada Garansi <hr>";
     }
     
 </script>
@@ -171,8 +178,43 @@ $(document).ready(function() {
 <script >		
     // membuat function tampilkan_nama
     function layanan_premium(){
-        document.getElementById("premium").innerHTML = "<hr>* Free Video Editing <br> * Mendapatkan Garansi Selama 1 Tahun Saat Pertama Kali Order <hr> ";
+        document.getElementById("premium").innerHTML = " * Translator Ditentukan <br> * Terdapat Proses Editing <br> *  Bergaransi <hr>";
     }
-    
+</script>
+@endpush
+
+@push('scripts')
+    <script>
+        var myVideos = [];
+        window.URL = window.URL || window.webkitURL;
+        document.getElementById('path_file').onchange = setFileInfo;
+
+        function setFileInfo() {
+        var files = this.files;
+        myVideos.push(files[0]);
+        var video = document.createElement('video');
+        video.preload = 'metadata';
+
+        video.onloadedmetadata = function() {
+            window.URL.revokeObjectURL(video.src);
+            var duration = video.duration;
+            myVideos[myVideos.length - 1].duration = duration;
+            updateInfos();
+        }
+
+        video.src = URL.createObjectURL(files[0]);;
+        }
+
+        
+        function updateInfos() {
+        $("#durasi_video").val()
+        var dr_video = document.getElementById("dr_video");
+        
+        dr_video.textContent = "";
+        for (var i = 0; i < myVideos.length; i++) {
+            dr_video.textContent += myVideos[i].name + " duration: " + myVideos[i].duration + '\n';
+        }
+        }
+
 </script>
 @endpush

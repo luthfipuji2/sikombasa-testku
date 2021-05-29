@@ -50,16 +50,20 @@ class OrderSubtitleController extends Controller
      */
     public function store(Request $request, Order $order_subtitle)
     {
+        //return($request);
         if($request->hasFile('path_file')){
             $validate_data = $request->validate([
                 'jenis_layanan'=>'required',
                 'durasi_pengerjaan'=>'required',
                 'nama_dokumen'=>'required',
                 'path_file'=>'required|file|max:10000',
+                //'durasi_video'=>'required',
             ]);
+        //exit;
 
             $jenis_layanan = $validate_data['jenis_layanan'];
             $durasi = $validate_data['durasi_pengerjaan'];
+            //$durasi_video = $validate_data['durasi_video'];
             $ext_template = $validate_data['path_file']->extension();
             $size_template = $validate_data['path_file']->getSize();
             $user=Auth::user();
@@ -74,6 +78,7 @@ class OrderSubtitleController extends Controller
                 'durasi_pengerjaan'=>$durasi,
                 'nama_dokumen'=>$nama_dokumen,
                 'path_file'=>$path_template,
+                'durasi_video'=>$request->durasi_video,
                 'ekstensi'=>$ext_template,
                 'size'=>$size_template,
                 'tgl_order'=>Carbon::now()->timestamp,
@@ -135,7 +140,7 @@ class OrderSubtitleController extends Controller
         //return($order);
         //dd($order);
 
-        return redirect(route('order-subtitle.show', $id_order))->with('success', 'Berhasil di upload!');
+        return redirect(route('order-subtitle.show', $id_order))->with('success', 'Berhasil di update!');
     }
 
     /**
@@ -147,6 +152,6 @@ class OrderSubtitleController extends Controller
     function destroy($id_order)
     {
         Order::destroy($id_order);
-        return redirect(route('order-subtitle.index'))->with('success','data berhasil di hapus');
+        return redirect(route('order-subtitle.index'))->with('success','Order berhasil di hapus');
     }
 }

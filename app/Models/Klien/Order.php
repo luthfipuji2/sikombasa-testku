@@ -21,6 +21,7 @@ class Order extends Model
         'id_translator',
         'id_parameter_order',
         'jenis_layanan',
+        'jenis_teks',
         'jumlah_halaman',
         'text',
         'nama_file',

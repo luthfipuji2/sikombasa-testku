@@ -28,10 +28,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::middleware(['klien'])->group(function () {
-        //Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin');
-        Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
+        
+        //biodata
         Route::resource('profile-klien', 'App\Http\Controllers\Klien\BiodataKlienController');
-        Route::patch('/biodata-klien/{users}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
+        Route::patch('biodata-klien/{users}', 'App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien');
+        Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
+
         Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
 
         //order menu dokumen
@@ -65,8 +67,10 @@ Route::middleware(['auth'])->group(function () {
        Route::put('/order-transkrip/{id_order}', 'App\Http\Controllers\Klien\OrderTranskripController@update')->name('update_order_transkrip');
        Route::post('/order-transkrip/create', [OrderTranskripController::class, 'store']);
 
-       Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
-   });
+        Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
+        Route::get('/bukti/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@download')->name('bukti.download');
+        Route::get('/invoice/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@invoice')->name('pdf.download');
+    });
  
     //Route Admin
     Route::middleware(['admin'])->group(function () {
@@ -99,6 +103,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('profile-admin', 'App\Http\Controllers\Admin\ProfileController');
         Route::patch('biodata-admin/{users}', 'App\Http\Controllers\Admin\ProfileController@updateBiodata');
         Route::resource('daftar-transaksi', 'App\Http\Controllers\Admin\DaftarTransaksiController');
+        Route::resource('distribusi-fee', 'App\Http\Controllers\Admin\DistribusiFeeController');
         
         
 
@@ -129,35 +134,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/hire', [App\Http\Controllers\Admin\HiringController::class, 'index']);
         Route::get('/{id_translator}', [App\Http\Controllers\Admin\HiringController::class, 'show'])->name('hire.show');
     });
- 
 
-
-        //order dubbing
-        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
-        Route::resource('order-dubbing', 'App\Http\Controllers\Klien\OrderDubbingController');
-        Route::put('/order-dubbing/{id_order}', 'App\Http\Controllers\Klien\OrderDubbingController@update')->name('update_order_dubbing');
-        
-        //order subtitle
-        Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
-        Route::resource('order-subtitle', 'App\Http\Controllers\Klien\OrderSubtitleController');
-        Route::put('/order-subtitle/{id_order}', 'App\Http\Controllers\Klien\OrderSubtitleController@update')->name('update_order_subtitle');
-
-        Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
-       
-        Route::get('/bukti/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@download')->name('bukti.download');
-        Route::get('/invoice/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@invoice')->name('pdf.download');
-
-
-        Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
-        Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
-
-
-    });
-
-    
- 
     Route::get('/logout', function() {
         Auth::logout();
         redirect('/');
     });
- 
+
+    });

@@ -24,7 +24,7 @@ class BiodataKlienController extends Controller
     }
 
     //buat menu
-    public function index(Klien $klien, User $user){
+    public function index(){
 
         // $user = Auth::user();
         // $user_id = $user->id;
@@ -49,47 +49,51 @@ class BiodataKlienController extends Controller
     }
 
     public function show(Klien $klien){
-        $user = Auth::user();
-        $klien=Klien::where('id_klien', $user->id)->first();
-        return view('pages.klien.showBiodata', compact('klien', 'user'));
+        // $user = Auth::user();
+        // $klien=Klien::where('id_klien', $user->id)->first();
+        // return view('pages.klien.showBiodata', compact('klien', 'user'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'jenis_kelamin' => 'required',
-            'tgl_lahir' => 'required',
-            'no_telp' => 'required',
-            'alamat' => 'required',
-            'kecamatan' => 'required',
-            'kabupaten' => 'required',
-            'provinsi' => 'required',
-            'kode_pos' => 'required',
-            'foto_ktp'=>'required|file|max:10000',
-        ]);
+        //return($request);
+        // $this->validate($request,[
+        //     'nik'=>'required',
+        //     'alamat' => 'required',
+        //     'provinsi' => 'required',
+        //     'kabupaten' => 'required',
+        //     'kecamatan' => 'required',
+        //     'kode_pos' => 'required',
+        //     'tgl_lahir' => 'required',
+        //     'jenis_kelamin' => 'required',
+        //     'no_telp' => 'required',
+        //     'foto_ktp'=>'required|file|max:10000',
+        // ]);
 
         $user = Auth::user();
         $id = $user->id;
-        $path_template = Storage::putFileAs('public/foto_profile', $request->file('foto_ktp'));
-        
-        Klien::create([
-            'id' => $request->id,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tgl_lahir' => $request->tgl_lahir,
-            'no_telp' => $request->no_telp,
-            'alamat' => $request->alamat,
-            'kecamatan' => $request->kecamatan,
-            'kabupaten' => $request->kabupaten,
-            'provinsi' => $request->provinsi,
-            'kode_pos' => $request->kode_pos,
-            'foto_ktp'=>$path_template,
-        ]);
+        //$path_template = Storage::putFileAs('public/img/biodata', $request->file('foto_ktp'));
 
-        return redirect('/profile-klien')->with('success', 'Profile anda berhasil ditambahkan');
+        $profile = new Klien;
+        $profile->id = $id;
+        $profile->nik = $request->nik;
+        $profile->alamat = $request->alamat;
+        $profile->provinsi = $request->provinsi;
+        $profile->kabupaten = $request->kabupaten;
+        $profile->kecamatan = $request->kecamatan;
+        $profile->kode_pos = $request->kode_pos;
+        $profile->tgl_lahir = $request->tgl_lahir;
+        $profile->jenis_kelamin = $request->jenis_kelamin;
+        $profile->no_telp = $request->no_telp;
+        $profile->foto_ktp = $request->foto_ktp;
+        $profile->save();
+
+        return redirect()->route('profile-klien.index')->with('success', 'Profile anda berhasil ditambahkan'); 
+        //return redirect('/profile-klien')->with('success', 'Profile anda berhasil ditambahkan');
     }
 
 
-    public function update(Request $request){
+    public function update(Request $request, $id){
         $user = Auth::user();
 
         $this->validate($request,[
@@ -108,45 +112,60 @@ class BiodataKlienController extends Controller
             ]);
         }
 
+        if($request->hasFile('profile_photo_path')){
+            
+            $request->file('profile_photo_path')->move('images/',
+            $request->file('profile_photo_path')->getClientOriginalName()); //Memindahkan request photo ke folder image
+
+            $currentPhoto = $user->profile_photo_path;
+
+            $userPhoto = public_path('images/').$currentPhoto;
+            if(file_exists($userPhoto)){
+                @unlink($userPhoto);
+            }
+        }
+
         User::where('id', $user->id)
                     ->update([
                         'name'    => $request->name,
                         'email'     => $request->email,
                     ]);
 
-        return redirect('/profile')->with('success', 'Profile anda berhasil diubah');
+        return redirect('/profile-klien')->with('success', 'Profile anda berhasil diubah');
     }
     
     public function updateBioKlien(Request $request, $id_klien){
 
         $this->validate($request,[
             'id' => 'required',
-            'jenis_kelamin' => 'required',
-            'tgl_lahir' => 'required',
-            'no_telp' => 'required',
+            'nik'=>'required',
             'alamat' => 'required',
-            'kecamatan' => 'required',
-            'kabupaten' => 'required',
             'provinsi' => 'required',
+            'kabupaten' => 'required',
+            'kecamatan' => 'required',
             'kode_pos' => 'required',
+            'tgl_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'no_telp' => 'required',
             'foto_ktp'=>'required|file|max:10000',
         ]);
 
         $user = Auth::user();
       
         $klien= Klien::find($id_klien);
-        $path_template = Storage::putFileAs('public/foto_profile', $request->file('foto_ktp'));
+        $path_template = Storage::putFileAs('public/img/biodata', $request->file('foto_ktp'));
         
         Klien::where('id_klien', $klien->id_klien)->update([
             'id' => $request->id,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tgl_lahir' => $request->tgl_lahir,
-            'no_telp' => $request->no_telp,
+            'nik'=>$request->nik,
             'alamat' => $request->alamat,
-            'kecamatan' => $request->kecamatan,
-            'kabupaten' => $request->kabupaten,
             'provinsi' => $request->provinsi,
+            'kabupaten' => $request->kabupaten,
+            'kecamatan' => $request->kecamatan,
             'kode_pos' => $request->kode_pos,
+            'tgl_lahir' => $request->tgl_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'no_telp' => $request->no_telp,
             'foto_ktp'=>$path_template,
         ]);
 
