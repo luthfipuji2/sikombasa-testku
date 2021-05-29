@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Klien;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Models\Order;
-use App\Models\Klien;
+use App\Models\Klien\Order;
+use App\Models\Klien\Klien;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;

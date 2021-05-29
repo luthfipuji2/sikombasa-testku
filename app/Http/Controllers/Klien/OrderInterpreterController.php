@@ -2,33 +2,39 @@
 
 namespace App\Http\Controllers\Klien;
 
-use App\Models\User;
-use App\Models\Order;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Klien;
-use Illuminate\Http\Request;
+use App\User;
+use App\Models\Klien\Order;
+use App\Models\Klien\Klien;
+use App\Models\Klien\SearchLocation ;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class OrderInterpreterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function dashboard()
     {
         $user = Auth::user();
         return view('pages.klien.home', compact('user'));
     }
     
-    public function index()
+    public function menuOrder()
     {
         $menu=Order::all();
-        return view('pages.klien.order_interpreter', compact('menu'));
+        return view('pages.klien.menu_order', compact('menu'));
     }
 
+    public function index(){
+        $menu=Order::all();
+       
+        return view('pages.klien.order.order_interpreter.index',compact('menu')); 
+    }     
     /**
      * Show the form for creating a new resource.
      *
@@ -45,20 +51,40 @@ class OrderInterpreterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Order $order_interpreter)
     {
+        $validate_data=$request->validate([
+            'jenis_layanan'=>'required',
+            'durasi_pertemuan'=>'required',
+            'lokasi'=>'required',
+            'longitude'=>'required',
+            'latitude'=>'required',
+        ]);
+
+        $jenis_layanan = $validate_data['jenis_layanan'];
+        $durasi_pertemuan = $validate_data['durasi_pertemuan'];
+        $lokasi = $validate_data['lokasi'];
+        $longitude = $validate_data['longitude'];
+        $latitude = $validate_data['latitude'];
+        $tgl_order=Carbon::now()->timestamp;
         $user=Auth::user();
         $klien=Klien::where('id', $user->id)->first();
-        Order::create([
-           // 'id'=>$klien->id_klien,
-            'jenis_layanan'=>$request->jenis_layanan, 
-            'durasi_pertemuan'=>$request->durasi_pertemuan,
-            'lokasi'=>$request->lokasi,
-            'longitude'=>$request->longitude,
-            'latitude'=>$request->latitude
+
+        $order_interpreter=Order::create([
+            'id_klien'=>$klien->id_klien,
+            'jenis_layanan'=>$jenis_layanan,
+            'durasi_pertemuan'=>$durasi_pertemuan, 
+            'lokasi'=>$lokasi,
+            'longitude'=>$longitude,
+            'latitude'=>$latitude,
+            'tgl_order'=>$tgl_order,
+            'is_status'=>'belum dibayar',
         ]);
-        return redirect(route('menu-pembayaran.index'))->with('success', 'Data berhasil ditambahkan');
-    }
+
+        $id_order=$order_interpreter->id_order;
+        return redirect(route('order-interpreter.show', $id_order))->with('success', 'Berhasil di upload!');
+        } 
+    
 
     /**
      * Display the specified resource.
@@ -66,9 +92,13 @@ class OrderInterpreterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_order)
     {
-        //
+        $user=Auth::user();
+        $klien=Klien::where('id', $user->id)->first();
+
+        $order=Order::findOrFail($id_order);
+        return view('pages.klien.order.order_interpreter.show', compact('order', 'user', 'klien'));
     }
 
     /**
@@ -77,21 +107,34 @@ class OrderInterpreterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_order)
     {
-        //
+        //dd($order);
+        
+        // $this->validate($request, [
+        //     'jenis_layanan' => 'required',
+        //     'durasi_pengerjaan' => 'required',
+        //     'text' => 'required',
+        // ]);
+
+        // $order=Order::find($id_order);
+        $order=Order::findOrFail($id_order);
+
+        Order::where('id_order', $id_order)
+            ->update([
+                'jenis_layanan'=>$request->jenis_layanan,
+                'durasi_pertemuan'=>$request->durasi_pertemuan,
+                'lokasi'=>$request->lokasi,
+                'longitude'=>$request->longitude,
+                'latitude'=>$request->latitude,
+            ]);
+
+        return redirect(route('order-interpreter.show', $id_order))->with('success', 'Berhasil di upload!');
     }
 
     /**
@@ -100,9 +143,11 @@ class OrderInterpreterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    function destroy($id_order)
     {
-        //
+        Order::destroy($id_order);
+        return redirect(route('order-interpreter.index'))->with('success','data berhasil di hapus');
+
     }
 
 }
