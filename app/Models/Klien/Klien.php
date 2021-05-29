@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Klien;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Order as Authenticatable;
@@ -28,10 +28,15 @@ class Klien extends Model
     ];
 
     public function order(){
-        return $this->belongsTo('App\Models\Order', 'id_klien', 'id_klien');
+        return $this->belongsTo('App\Models\Klien\Order', 'id_klien', 'id_klien');
     }
 
     public function user(){
         return $this->hasMany('App\Models\User');
     }
+    
+    public function searchlokasi(){
+        return $this->belongsTo('App\Models\Klien\SearchLocation', 'id_lokasi','nama_lokasi');
+    }
+
 }

@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     
     public function klien(){
-        return $this->belongsTo('App\Klien');
+        return $this->belongsTo('App\Models\Klien\Klien');
 
     }
 }

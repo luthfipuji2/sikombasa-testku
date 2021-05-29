@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Klien;
 use App\Models\User;
-use App\Models\Order;
+use App\Models\Klien\Order;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Bank;
 use App\Models\Admin\Transaksi;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Klien;
+use App\Models\Klien\Klien;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
