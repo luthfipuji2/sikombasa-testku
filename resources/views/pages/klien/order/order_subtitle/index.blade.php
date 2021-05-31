@@ -114,15 +114,13 @@
                         <div class="modal-body">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <input type="file" id="path_file"  name="path_file" id="path_file" required="required">
+                                    <input type="file" id="path_file" name="path_file" required="required">
                                 </div>
-                            
                             </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="dr_video" class="col-form-label">Count : </label>
-                        <input type="hidden" name="durasi_video" id="durasi_video">
+                        <input type="hidden" name="durasi_video" id="durasi_video" oninput="updateInfos()">
                         <span type="text"  id="dr_video" name="dr_video">
                     </div>
                     <hr>
@@ -186,35 +184,47 @@ $(document).ready(function() {
 @push('scripts')
     <script>
         var myVideos = [];
+             console.log(myVideos);
         window.URL = window.URL || window.webkitURL;
         document.getElementById('path_file').onchange = setFileInfo;
 
         function setFileInfo() {
         var files = this.files;
+             console.log(files);
         myVideos.push(files[0]);
         var video = document.createElement('video');
+             console.log(video);
         video.preload = 'metadata';
 
         video.onloadedmetadata = function() {
             window.URL.revokeObjectURL(video.src);
             var duration = video.duration;
+                 console.log(duration);
+            $('#durasi_video').val(duration);
             myVideos[myVideos.length - 1].duration = duration;
-            updateInfos();
+            
         }
-
         video.src = URL.createObjectURL(files[0]);;
         }
 
-        
         function updateInfos() {
+        var duration = video.duration;
+             console.log(duration);
+        $('#durasi_video').val(duration);
+
         $("#durasi_video").val()
         var dr_video = document.getElementById("dr_video");
-        
+             console.log(dr_video);
+        $('#durasi_video').val(dr_video);
+
+        var durasi_video = document.getElementById("durasi_video");
+             console.log(durasi_video);
+            
         dr_video.textContent = "";
         for (var i = 0; i < myVideos.length; i++) {
+             console.log(i);
             dr_video.textContent += myVideos[i].name + " duration: " + myVideos[i].duration + '\n';
         }
         }
-
 </script>
 @endpush

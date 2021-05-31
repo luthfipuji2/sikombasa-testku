@@ -37,6 +37,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('klien')->except('logout');
+        $this->middleware(Auth::user())->except('logout');
     }
 }

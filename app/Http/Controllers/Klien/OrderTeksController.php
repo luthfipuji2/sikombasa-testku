@@ -136,6 +136,7 @@ class OrderTeksController extends Controller
                 'jenis_teks'=>$request->jenis_teks,
                 'durasi_pengerjaan'=>$request->durasi_pengerjaan,
                 'text'=>$request->text,
+                'jumlah_karakter'=>$request->jumlah_karakter,
             ]);
         //return($order);
         //dd($order);

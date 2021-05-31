@@ -58,11 +58,13 @@ class OrderDokumenController extends Controller
                 'durasi_pengerjaan'=>'required',
                 'nama_dokumen'=>'required',
                 'path_file'=>'required|file|max:10000',
+                'pages'=>'required',
             ]);
 
             $jenis_layanan = $validate_data['jenis_layanan'];
             $jenis_teks = $validate_data['jenis_teks'];
             $durasi = $validate_data['durasi_pengerjaan'];
+            $pages = $validate_data['pages'];
             $ext_template = $validate_data['path_file']->extension();
             $size_template = $validate_data['path_file']->getSize();
             $user=Auth::user();
@@ -80,6 +82,7 @@ class OrderDokumenController extends Controller
                 'path_file'=>$path_template,
                 'ekstensi'=>$ext_template,
                 'size'=>$size_template,
+                'pages'=>$pages,
                 'tgl_order'=>Carbon::now()->timestamp,
                 'is_status'=>'belum dibayar',
             ]);
@@ -135,6 +138,7 @@ class OrderDokumenController extends Controller
                 'durasi_pengerjaan'=>$request->durasi_pengerjaan,
                 'nama_dokumen'=>$request->nama_dokumen,
                 'path_file'=>$request->path_file,
+                'pages'=>$request->pages,
             ]);
         //return($order);
         //dd($order);

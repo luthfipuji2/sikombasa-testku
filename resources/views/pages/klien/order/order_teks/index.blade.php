@@ -174,7 +174,7 @@
                     <hr>
                     </div>
                     <div class="col-sm-2">
-                    <input type="submit" class="btn btn-primary" onclick="countWords()" ></input>
+                    <input type="submit" class="btn btn-primary" onclick="countWord()" ></input>
                     </div>
                     <br>
                 </form>

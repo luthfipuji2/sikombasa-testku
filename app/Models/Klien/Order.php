@@ -29,6 +29,7 @@ class Order extends Model
         'path_file',
         'size',
         'ekstensi',
+        'pages',
         'jumlah_karakter',
         'durasi_video',
         'jumlah_dubber',

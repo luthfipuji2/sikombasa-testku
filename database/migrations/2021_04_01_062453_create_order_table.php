@@ -30,6 +30,7 @@ class CreateOrderTable extends Migration
             $table->string('path_file')->nullable();
             $table->string('size')->nullable();
             $table->string('ekstensi')->nullable();
+            $table->integer('pages')->nullable();
             $table->integer('jumlah_karakter')->nullable();
             $table->string('durasi_video')->nullable();
             $table->integer('jumlah_dubber')->nullable();

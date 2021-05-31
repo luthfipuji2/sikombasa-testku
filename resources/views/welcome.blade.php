@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/benefit.css') }}">
     <link rel="stylesheet" href="{{ asset('css/price.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     
 
 
@@ -75,15 +76,58 @@
         </div>
     </div>
 
-
-    <!-- HOME SECTION -->
-    <section id="home" class="parallax-section">
+    <!-- slider photo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
         <div class="container">
-            <div class="row">
-                
+    <h2>Carousel Example</h2>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+
+        <div class="item active">
+            <img src="./img/3.jpg" alt="Los Angeles" style="width:100%;">
+            <div class="carousel-caption">
+            <h3>Los Angeles</h3>
+            <p>LA is always so much fun!</p>
             </div>
         </div>
-    </section>
+
+        <div class="item">
+            <img src="./img/2.jpg" alt="Chicago" style="width:100%;">
+            <div class="carousel-caption">
+            <h3>Chicago</h3>
+            <p>Thank you, Chicago!</p>
+            </div>
+        </div>
+        
+        <div class="item">
+            <img src="./img/11.jpg" alt="New York" style="width:100%;">
+            <div class="carousel-caption">
+            <h3>New York</h3>
+            <p>We love the Big Apple!</p>
+            </div>
+        </div>
+    
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+        </a>
+    </div>
+    </div>
 
 
     <!-- SERVICE SECTION -->
@@ -144,33 +188,35 @@
         <section id="work" class="parallax-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-10 col-sm-10">
                             <!-- SECTION TITLE -->
                             <div class="wow fadeInUp section-title" data-wow-delay="0.2s">
-                                <h2>Benefit</h2>
-                                
+                            <h2>Benefit</h2>
                             </div>
                     </div>
         <div class="container">
     <div class="row">
         <div class="col-md-4">
-        <div class="card card-1">
-            <h3>Ionic Native</h3>
-            <p>A curated set of   ES5/ES6/TypeScript wrappers for plugins to easily add any native functionality to your Ionic apps.</p>
+        <div class="card card-2">
+        <div class="text-center">
+        <img  src="./img/frontend/clock1.gif" style="width:40%; left: -25px;""></img>    
+        </div>
+            <h3>Ionic Native</h3><br><br>
+            <p>A curated set of   ES5/ES6/TypeScriptto your Ionic apps.</p>
         </div>
         </div>
         <div class="col-md-4">
         <div class="card card-2">
-            <h3>UI Components</h3>
-            <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library
-            of mobile UI components, ready to go.</p>
+        <img  src="./img/frontend/rocket.gif" style="width:30%; left: -15px;"></img>
+            <h3>Components</h3><br><br>
+            <p>Tabs, buttons, inputs, lists, cards, and more! A comprehensive library</p>
         </div>
         </div>
         <div class="col-md-4">
         <div class="card card-3">
-            <h3>Theming</h3>
-            <p>Learn how to easily customize and modify your app’s design to fit your
-            brand across all mobile.</p>
+        <img  src="./img/frontend/diamond.gif" style="width:30%; left: -5px;""></img>    
+            <h3>Theming</h3><br><br>
+            <p>Learn how to easily customize and modify your app’s design to fit</p>
         </div>
         </div>
     </div>
@@ -330,6 +376,8 @@
     <script src="{{ asset('js/magnific-popup-options.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     </body>
     </html>

@@ -71,6 +71,10 @@
                                     <td>{{$order->nama_dokumen}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Jumlah Halaman Dokumen</td>
+                                    <td>{{$order->pages}}</td>
+                                </tr>
+                                <tr>
                                     <td>Dokumen</td>
                                     <td>{{$order->path_file}}</td>
                                 </tr>
@@ -147,15 +151,22 @@
             </div>
 
 
-            <br>
-            <div class="form-group">
-                <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
-                <input type="number" class="form-control" placeholder="Masukkan durasi pengerjaan" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}"> 
-            </div>
-            <div class="form-group">
+                    <br>
+                    <div class="form-group">
+                        <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
+                        <input type="number" class="form-control" placeholder="Masukkan durasi pengerjaan" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}"> 
+                    </div>
+                    <div class="form-group">
                         <label for="nama_dokumen" class="col-form-label">Nama Dokumen</label>
                         <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen" value="{{$order->nama_dokumen}}">
                     </div>
+
+                    <div class="form-group">
+                        <input type="number" name="pages" value="{{$order->pages}}" hidden></td>
+                        <label for="pages" class="col-form-label">Jumlah Halaman Dokumen</label>
+                        <input type="number" class="form-control" id="pages" name="pages" value="{{$order->pages}}">
+                    </div>
+
                     <div class="form-group">
                         <label for="path_file" class="col-form-label">Upload Dokumen</label>
                         <div class="modal-body">

@@ -70,6 +70,10 @@
                                     <td>Dokumen</td>
                                     <td>{{$order->path_file}}</td>
                                 </tr>
+                                <tr>
+                                    <td>Durasi Video</td>
+                                    <td>{{$order->durasi_video}} Seconds</td>
+                                </tr>
                             </tbody>
                         </table>
                         <button class="btn btn-success mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-sign-in-alt"></i>   Transaksi</button>
@@ -134,15 +138,19 @@
                         <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen" value="{{$order->nama_dokumen}}">
                     </div>
                     <div class="form-group">
-                        <label for="path_file" class="col-form-label" value="{{$order->durasi_pengerjaan}}">Upload Video</label>
-                        <div class="modal-body" value="{{$order->durasi_pengerjaan}}">
+                        <label for="path_file" class="col-form-label" value="{{$order->path_file}}">Upload Video</label>
+                        <div class="modal-body" value="{{$order->path_file}}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
-                                    <input type="file" name="path_file" required="required" value="{{$order->durasi_pengerjaan}}">
+                                    <input type="file" id="path_file" name="path_file" required="required" value="{{$order->path_file}}">
                                 </div>
                             </div>
                     </div>
-                    <br>
+                    <div class="form-group">
+                    <label for="durasi_video" class="col-form-label" value="{{$order->durasi_video}}"></label>
+                        <input type="hidden" name="durasi_video" id="durasi_video" oninput="updateInfos()" >
+                        <span type="text"  id="dr_video" name="dr_video">
+                    </div>
         </div>
 
         <div class="modal-footer">
@@ -172,4 +180,52 @@
             $('#kriteria-table').DataTable();
         } );
     </script>
+@endpush
+
+@push('scripts')
+    <script>
+        var myVideos = [];
+             console.log(myVideos);
+        window.URL = window.URL || window.webkitURL;
+        document.getElementById('path_file').onchange = setFileInfo;
+
+        function setFileInfo() {
+        var files = this.files;
+             console.log(files);
+        myVideos.push(files[0]);
+        var video = document.createElement('video');
+             console.log(video);
+        video.preload = 'metadata';
+
+        video.onloadedmetadata = function() {
+            window.URL.revokeObjectURL(video.src);
+            var duration = video.duration;
+                 console.log(duration);
+            $('#durasi_video').val(duration);
+            myVideos[myVideos.length - 1].duration = duration;
+            
+        }
+        video.src = URL.createObjectURL(files[0]);;
+        }
+
+        function updateInfos() {
+        var duration = video.duration;
+             console.log(duration);
+        $('#durasi_video').val(duration);
+
+        $("#durasi_video").val()
+        var dr_video = document.getElementById("dr_video");
+             console.log(dr_video);
+        $('#durasi_video').val(dr_video);
+
+        var durasi_video = document.getElementById("durasi_video");
+             console.log(durasi_video);
+            
+        dr_video.textContent = "";
+        for (var i = 0; i < myVideos.length; i++) {
+             console.log(i);
+            dr_video.textContent += myVideos[i].name + " duration: " + myVideos[i].duration + '\n';
+        }
+        }
+</script>
 @endpush

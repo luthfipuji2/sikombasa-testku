@@ -47,6 +47,12 @@ body{
       background-position: right;
       background-size: 80px;
   }
+    
+    .parentDiv {
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+    } 
   
   @media(max-width: 990px){
     .card{
