@@ -1,11 +1,11 @@
-@extends('layouts.translator.master')
+@extends('layouts/admin/template')
 
 @section('title', 'Hiring')
-@section('content')
+@section('container')
 @foreach($translator as $t)
 <div class="card">
   <div class="card-header">
-    {{$t->id_translator}}
+    {{$t->created_at}}
   </div>
   <div class="card-body">
     <h5 class="card-title">{{$t->nama}}</h5>
@@ -13,9 +13,6 @@
     <a href="{{$t->id_translator}}" class="btn btn-primary">
       <i class="nav-icon fas fa-eye"></i> Detail
     </a>
-  </div>
-  <div class="card-footer text-muted">
-  {{$t->created_at}}
   </div>
 </div>
 @endforeach

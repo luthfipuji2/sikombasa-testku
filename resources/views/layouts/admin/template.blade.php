@@ -186,6 +186,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             </ul>
           </li>
+
+          <li class="nav-item menu-close has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>
+                Lamaran
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/hire" class="nav-link">
+                  <i class="fas fa-users nav-icon"></i>
+                  <p>Seleksi Berkas</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ url ('/bank') }}" class="nav-link">
+                  <i class="fas fa-university nav-icon"></i>
+                  <p>Daftar Bank</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="/daftar-admin" class="nav-link">
+                  <i class="fas fa-user-secret nav-icon"></i>
+                  <p>Daftar Admin</p>
+                </a>
+              </li>
+
+            </ul>
+          </li>
           
           <li class="nav-item has-treeview">
             <a href="/profile-admin" class="nav-link">

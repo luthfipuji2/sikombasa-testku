@@ -124,14 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="/hire" class="nav-link">
-              <i class="nav-icon fas fa-briefcase"></i>
-              <p>
-                Hire (trial)
-              </p>
-            </a>
-          </li>
+
           <li class="nav-item">
           <a class="nav-link" href="{{ route('logout') }}"
               onclick="event.preventDefault();
