@@ -1,6 +1,6 @@
 @extends('layouts.klien.sidebar')
 
-@section('title', 'Show Order Dokumen')
+@section('title', 'Show Order Transkrip')
 @section('content')
 
 
@@ -42,7 +42,7 @@
                         <table class="table table-bordered table-striped">
                             <tbody>
                             <div>
-                            <form action="/order-dokumen" method="POST" class="d-inline">
+                            <form action="/order-transkrip" method="POST" class="d-inline">
                                 @method('Delete')
                                 @csrf
                                 <button class="btn btn-danger mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-trash-alt"></i>  Batalkan Order</button>
@@ -59,25 +59,41 @@
                                     <td>{{$order->jenis_layanan}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Jenis Dokumen</td>
-                                    <td>{{$order->jenis_teks}}</td>
+                                    <td>Tipe Transkrip</td>
+                                    <td>{{$order->tipe_transkrip}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Durasi Pertemuan</td>
+                                    <td>{{$order->durasi_pertemuan}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Catatan Lokasi</td>
+                                    <td>{{$order->lokasi}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Longitude</td>
+                                    <td>{{$order->longitude}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Latitude</td>
+                                    <td>{{$order->latitude}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Durasi Audio</td>
+                                    <td>{{$order->durasi_audio}}</td>
                                 </tr>
                                 <tr>
                                     <td>Durasi Pengerjaan</td>
                                     <td>{{$order->durasi_pengerjaan}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Nama Dokumen</td>
+                                    <td>Nama Audio</td>
                                     <td>{{$order->nama_dokumen}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Jumlah Halaman Dokumen</td>
-                                    <td>{{$order->pages}}</td>
-                                </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Dokumen</td>
                                     <td>{{$order->path_file}}</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                         <button class="btn btn-success mx-1 btn-icon" type="submit" onclick="return confirm('Are you sure ?')" class="text-right" style="float: right;"><i class="fas fa-sign-in-alt"></i>   Transaksi</button>
@@ -109,7 +125,7 @@
         </div>
             
         <div class="modal-body">
-        <form action="{{route('update_order_dokumen', $order->id_order)}}" method="post">
+        <form action="{{route('update_order_transkrip', $order->id_order)}}" method="post">
             @csrf
             @method('PUT')
             <input type="text" name="idLampiran" value="{{$order->id_order}}" hidden></td>
@@ -130,56 +146,82 @@
                 Premium
             </label>
             </div>
+            <br>
 
+            <div class="form-group">
+                <label for="tipe_transkrip">Tipe Transkrip</label>
+                <input type="text" class="form-control" name="tipe_transkrip" id="tipe_transkrip" value="{{$order->tipe_transkrip}}" readonly>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="tipe_transkrip" name="tipe_transkrip" value="1">
+            <label class="form-check-label" for="tipe_transkrip">
+                Upload Audio
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" id="tipe_transkrip"  name="tipe_transkrip" value="2">
+            <label class="form-check-label" for="tipe_transkrip">
+                Bertemu Langsung
+            </label>
+            </div>
             <br>
             <div class="form-group">
-                <label for="jenis_teks">Jenis Dokumen</label>
-                <input type="text" class="form-control" placeholder="Masukkan jenis dokumen" name="jenis_teks" id="jenis_teks" value="{{$order->jenis_teks}}" readonly>
+                <label for="durasi_pertemuan">Durasi Pertemuan</label>
+                <select class="form-control @error('durasi_pertemuan') is-invalid @enderror" name="durasi_pertemuan" id="durasi_pertemuan" value="{{$order->durasi_pertemuan}}">
+                    <option value="">Select Durasi Pengerjaan</option>
+                    <option value="<=1 Day"><=1 Day</option>
+                    <option value="1-3 Day">1-3 Day</option>
+                    <option value="3-5 Day">3-5 Day</option>
+                </select>
             </div>
-
-            <div class="form-check">
-            <input class="form-check-input" type="radio" id="jenis_teks" name="jenis_teks" value="umum">
-            <label class="form-check-label" for="jenis_teks">
-                Umum
-            </label>
+                <div class="form-group">
+                        <label for="lokasi" class="col-form-label">Catatan Lokasi</label>
+                        <input type="text" class="form-control" id="lokasi" name="lokasi" value="{{$order->lokasi}}">
+                </div>
+                <div class="form-group">
+                <label for="longitude">Longitude</label>
+                <input type="text" class="form-control" name="longitude" id="longitude" value="{{$order->longitude}}" >
             </div>
-            <div class="form-check">
-            <input class="form-check-input" type="radio" id="jenis_teks"  name="jenis_teks" value="khusus">
-            <label class="form-check-label" for="jenis_teks">
-                Khusus
-            </label>
+            <div class="form-group">
+                <label for="latitude">Latitude</label>
+                <input type="text" class="form-control" name="latitude" id="latitude" value="{{$order->latitude}}" >
             </div>
-
-
-                    <br>
-                    <div class="form-group">
-                        <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
-                        <input type="number" class="form-control" placeholder="Masukkan durasi pengerjaan" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}"> 
-                    </div>
-                    <div class="form-group">
-                        <label for="nama_dokumen" class="col-form-label">Nama Dokumen</label>
-                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen" value="{{$order->nama_dokumen}}">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="number" name="pages" value="{{$order->pages}}" hidden></td>
-                        <label for="pages" class="col-form-label">Jumlah Halaman Dokumen</label>
-                        <input type="number" class="form-control" id="pages" name="pages" value="{{$order->pages}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="path_file" class="col-form-label">Upload Dokumen</label>
-                        <div class="modal-body">
-                                {{ csrf_field() }}
-                                <div class="form-group">
-                                <h6 for="path_file"> * Dokumen Anda = {{$order->path_file}}</h6>
-                                <br>
-                                    <input type="file" name="path_file" required="required" value="{{$order->path_file}}">
+                <div class="form-group">
+                            <label for="lokasi" class="col-form-label">Durasi Pengerjaan</label>
+                            <select class="form-control @error('durasi_pengerjaan') is-invalid @enderror" name="durasi_pengerjaan" id="durasi_pengerjaan" value="{{$order->durasi_pengerjaan}}">
+                                <option value="">Select Durasi Pengerjaan</option>
+								<option value="1">1 Day</option>
+                                <option value="2">2 Day</option>
+                                <option value="3">3 Day</option>
+                                <option value="4">4 Day</option>
+                            </select>
+                            @error ('durasi_pengerjaan')
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{$message}}
                                 </div>
-                            </div>
+                            @enderror
+                      </div>
+        {{ csrf_field() }}
+                    <div class="form-group" >
+                        <label for="lokasi" class="col-form-label">Nama Audio</label>
+                        <input type="text" placeholder="Tuliskan Nama Audio"class="form-control" value="{{$order->nama_dokumen}}" id="nama_dokumen" name="nama_dokumen">
                     </div>
+                    <div class="form-group">
+                            <label for="lokasi" class="col-form-label">Nama Audio</label>
+                            <select class="form-control @error('durasi_audio') is-invalid @enderror" 
+                            id="durasi_audio" name="durasi_audio" value="{{$order->durasi_audio}}" >
+                                <option value="">Select Durasi Audio</option>
+								<option value="<=1 Jam"><=1 Jam</option>
+                                <option value="1-3 Jam">1-3 Jam</option>
+                                <option value="3-5 Jam">3-5 Jam</option>
+                            </select>
+                            @error ('durasi_pengerjaan')
+                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                      </div>
         </div>
-
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Save changes</button>

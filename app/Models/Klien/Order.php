@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Klien;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,6 +29,7 @@ class Order extends Model
         'path_file',
         'size',
         'ekstensi',
+        'pages',
         'jumlah_karakter',
         'durasi_video',
         'jumlah_dubber',
@@ -48,7 +49,7 @@ class Order extends Model
     ];
 
     public function klien(){
-        return $this->hasMany('App\Models\Klien', 'id_klien', 'id_klien');
+        return $this->hasMany('App\Models\Klien\Klien', 'id_klien', 'id_klien');
     }
 
     public function translator(){
@@ -56,7 +57,6 @@ class Order extends Model
     }
 
     public function parameter_order(){
-        return $this->belongsTo('App\ParameterOrder');
+        return $this->belongsTo('App\Models\Klien\ParameterOrder');
     }
-
 }

@@ -127,7 +127,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="datatable" class="table table-bordered table-striped">
+                <table id="datatable" class="table table-bordered">
                   <thead>   
                   <tr>
                     <th>No</th>

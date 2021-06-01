@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Klien;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Order as Authenticatable;
@@ -24,6 +24,6 @@ class ParameterOrder extends Model
     ];
 
     public function order(){
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Models\Klien\Order');
     }
 }

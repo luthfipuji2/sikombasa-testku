@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Klien;
 use App\Models\User;
-use App\Models\Order;
-use App\Models\Klien;
+use App\Models\Klien\Order;
+use App\Models\Klien\Klien;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -72,8 +72,8 @@ class BiodataKlienController extends Controller
 
         $user = Auth::user();
         $id = $user->id;
-        $path_template = Storage::putFileAs('public/img/biodata', $request->file('foto_ktp'));
-        
+        //$path_template = Storage::putFileAs('public/img/biodata', $request->file('foto_ktp'));
+
         $profile = new Klien;
         $profile->id = $id;
         $profile->nik = $request->nik;

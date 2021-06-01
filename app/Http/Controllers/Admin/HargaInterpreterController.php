@@ -16,7 +16,8 @@ class HargaInterpreterController extends Controller
      */
     public function index()
     {
-        $interpreter = DB::table('parameter_order')->whereNotNull('p_durasi_pertemuan')
+        $interpreter = DB::table('parameter_order')->whereNull('p_tipe_transkrip')
+        ->whereNotNull('p_durasi_pertemuan')
         ->get();
         return view('pages.admin.HargaInterpreter', ['interpreter' => $interpreter]);
     }
@@ -40,11 +41,13 @@ class HargaInterpreterController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
+            'p_jenis_layanan' => 'required',
             'p_durasi_pertemuan' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         Harga::create([
+            'p_jenis_layanan' => $request->p_jenis_layanan,
             'p_durasi_pertemuan' => $request->p_durasi_pertemuan,
             'harga' => $request->harga
         ]);
@@ -84,14 +87,16 @@ class HargaInterpreterController extends Controller
     public function update(Request $request, $id_parameter_order)
     {
         $this->validate($request,[
+            'p_jenis_layanan' => 'required',
             'p_durasi_pertemuan' => 'required',
-            'harga' => 'required'
+            'harga' => 'required|integer'
         ]);
 
         $harga = Harga::find($id_parameter_order);
         
         Harga::where('id_parameter_order', $harga->id_parameter_order)
                     ->update([
+                        'p_jenis_layanan' => $request->p_jenis_layanan,
                         'p_durasi_pertemuan' => $request->p_durasi_pertemuan,
                         'harga' => $request->harga
                     ]);

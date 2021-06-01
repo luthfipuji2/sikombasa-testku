@@ -162,6 +162,12 @@
                         <label for="nama_dokumen" class="col-form-label">Nama Dokumen</label>
                         <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen">
                     </div>
+
+                    <div class="form-group">
+                        <label for="pages" class="col-form-label">Jumlah Halaman Dokumen</label>
+                        <input type="number" class="form-control" id="pages" name="pages">
+                    </div>
+
                     <div class="form-group">
                         <label for="path_file" class="col-form-label">Upload Dokumen</label>
                         <div class="modal-body">

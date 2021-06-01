@@ -9,7 +9,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Harga Interpreter</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -20,19 +20,47 @@
       {{ csrf_field() }}
         <div class="modal-body">
             <div class="form-group">
-                <label>Durasi Pertemuan</label>
-                <input type="text" name="p_durasi_pertemuan" class="form-control" placeholder="Masukkan range durasi pertemuan dalam menit ex. 0-60">
+                <label>Jenis Layanan</label>
+                <select type="text" name="p_jenis_layanan" class="form-control @error('p_jenis_layanan') is-invalid @enderror"
+                 placeholder="" value="{{ old('p_jenis_layanan') }}">
+                    <option value="{{old('p_jenis_layanan')}}" hidden selected>{{old('p_jenis_layanan')}}</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Premium">Premium</option>
+                </select>
+                @error ('p_jenis_layanan')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
+
+            <div class="form-group">
+              <label>Durasi Pertemuan (hari)</label>
+                <input type="text" name="p_durasi_pertemuan" class="form-control @error('p_durasi_pertemuan') is-invalid @enderror"
+                 placeholder="Masukkan Range Durasi Pertemuan (hari) ex. 1-2" value="{{ old('p_durasi_pertemuan') }}">
+                @error ('p_durasi_pertemuan')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
+            </div>
+            
             <div class="form-group">
                 <label>Harga</label>
-                <input type="text" name="harga" class="form-control" placeholder="Masukkan harga ex. 100000">
+                <input type="text" name="harga" class="form-control @error('harga') is-invalid @enderror"
+                 placeholder="Masukkan harga ex. 100000" value="{{ old('harga') }}">
+                @error ('harga')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
             </div>
         </div>
       
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Tambah Data</button>
       </div>
       </form>
     </div>
@@ -44,7 +72,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data Harga Interpreter</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -56,19 +84,49 @@
       {{ method_field('PUT') }}
 
         <div class="modal-body">
-            <div class="form-group">
-                <label>Durasi Pertemuan</label>
-                <input type="text" name="p_durasi_pertemuan" id="p_durasi_pertemuan" class="form-control" placeholder="Masukkan range durasi pertemuan dalam menit ex. 0-60">
+
+          <div class="form-group">
+                <label for="p_jenis_layanan">Jenis Layanan</label>
+                    <select class="form-control @error('p_jenis_layanan') is-invalid @enderror" 
+                     id="p_jenis_layanan" placeholder="Jenis Layanan" name="p_jenis_layanan">
+                    
+                      <option value="Basic">Basic</option>
+                      <option value="Premium">Premium</option>
+                    
+                    </select>
+                    @error ('p_jenis_layanan')
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
             </div>
+
+            <div class="form-group">
+                <label>Durasi Pertemuan (hari)</label>
+                <input type="text" name="p_durasi_pertemuan" class="form-control @error('p_durasi_pertemuan') is-invalid @enderror"
+                 placeholder="Masukkan Range Durasi Pertemuan (hari) ex. 1-2" id="p_durasi_pertemuan">
+                @error ('p_durasi_pertemuan')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
+            </div>
+            
             <div class="form-group">
                 <label>Harga</label>
-                <input type="text" name="harga" id="harga" class="form-control" placeholder="Masukkan harga ex. 100000">
-            </div> 
+                <input type="text" name="harga" class="form-control @error('harga') is-invalid @enderror"
+                 placeholder="Masukkan harga ex. 100000" id="harga">
+                @error ('harga')
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      {{$message}}
+                  </div>
+                @enderror
+            </div>
         </div>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
       </form>
     </div>
@@ -93,14 +151,15 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="datatable" class="table table-bordered table-striped">
+                <table id="datatable" class="table table-bordered">
                   <thead>   
                   <tr>
-                    <th>No</th>
+                    <th scope="row" class="text-center">No</th>
                     <th hidden>ID Harga</th>
-                    <th>Durasi Pertemuan</th>
-                    <th>Harga</th>
-                    <th>Action</th>
+                    <th scope="row" class="text-center">Jenis Layanan</th>
+                    <th scope="row" class="text-center">Durasi Pertemuan (hari)</th>
+                    <th scope="row" class="text-center">Harga</th>
+                    <th scope="row" class="text-center">Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -108,11 +167,12 @@
                   <tr>
                     <th scope="row" class="text-center">{{$loop->iteration}}</th>
                     <td scope="row" class="text-center" hidden>{{$harga->id_parameter_order}}</td>
-                    <td>{{$harga->p_durasi_pertemuan}}</td>
-                    <td>{{$harga->harga}}</td>
-                    <td>
-                      <button type="button" class="btn btn-primary edit" data-toggle="modal" data-target="#updateModal">Edit</i></button>
-                      <a href="#" class="btn btn-danger delete" harga-id="{{$harga->id_parameter_order}}">Delete</a>
+                    <td scope="row" class="text-center">{{$harga->p_jenis_layanan}}</td>
+                    <td scope="row" class="text-center">{{$harga->p_durasi_pertemuan}}</td>
+                    <td scope="row" class="text-center">{{$harga->harga}}</td>
+                    <td scope="row" class="text-center">
+                      <button type="button" class="btn btn-sm btn-primary edit" data-toggle="modal" data-target="#updateModal"><i class="fas fa-pencil-alt"></i></button>
+                      <a href="#" class="btn btn-sm btn-danger delete" harga-id="{{$harga->id_parameter_order}}"><i class="fas fa-trash-alt"></i></a>
                     </td>
                   </tr>
                   @endforeach
@@ -201,8 +261,9 @@ $(document).ready(function () {
     var data = table.row($tr).data();
     console.log(data);
 
-    $('#p_durasi_pertemuan').val(data[2]);
-    $('#harga').val(data[3]); 
+    $('#p_jenis_layanan').val(data[2]);
+    $('#p_durasi_pertemuan').val(data[3]);
+    $('#harga').val(data[4]); 
 
     $('#editForm').attr('action', '/daftar-harga-interpreter/'+data[1]);
     $('#editModal').modal('show');

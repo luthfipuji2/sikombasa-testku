@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddHargaToOrder extends Migration
+class AddPTipeTranskripToParameterOrder extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddHargaToOrder extends Migration
      */
     public function up()
     {
-        Schema::table('order', function (Blueprint $table) {
-            $table->integer('harga')->nullable();
+        Schema::table('parameter_order', function (Blueprint $table) {
+            $table->string('p_tipe_transkrip')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddHargaToOrder extends Migration
      */
     public function down()
     {
-        Schema::table('order', function (Blueprint $table) {
+        Schema::table('parameter_order', function (Blueprint $table) {
             //
         });
     }

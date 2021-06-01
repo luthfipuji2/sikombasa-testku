@@ -1,7 +1,8 @@
 @extends('layouts.klien.sidebar')
 
-@section('title', 'Order Subtitle')
+@section('title', 'Order Interpreter')
 @section('content')
+
 <div class="container-fluid">
         <div class="row">
         <div class="container ">
@@ -31,20 +32,22 @@
                 </div>
 
                 <div class="active tab-pane" id="certificate">
-                <form action="{{route('order-subtitle.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="/order-interpreter" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- layanan basic -->
         <div class="card card-statistic-1">
-                <div class="card-icon bg-info">
-                <i class="nav-icon fas fa-star"></i>
+                <div class="card-icon bg-cyan">
+                &nbsp;
+                <i class="nav-icon fas fa-medal"></i>
+                <i class="nav-icon fas fa-medal"></i>
+                <i class="nav-icon fas fa-medal"></i>
                 </div>
-            </a>
             <div class="card-wrap">
                 <div class="card-header">
                 <div>
-                <a onclick="layanan_basic()" class="btn btn-info">
+                <button onclick="layanan_basic()" class="btn bg-cyan">
                     <label for="basic">Layanan Basic</label>
-                </a>
+                </button>
                 </div>
                 <div class="card-body">
                 </div>
@@ -61,17 +64,21 @@
 
             <!-- layanan premium -->
             <div class="card card-statistic-1">
-                <div class="card-icon bg-info">
-                <i class="nav-icon fas fa-star"></i>
-                <i class="nav-icon fas fa-star"></i>
+                <div class="card-icon bg-danger">
+                &nbsp;
+                <i class="nav-icon fas fa-crown"></i>
+                <i class="nav-item fas fa-crown"></i>
+                <i class="nav-item fas fa-crown"></i>
+                <i class="nav-item fas fa-crown"></i>
+                <i class="nav-item fas fa-crown"></i>
                 </div>
             </a>
             <div class="card-wrap">
                 <div class="card-header">
                 <div>
-                <a onclick="layanan_premium()" class="btn btn-info">
+                <button onclick="layanan_premium()" class="btn btn-danger">
                     <label for="premium">Layanan Premium</label>
-                </a>
+                </button>
                 </div>
                 <div class="card-body">
                 </div>
@@ -88,15 +95,14 @@
         <br>
 
         <div class="form-group">
-                        <label for="durasi_pengerjaan">Durasi Pengerjaan</label>
-                            <select class="form-control @error('durasi_pengerjaan') is-invalid @enderror" 
-                            id="durasi_pengerjaan" placeholder="Durasi Pengerjaan" name="durasi_pengerjaan">
-                                <option value="1">1 Day</option>
-                                <option value="2">2 Day</option>
-                                <option value="3">3 Day</option>
-                                <option value="4">4 Day</option>
+                        <label for="durasi_pertemuan">Durasi Pertemuan</label>
+                            <select class="form-control @error('durasi_pertemuan') is-invalid @enderror" 
+                            id="durasi_pertemuan " placeholder="Durasi Pertemuan" name="durasi_pertemuan">
+                                <option value="<=1 Day"><=1 Day</option>
+                                <option value="1-3 Day">1-3 Day</option>
+                                <option value="3-5 Day">3-5 Day</option>
                             </select>
-                            @error ('durasi_pengerjaan')
+                            @error ('durasi_pertemuan')
                                 <div id="validationServerUsernameFeedback" class="invalid-feedback">
                                     {{$message}}
                                 </div>
@@ -105,31 +111,65 @@
 
         <br>
         {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="nama_dokumen" class="col-form-label">Nama Video</label>
-                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen">
+                   <div class="form-group">
+                        <label for="lokasi" class="col-form-label">Catatan Tambahan</label>
+                        <input type="text" class="form-control" id="lokasi" name="lokasi">
                     </div>
-                    <div class="form-group">
-                        <label for="path_file" class="col-form-label">Upload Video</label>
-                        <div class="modal-body">
-                                {{ csrf_field() }}
-                                <div class="form-group">
-                                    <input type="file" id="path_file" name="path_file" required="required">
-                                </div>
-                            </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="hidden" name="durasi_video" id="durasi_video" oninput="updateInfos()">
-                        <span type="text"  id="dr_video" name="dr_video">
-                    </div>
-                    <hr>
                     
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+                    crossorigin=""/>
+
+                    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                    crossorigin=""></script>
+
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+                    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+                    <style>#mapid { height: 350px; }</style>
+                    
+                    <div id="mapid"></div>
+
+                    <script>
+                        var map = L.map('mapid').setView([-7.5557418, 110.8545274], 13);
+                        L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                            maxZoom: 20,
+                            subdomains:['mt0','mt1','mt2','mt3'] 
+                            }).addTo(map);
+                            L.Control.geocoder().addTo(map);
+                    </script>
+                        
+                    <script>
+                        var theMarker = {};
+                        map.on('click', function(e){
+                            if (theMarker !=undefined){
+                                map.removeLayer(theMarker);
+                                $('#latitude').val(e.latlng.lat);
+                                $('#longitude').val(e.latlng.lng);
+                            };
+                            theMarker = L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
+                        });
+                    </script>
+                    </br>
+                    <label for="text">Longitude</label>
+                    <input type="text" class="form-control"  id="latitude" name="latitude">
+                            
+                    </br>
+                    <label for="text">Latitude</label>
+                    <input type="text" class="form-control" id="longitude" name="longitude">
+                    </div>
+                    
+                    <hr>
                     <div class="col-sm-2">
                     <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
                     <br>
+
+                    
                 </form> 
+
+                
                 </div>
                 <!-- /.tab-content -->
             </div>
@@ -166,7 +206,7 @@ $(document).ready(function() {
 <script >		
     // membuat function tampilkan_nama
     function layanan_basic(){
-        document.getElementById("basic").innerHTML = " * Klien Dapat Memilih Penerjemah <br> * Tidak Terdapat Editor <br> * Tidak ada Garansi <hr>";
+        document.getElementById("basic").innerHTML = "Garansi 1 Bulan Setelah 3x Order<hr>";
     }
     
 </script>
@@ -176,55 +216,8 @@ $(document).ready(function() {
 <script >		
     // membuat function tampilkan_nama
     function layanan_premium(){
-        document.getElementById("premium").innerHTML = " * Translator Ditentukan <br> * Terdapat Proses Editing <br> *  Bergaransi <hr>";
+        document.getElementById("premium").innerHTML = " Garansi 3 Bulan Sejak Berlangganan<hr> ";
     }
-</script>
-@endpush
-
-@push('scripts')
-    <script>
-        var myVideos = [];
-             console.log(myVideos);
-        window.URL = window.URL || window.webkitURL;
-        document.getElementById('path_file').onchange = setFileInfo;
-
-        function setFileInfo() {
-        var files = this.files;
-             console.log(files);
-        myVideos.push(files[0]);
-        var video = document.createElement('video');
-             console.log(video);
-        video.preload = 'metadata';
-
-        video.onloadedmetadata = function() {
-            window.URL.revokeObjectURL(video.src);
-            var duration = video.duration;
-                 console.log(duration);
-            $('#durasi_video').val(duration);
-            myVideos[myVideos.length - 1].duration = duration;
-            
-        }
-        video.src = URL.createObjectURL(files[0]);;
-        }
-
-        function updateInfos() {
-        var duration = video.duration;
-             console.log(duration);
-        $('#durasi_video').val(duration);
-
-        $("#durasi_video").val()
-        var dr_video = document.getElementById("dr_video");
-             console.log(dr_video);
-        $('#durasi_video').val(dr_video);
-
-        var durasi_video = document.getElementById("durasi_video");
-             console.log(durasi_video);
-            
-        dr_video.textContent = "";
-        for (var i = 0; i < myVideos.length; i++) {
-             console.log(i);
-            dr_video.textContent += myVideos[i].name + " duration: " + myVideos[i].duration + '\n';
-        }
-        }
+    
 </script>
 @endpush

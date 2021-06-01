@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Admin;
-use App\Models\Klien;
-use App\Models\Order;
+use App\Models\Klien\Klien;
+use App\Models\Klien\Order;
 use App\Models\Translator;
 use App\Models\User;
 use Illuminate\Http\Request;

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Klien;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Models\Order;
-use App\Models\Klien;
+use App\Models\Klien\Order;
+use App\Models\Klien\Klien;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
@@ -51,6 +51,7 @@ class OrderDubbingController extends Controller
      */
     public function store(Request $request, Order $order_dubbing)
     {
+        //return($request);
         if($request->hasFile('path_file')){
             $validate_data = $request->validate([
                 'jenis_layanan'=>'required',
@@ -58,11 +59,13 @@ class OrderDubbingController extends Controller
                 'jumlah_dubber'=>'required',
                 'nama_dokumen'=>'required',
                 'path_file'=>'required|file|max:10000',
+                'durasi_video'=>'required',
             ]);
 
             $jenis_layanan = $validate_data['jenis_layanan'];
             $durasi = $validate_data['durasi_pengerjaan'];
             $jml_dubber = $validate_data['jumlah_dubber'];
+            $durasi_video = $validate_data['durasi_video'];
             $ext_template = $validate_data['path_file']->extension();
             $size_template = $validate_data['path_file']->getSize();
             $user=Auth::user();
@@ -77,6 +80,7 @@ class OrderDubbingController extends Controller
                 'durasi_pengerjaan'=>$durasi,
                 'jumlah_dubber'=>$jml_dubber,
                 'nama_dokumen'=>$nama_dokumen,
+                'durasi_video'=>$durasi_video,
                 'path_file'=>$path_template,
                 'ekstensi'=>$ext_template,
                 'size'=>$size_template,
@@ -135,6 +139,7 @@ class OrderDubbingController extends Controller
                 'jumlah_dubber'=>$request->jumlah_dubber,
                 'nama_dokumen'=>$request->nama_dokumen,
                 'path_file'=>$request->path_file,
+                'durasi_video'=>$request->durasi_video,
             ]);
         //return($order);
         //dd($order);

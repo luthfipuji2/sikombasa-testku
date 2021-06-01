@@ -29,12 +29,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['klien'])->group(function () {
         
+        //biodata
         Route::resource('profile-klien', 'App\Http\Controllers\Klien\BiodataKlienController');
         Route::patch('biodata-klien/{users}', 'App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien');
-
         Route::get('/klien', [App\Http\Controllers\Klien\BiodataKlienController::class, 'dashboard'])->name('klien');
-        // Route::resource('profile-klien', 'App\Http\Controllers\Klien\BiodataKlienController');
-        // Route::patch('/biodata-klien/{users}','App\Http\Controllers\Klien\BiodataKlienController@updateBioKlien'); 
 
         Route::resource('menu-order', 'App\Http\Controllers\Klien\OrderMenuController');
 
@@ -58,11 +56,20 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('order-subtitle', 'App\Http\Controllers\Klien\OrderSubtitleController');
         Route::put('/order-subtitle/{id_order}', 'App\Http\Controllers\Klien\OrderSubtitleController@update')->name('update_order_subtitle');
 
+       //Order Interpreter
+       Route::get('/order-interpreter', [App\Http\Controllers\Klien\OrderInterpreterController::class, 'menuOrder'])->name('menu-order');
+       Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
+       Route::put('/order-interpreter/{id_order}', 'App\Http\Controllers\Klien\OrderInterpreterController@update')->name('update_order_interpreter');
+
+       //Order Transkrip 
+       Route::get('/order-transkrip', [App\Http\Controllers\Klien\OrderTranskripController::class, 'menuOrder'])->name('menu-order');
+       Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
+       Route::put('/order-transkrip/{id_order}', 'App\Http\Controllers\Klien\OrderTranskripController@update')->name('update_order_transkrip');
+       Route::post('/order-transkrip/create', [OrderTranskripController::class, 'store']);
+
         Route::resource('menu-pembayaran', 'App\Http\Controllers\Klien\MenuPembayaranController');
-        Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
-        Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
-
-
+        Route::get('/bukti/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@download')->name('bukti.download');
+        Route::get('/invoice/download/{id_transaksi}', 'App\Http\Controllers\Klien\MenuPembayaranController@invoice')->name('pdf.download');
     });
 
     Route::middleware(['translator'])->group(function () {
@@ -128,7 +135,6 @@ Route::middleware(['auth'])->group(function () {
         // Route::delete('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'destroyUsers'])->name('users');
         // Route::get('/users/{user}/edit', [App\Http\Controllers\Admin\AdminController::class, 'editUsers'])->name('users');
         // Route::patch('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'updateUsers'])->name('users');
-
     }); 
 
 
@@ -151,13 +157,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
         Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
 
-
     });
 
-    
- 
     Route::get('/logout', function() {
         Auth::logout();
         redirect('/');
     });
- 
+
+    });
