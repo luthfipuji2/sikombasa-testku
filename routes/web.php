@@ -157,7 +157,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
         Route::resource('order-transkrip', 'App\Http\Controllers\Klien\OrderTranskripController');
 
-    });
+    
 
     Route::get('/logout', function() {
         Auth::logout();
