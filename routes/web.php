@@ -64,9 +64,29 @@ Route::middleware(['auth'])->group(function () {
 
 
     });
+
+    Route::middleware(['translator'])->group(function () {
+        Route::get('/translator', [App\Http\Controllers\Translator\TranslatorController::class, 'index']);
+        Route::get('/profile-translator', [App\Http\Controllers\Translator\ProfileController::class, 'index']);
+        Route::patch('/profile-translator', [App\Http\Controllers\Translator\ProfileController::class, 'update']);  
+        Route::get('/find-a-job', [App\Http\Controllers\Translator\TranslatorController::class, 'find']);
+        Route::get('/to-do-list', [App\Http\Controllers\Translator\TranslatorController::class, 'todo']);
+        Route::get('/review', [App\Http\Controllers\Translator\TranslatorController::class, 'review']);
+        Route::get('/career', [App\Http\Controllers\Translator\CareerController::class, 'index']);
+        Route::post('/career', [App\Http\Controllers\Translator\CareerController::class, 'store']);
+        Route::get('/document', [App\Http\Controllers\Translator\CareerController::class, 'indexDocument']);
+        Route::post('/document', [App\Http\Controllers\Translator\CareerController::class, 'submitDocument']);
+        Route::get('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'indexCertificate']);
+        Route::post('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'submitCertificate'])->name('certificate');
+        Route::post('/certificate-create', [App\Http\Controllers\Translator\ProfileController::class, 'createCertificate']); 
+        Route::post('/certificate-update/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'updateCertificate']); 
+        Route::get('/certificate/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'deleteCertificate']); 
+        Route::get('/progress', [App\Http\Controllers\Translator\CareerController::class, 'indexProgress']);
+    });
  
     //Route Admin
     Route::middleware(['admin'])->group(function () {
+
         
         Route::get('/admin', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin');
         Route::resource('users', 'App\Http\Controllers\Admin\UsersController');
@@ -97,7 +117,11 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('biodata-admin/{users}', 'App\Http\Controllers\Admin\ProfileController@updateBiodata');
         Route::resource('daftar-transaksi', 'App\Http\Controllers\Admin\DaftarTransaksiController');
         Route::resource('distribusi-fee', 'App\Http\Controllers\Admin\DistribusiFeeController');
+
         
+         //Hiring
+         Route::get('/hire', [App\Http\Controllers\Admin\HiringController::class, 'index']);
+         Route::get('/{id_translator}', [App\Http\Controllers\Admin\HiringController::class, 'show'])->name('hire.show');
         
 
         // Route::post('/users', [App\Http\Controllers\Admin\AdminController::class, 'storeUsers'])->name('users');
@@ -105,29 +129,7 @@ Route::middleware(['auth'])->group(function () {
         // Route::get('/users/{user}/edit', [App\Http\Controllers\Admin\AdminController::class, 'editUsers'])->name('users');
         // Route::patch('/users/{user}', [App\Http\Controllers\Admin\AdminController::class, 'updateUsers'])->name('users');
 
-    });
-
-    Route::middleware(['translator'])->group(function () {
-        Route::get('/translator', [App\Http\Controllers\Translator\TranslatorController::class, 'index']);
-        Route::get('/profile-translator', [App\Http\Controllers\Translator\ProfileController::class, 'index']);
-        Route::patch('/profile-translator', [App\Http\Controllers\Translator\ProfileController::class, 'update']);  
-        Route::get('/find-a-job', [App\Http\Controllers\Translator\TranslatorController::class, 'find']);
-        Route::get('/to-do-list', [App\Http\Controllers\Translator\TranslatorController::class, 'todo']);
-        Route::get('/review', [App\Http\Controllers\Translator\TranslatorController::class, 'review']);
-        Route::get('/career', [App\Http\Controllers\Translator\CareerController::class, 'index']);
-        Route::post('/career', [App\Http\Controllers\Translator\CareerController::class, 'store']);
-        Route::get('/document', [App\Http\Controllers\Translator\CareerController::class, 'indexDocument']);
-        Route::post('/document', [App\Http\Controllers\Translator\CareerController::class, 'submitDocument']);
-        Route::get('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'indexCertificate']);
-        Route::post('/certificate', [App\Http\Controllers\Translator\CareerController::class, 'submitCertificate'])->name('certificate');
-        Route::post('/certificate-create', [App\Http\Controllers\Translator\ProfileController::class, 'createCertificate']); 
-        Route::post('/certificate-update/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'updateCertificate']); 
-        Route::get('/certificate/{id_keahlian}', [App\Http\Controllers\Translator\ProfileController::class, 'deleteCertificate']); 
-        Route::get('/progress', [App\Http\Controllers\Translator\CareerController::class, 'indexProgress']);
-        Route::get('/hire', [App\Http\Controllers\Admin\HiringController::class, 'index']);
-        Route::get('/{id_translator}', [App\Http\Controllers\Admin\HiringController::class, 'show'])->name('hire.show');
-    });
- 
+    }); 
 
 
         //order dubbing
