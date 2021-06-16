@@ -40,26 +40,31 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/order-dokumen', [App\Http\Controllers\Klien\OrderDokumenController::class, 'menuOrder'])->name('menu-order');
         Route::resource('order-dokumen', 'App\Http\Controllers\Klien\OrderDokumenController');
         Route::put('/order-dokumen/{id_order}', 'App\Http\Controllers\Klien\OrderDokumenController@update')->name('update_order_dokumen');
+        Route::get('/order-dokumen/{id_order}/{status}', 'App\Http\Controllers\Klien\OrderDokumenController@showTransaksiDok')->name('show_transaksi_dokumen');
 
         //order teks
         Route::get('/order-teks', [App\Http\Controllers\Klien\OrderTeksController::class, 'menuOrder'])->name('menu-order');
         Route::resource('order-teks', 'App\Http\Controllers\Klien\OrderTeksController');
         Route::put('/order-teks/{id_order}', 'App\Http\Controllers\Klien\OrderTeksController@update')->name('update_order_teks');
+        Route::get('/order-teks/{id_order}/{status}', 'App\Http\Controllers\Klien\OrderTeksController@showTransaksi')->name('show_transaksi_perorder');
 
         //order dubbing
         Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
         Route::resource('order-dubbing', 'App\Http\Controllers\Klien\OrderDubbingController');
         Route::put('/order-dubbing/{id_order}', 'App\Http\Controllers\Klien\OrderDubbingController@update')->name('update_order_dubbing');
+        Route::get('/order-dubbing/{id_order}/{status}', 'App\Http\Controllers\Klien\OrderDubbingController@showTransaksiDub')->name('show_transaksi_dubbing');
         
         //order subtitle
         Route::get('/order-subtitle', [App\Http\Controllers\Klien\OrderSubtitleController::class, 'menuOrder'])->name('menu-order');
         Route::resource('order-subtitle', 'App\Http\Controllers\Klien\OrderSubtitleController');
         Route::put('/order-subtitle/{id_order}', 'App\Http\Controllers\Klien\OrderSubtitleController@update')->name('update_order_subtitle');
+        Route::get('/order-subtitle/{id_order}/{status}', 'App\Http\Controllers\Klien\OrderSubtitleController@showTransaksiSub')->name('show_transaksi_subtitle');
 
        //Order Interpreter
        Route::get('/order-interpreter', [App\Http\Controllers\Klien\OrderInterpreterController::class, 'menuOrder'])->name('menu-order');
        Route::resource('order-interpreter', 'App\Http\Controllers\Klien\OrderInterpreterController');
        Route::put('/order-interpreter/{id_order}', 'App\Http\Controllers\Klien\OrderInterpreterController@update')->name('update_order_interpreter');
+       
 
        //Order Transkrip 
        Route::get('/order-transkrip', [App\Http\Controllers\Klien\OrderTranskripController::class, 'menuOrder'])->name('menu-order');
